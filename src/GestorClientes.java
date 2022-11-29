@@ -18,19 +18,20 @@ public class GestorClientes extends LinkedList<Cliente> {
         GestorClientes.super.remove(n);
     }
 
-    public void eraseClient(Cliente c){
+    public void eraseClient(Cliente c) {
         GestorClientes.super.remove(c);
     }
 
-    public void modifyClient(int n,Cliente c){
+    public void modifyClient(int n, Cliente c) {
         GestorClientes.super.set(n, c);
     }
-    public Cliente search(int pos){
-        if(pos<0||pos>GestorClientes.super.size()){
-           return null; 
+
+    public Cliente search(int pos) {
+        if (pos < 0 || pos > GestorClientes.super.size()) {
+            return null;
 
         }
         return GestorClientes.super.get(pos);
-    }    
-    
+    }
+
 }
