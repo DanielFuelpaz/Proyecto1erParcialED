@@ -14,6 +14,11 @@ public class Cliente {
         this.interesado = interesado;
         this.fechaVisita = fechaVisita;
     }
+    @Override
+    public String toString() {
+        return "Cliente [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono
+                + ", dirección=" + dirección + ", interesado=" + interesado + ", fechaVisita=" + fechaVisita + "]";
+    }
 
     
 }
