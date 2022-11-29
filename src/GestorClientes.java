@@ -27,7 +27,7 @@ public class GestorClientes extends LinkedList<Cliente> {
     }
     public Cliente search(int pos){
         if(pos<0||pos>GestorClientes.super.size()){
-        return null; 
+           return null; 
 
         }
         return GestorClientes.super.get(pos);
