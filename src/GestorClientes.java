@@ -22,4 +22,7 @@ public class GestorClientes extends LinkedList<Cliente> {
         GestorClientes.super.remove(c);
     }
 
+    public void modifyClient(int n,Cliente c){
+        GestorClientes.super.set(n, c);
+    }
 }
