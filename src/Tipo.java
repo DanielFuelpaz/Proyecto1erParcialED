@@ -13,10 +13,10 @@ public class Tipo {
         this.lista = lista;
     }
     
-    public boolean Insertar(ArrayList<Auto>b, Auto a){
+    public boolean InsertarFinal(ArrayList<Auto>b, Auto a){
         if(this.lista.contains(b)==false){
             this.lista.add(b);
-            this.Insertar(b, a);
+            this.InsertarFinal(b, a);
             return true;
         }
         if(this.lista.contains(b)){
@@ -26,6 +26,46 @@ public class Tipo {
                 return false;
             }    
             this.lista.get(pos).add(a);
+            System.out.println("Vehiculo agregado");
+            return true;
+        }
+        
+        return false;
+    }
+
+    public boolean InsertarInicio(ArrayList<Auto>b, Auto a){
+        if(this.lista.contains(b)==false){
+            this.lista.add(b);
+            this.InsertarInicio(b, a);
+            return true;
+        }
+        if(this.lista.contains(b)){
+            int pos=this.lista.indexOf(b);
+            if(this.lista.get(pos).contains(a)){
+                System.out.println("El vehiculo ya existe");
+                return false;
+            }    
+            this.lista.get(pos).add(0, a);
+            System.out.println("Vehiculo agregado al Inicio");
+            return true;
+        }
+        
+        return false;
+    }
+
+    public boolean Insertar(ArrayList<Auto>b, Auto a, int posinsertar){
+        if(this.lista.contains(b)==false){
+            this.lista.add(b);
+            this.Insertar(b, a, posinsertar);
+            return true;
+        }
+        if(this.lista.contains(b)){
+            int pos=this.lista.indexOf(b);
+            if(this.lista.get(pos).contains(a)){
+                System.out.println("El vehiculo ya existe");
+                return false;
+            }    
+            this.lista.get(pos).add(posinsertar, a);
             System.out.println("Vehiculo agregado");
             return true;
         }
@@ -71,21 +111,21 @@ public class Tipo {
         return false;
     }
     
-    public boolean Modificar (ArrayList<Auto>b, Auto a, String dato, String modificar){
+    public boolean Modificar (ArrayList<Auto>b, Auto a, String dato, String datomod){
         if(this.lista.contains(b)){
             int pos=this.lista.indexOf(b);
             if(this.lista.get(pos).contains(a)){
                 if(dato.equals("placa"))
-                    this.lista.get(pos).get(this.lista.get(pos).indexOf(a)).setPlaca(modificar);
+                    this.lista.get(pos).get(this.lista.get(pos).indexOf(a)).setPlaca(datomod);
                 
                 if(dato.equals("color"))
-                    this.lista.get(pos).get(this.lista.get(pos).indexOf(a)).setColor(modificar);
+                    this.lista.get(pos).get(this.lista.get(pos).indexOf(a)).setColor(datomod);
                 
                 if(dato.equals("marca"))
-                    this.lista.get(pos).get(this.lista.get(pos).indexOf(a)).setMarca(modificar);
+                    this.lista.get(pos).get(this.lista.get(pos).indexOf(a)).setMarca(datomod);
                 
                 if(dato.equals("año"))
-                    this.lista.get(pos).get(this.lista.get(pos).indexOf(a)).setAño(modificar);
+                    this.lista.get(pos).get(this.lista.get(pos).indexOf(a)).setAño(datomod);
                 
                 System.out.println("Vehículo Modificado");
                 return true;
@@ -95,10 +135,9 @@ public class Tipo {
         return false;
     }
     
-    public void imprimir(){   
+    public void Imprimir(){   
         for(int i=0;i<this.lista.size();i++){
             for(int j=0;j<this.lista.get(i).size();j++){
-                System.out.println(this.lista.get(i).get(j).toString());
                 System.out.println(this.lista.get(i).get(j).getPlaca());
                 System.out.println(this.lista.get(i).get(j).getColor());
                 System.out.println(this.lista.get(i).get(j).getMarca());
@@ -106,5 +145,24 @@ public class Tipo {
                 
             }
         }
+    }
+
+    public boolean Buscar(ArrayList<Auto>b, int posbusq){
+        if(this.lista.contains(b)==false){
+            return false;
+        }
+        int pos=this.lista.indexOf(b);  
+        if(this.lista.contains(b) && (posbusq>this.lista.get(pos).size()-1 || posbusq<0)){
+            return false;
+        }
+
+        if(this.lista.contains(b)){
+            System.out.println(this.lista.get(pos).get(posbusq).getPlaca());
+            System.out.println(this.lista.get(pos).get(posbusq).getColor());
+            System.out.println(this.lista.get(pos).get(posbusq).getMarca());
+            System.out.println(this.lista.get(pos).get(posbusq).getAño());
+            return true;
+        }
+        return false;           
     }
 }
