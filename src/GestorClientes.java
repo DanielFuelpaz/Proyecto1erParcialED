@@ -25,4 +25,12 @@ public class GestorClientes extends LinkedList<Cliente> {
     public void modifyClient(int n,Cliente c){
         GestorClientes.super.set(n, c);
     }
+    public Cliente search(int pos){
+        if(pos<0||pos>GestorClientes.super.size()-1){
+           return null; 
+
+        }
+        return GestorClientes.super.get(pos);
+    }    
+    
 }
