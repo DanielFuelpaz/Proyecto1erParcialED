@@ -138,10 +138,7 @@ public class Tipo {
     public void Imprimir(){   
         for(int i=0;i<this.lista.size();i++){
             for(int j=0;j<this.lista.get(i).size();j++){
-                System.out.println(this.lista.get(i).get(j).getPlaca());
-                System.out.println(this.lista.get(i).get(j).getColor());
-                System.out.println(this.lista.get(i).get(j).getMarca());
-                System.out.println(this.lista.get(i).get(j).getAño()+"\n");
+                System.out.println(this.lista.get(i).get(j).toString());
                 
             }
         }
@@ -157,10 +154,7 @@ public class Tipo {
         }
 
         if(this.lista.contains(b)){
-            System.out.println(this.lista.get(pos).get(posbusq).getPlaca());
-            System.out.println(this.lista.get(pos).get(posbusq).getColor());
-            System.out.println(this.lista.get(pos).get(posbusq).getMarca());
-            System.out.println(this.lista.get(pos).get(posbusq).getAño());
+            System.out.println(this.lista.get(pos).get(posbusq).toString());
             return true;
         }
         return false;           

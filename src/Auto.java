@@ -47,6 +47,9 @@ public class Auto {
         this.marca = marca;
     }
     
-    
+    @Override
+    public String toString() {
+        return "Vehiculo [Placa: "+placa+" Color: "+color+" Marca: "+marca+" Año: "+año+"]"+"\n";
+    }
     
 }

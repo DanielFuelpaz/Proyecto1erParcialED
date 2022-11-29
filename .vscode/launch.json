@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch MainAuto",
+            "request": "launch",
+            "mainClass": "MainAuto",
+            "projectName": "Proyecto1erParcialED_e2571b3f"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"

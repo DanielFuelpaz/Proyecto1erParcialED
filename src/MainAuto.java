@@ -5,8 +5,8 @@ public class MainAuto {
         ArrayList<Auto> Camion=new ArrayList();
         ArrayList<Auto> suv=new ArrayList();
         ArrayList<ArrayList<Auto>> lista= new ArrayList();
-        Auto mercedes=new Auto("pto125","rojo","mercedes","2001");
-        Auto spark=new Auto("pto125","rojo","chevrolet","2001");
+        Auto mercedes=new Auto("tgy125","rojo","mercedes","2001");
+        Auto spark=new Auto("pcm125","rojo","chevrolet","2001");
         Camion.add(mercedes);
         Tipo coso=new Tipo(lista);
         coso.lista.add(Camion);
