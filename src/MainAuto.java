@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class MainAuto {
     public static void main(String[] args) {
-        ArrayList<Auto> Camion=new ArrayList();
-        ArrayList<Auto> suv=new ArrayList();
-        ArrayList<ArrayList<Auto>> lista= new ArrayList();
+        ArrayList<Auto> Camion=new ArrayList<>();
+        ArrayList<Auto> suv=new ArrayList<>();
+        ArrayList<ArrayList<Auto>> lista= new ArrayList<>();
         Auto mercedes=new Auto("tgy125","rojo","mercedes","2001");
         Auto spark=new Auto("pcm125","rojo","chevrolet","2001");
         Camion.add(mercedes);
