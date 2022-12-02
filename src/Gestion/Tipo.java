@@ -12,9 +12,21 @@ import java.util.ArrayList;
  */
 public class Tipo {
     public ArrayList<ArrayList<Auto>> lista;
-
+    
     public Tipo(ArrayList<ArrayList<Auto>> lista) {
         this.lista = lista;
+    }
+
+    public void setLista(ArrayList<ArrayList<Auto>> lista) {
+        this.lista = lista;
+        ArrayList<Auto> Camioneta=new ArrayList();
+        ArrayList<Auto> Suv=new ArrayList();
+        ArrayList<Auto> Sedan=new ArrayList();
+        ArrayList<Auto> Sport=new ArrayList();
+        this.lista.add(Camioneta);
+        this.lista.add(Suv);
+        this.lista.add(Sedan);
+        this.lista.add(Sport);
     }
     
     public boolean InsertarFinal(ArrayList<Auto>b, Auto a){
