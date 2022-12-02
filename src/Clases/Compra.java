@@ -36,4 +36,13 @@ public class Compra {
         this.valorCompra = valorCompra;
     }
     
+    @Override
+    public String toString() {
+        System.out.println("Fecha: "+fecha);
+        for(int i=0;i<autCom.size();i++){
+            System.out.println(autCom.get(i).toString());
+        }
+        System.out.println("Valor: "+valorCompra);
+        return "";
+    }
 }

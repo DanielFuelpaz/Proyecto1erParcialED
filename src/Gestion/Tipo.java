@@ -139,12 +139,19 @@ public class Tipo {
         return false;
     }
     
-    public void Imprimir(){   
+    public void ImprimirTodo(){   
         for(int i=0;i<this.lista.size();i++){
             for(int j=0;j<this.lista.get(i).size();j++){
                 System.out.println(this.lista.get(i).get(j).toString());
                 
             }
+        }
+    }
+
+    public void ImprimirLista(ArrayList<Auto> b){ 
+        int pos=this.lista.indexOf(b);  
+        for(int i=0;i<this.lista.size();i++){
+            System.out.println(this.lista.get(pos).get(i).toString());
         }
     }
 
