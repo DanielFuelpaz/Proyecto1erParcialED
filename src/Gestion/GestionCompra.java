@@ -2,6 +2,7 @@ package Gestion;
 import java.util.ArrayList;
 
 import Clases.Auto;
+import Clases.Compra;
 
 public class GestionCompra {
     ArrayList<Auto> respaldo;
