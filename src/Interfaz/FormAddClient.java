@@ -15,7 +15,6 @@ import javax.swing.JComboBox;
 public class FormAddClient extends javax.swing.JDialog {
 
     public GestorClientes GC = new GestorClientes();
-
     /**
      * Creates new form FormAddClient
      */
@@ -160,6 +159,7 @@ public class FormAddClient extends javax.swing.JDialog {
     }//GEN-LAST:event_DireccionTFActionPerformed
 
     private void CedulaTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_CedulaTFCaretUpdate
+
         Validacion v = new Validacion();
         if (v.validarCedula(CedulaTF.getText())) {
             CedulaTF.setBackground(Color.green);
@@ -169,10 +169,12 @@ public class FormAddClient extends javax.swing.JDialog {
     }//GEN-LAST:event_CedulaTFCaretUpdate
 
     private void TelefonoTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_TelefonoTFCaretUpdate
+
         Validacion v = new Validacion();
         if (v.validarTelefono(TelefonoTF.getText())) {
             TelefonoTF.setBackground(Color.green);
         } else {
+
             TelefonoTF.setBackground(new Color(234, 111, 111));
         }
     }//GEN-LAST:event_TelefonoTFCaretUpdate

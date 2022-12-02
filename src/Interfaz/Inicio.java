@@ -1,13 +1,17 @@
 package Interfaz;
 
 import Clases.PopUp;
+import Gestion.GestorClientes;
+
 
 /**
  *
  * @author Daniel
  */
 public class Inicio extends javax.swing.JFrame {
+    public static GestorClientes GC = new GestorClientes();
 
+   
     /**
      * Creates new form Inicio
      */
@@ -197,7 +201,10 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+
+        new DialogModifyClient(this,true).setVisible(true);
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
