@@ -1,3 +1,6 @@
+package Gestion;
+
+import Clases.Cliente;
 import java.util.LinkedList;
 
 public class GestorClientes extends LinkedList<Cliente> {

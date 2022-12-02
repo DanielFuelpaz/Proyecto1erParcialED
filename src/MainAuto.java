@@ -1,4 +1,7 @@
+import Gestion.Tipo;
 import java.util.ArrayList;
+
+import Clases.Auto;
 
 public class MainAuto {
     public static void main(String[] args) {
