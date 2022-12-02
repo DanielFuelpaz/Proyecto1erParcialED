@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Interfaz",
+            "request": "launch",
+            "mainClass": "Interfaz",
+            "projectName": "Proyecto1erParcialED_44511df1"
+        },
+        {
+            "type": "java",
+            "name": "Launch Test",
+            "request": "launch",
+            "mainClass": "Test",
+            "projectName": "Proyecto1erParcialED_44511df1"
+        },
+        {
+            "type": "java",
+            "name": "Launch Inicio",
+            "request": "launch",
+            "mainClass": "Interfaz.Inicio",
+            "projectName": "Proyecto1erParcialED_44511df1"
+        },
+        {
+            "type": "java",
             "name": "Launch MainAuto",
             "request": "launch",
             "mainClass": "MainAuto",

@@ -1,4 +1,8 @@
+package Gestion;
 
+
+import Clases.Auto;
+import Clases.Auto;
 import java.util.ArrayList;
 
 
@@ -7,7 +11,7 @@ import java.util.ArrayList;
  * @author Gato
  */
 public class Tipo {
-    ArrayList<ArrayList<Auto>> lista;
+    public ArrayList<ArrayList<Auto>> lista;
 
     public Tipo(ArrayList<ArrayList<Auto>> lista) {
         this.lista = lista;
