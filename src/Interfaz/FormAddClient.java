@@ -5,6 +5,8 @@ import Clases.Cliente;
 import Utiles.Validacion;
 import java.awt.Color;
 import java.time.LocalDate;
+import java.util.LinkedList;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -231,6 +233,14 @@ public class FormAddClient extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
+    }
+    
+    public void CargarClientes(JComboBox<Cliente> ClientesCB){
+        ClientesCB.removeAllItems();
+        for (int i = 0; i < GC.Listar().size(); i++) {
+        ClientesCB.addItem(GC.Listar().get(i));            
+        }
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
