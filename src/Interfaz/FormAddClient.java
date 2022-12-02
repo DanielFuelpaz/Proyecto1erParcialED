@@ -11,6 +11,8 @@ import java.time.LocalDate;
  * @author Daniel
  */
 public class FormAddClient extends javax.swing.JDialog {
+
+    public GestorClientes GC = new GestorClientes();
     /**
      * Creates new form FormAddClient
      */
@@ -155,29 +157,40 @@ public class FormAddClient extends javax.swing.JDialog {
     }//GEN-LAST:event_DireccionTFActionPerformed
 
     private void CedulaTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_CedulaTFCaretUpdate
-        Validacion v= new Validacion();
+
+        Validacion v = new Validacion();
         if (v.validarCedula(CedulaTF.getText())) {
             CedulaTF.setBackground(Color.green);
-        }else{
+        } else {
             CedulaTF.setBackground(new Color(234, 111, 111));
         }
     }//GEN-LAST:event_CedulaTFCaretUpdate
 
     private void TelefonoTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_TelefonoTFCaretUpdate
-        Validacion v= new Validacion();
+
+        Validacion v = new Validacion();
         if (v.validarTelefono(TelefonoTF.getText())) {
             TelefonoTF.setBackground(Color.green);
-        }else{
+        } else {
+
             TelefonoTF.setBackground(new Color(234, 111, 111));
         }
     }//GEN-LAST:event_TelefonoTFCaretUpdate
 
     private void CrearClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearClienteActionPerformed
-       Cliente cliente = new Cliente(CedulaTF.getText(), NombreTF.getText(), ApellidoTF.getText(), TelefonoTF.getText(), DireccionTF.getText(), false, LocalDate.now());
-       GestorClientes GC = Inicio.GC;
-       GC.add(cliente);
-       System.out.println(GC.get(0).toString());
-        
+
+        Cliente cliente = new Cliente(CedulaTF.getText(), NombreTF.getText(), ApellidoTF.getText(), TelefonoTF.getText(), DireccionTF.getText(), false, LocalDate.now());
+        /*Map<String, Cliente> ListadoC = new HashMap<>();
+        ListadoC.put(c + i, new Cliente(CedulaTF.getText(), NombreTF.getText(), ApellidoTF.getText(), TelefonoTF.getText(), DireccionTF.getText(), false, LocalDate.now()));
+        Cliente v = ListadoC.get(c + i);*/
+        GC.add(cliente);
+        System.out.println("-----------------------------------");
+        GC.Listar();
+        CedulaTF.setText("");
+        NombreTF.setText("");
+        ApellidoTF.setText("");
+        TelefonoTF.setText("");
+        DireccionTF.setText("");
     }//GEN-LAST:event_CrearClienteActionPerformed
 
     /**

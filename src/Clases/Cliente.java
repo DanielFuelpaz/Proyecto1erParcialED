@@ -3,9 +3,10 @@ package Clases;
 import java.time.LocalDate;
 
 public class Cliente {
-    String cedula, nombre, apellido, telefono, dirección;
-    boolean interesado;
-    LocalDate fechaVisita;
+
+    public String cedula, nombre, apellido, telefono, dirección;
+    public boolean interesado;
+    public LocalDate fechaVisita;
     public Cliente(String cedula, String nombre, String apellido, String telefono, String dirección, boolean interesado,
             LocalDate fechaVisita) {
         this.cedula = cedula;
@@ -16,6 +17,7 @@ public class Cliente {
         this.interesado = interesado;
         this.fechaVisita = fechaVisita;
     }
+
 
     public String getNombreYApellido() {
         return this.nombre + " " + this.apellido;
@@ -72,8 +74,8 @@ public class Cliente {
     
     @Override
     public String toString() {
-        return "Cliente [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono
-                + ", dirección=" + dirección + ", interesado=" + interesado + ", fechaVisita=" + fechaVisita + "]";
+        return "Cliente \nCedula= " + cedula + "\nNombre= " + nombre + "\nApellido= " + apellido + "\nTelefono= " + telefono
+                + "\nDirección= " + dirección + "\nInteresado=" + interesado + "\nFecha Visita= " + fechaVisita;
     }
 
     
