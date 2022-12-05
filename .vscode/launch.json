@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch DialogModifyClient",
+            "request": "launch",
+            "mainClass": "Interfaz.DialogModifyClient",
+            "projectName": "Proyecto1erParcialED_8a279677"
+        },
+        {
+            "type": "java",
+            "name": "Launch Compras",
+            "request": "launch",
+            "mainClass": "Interfaz.Compras",
+            "projectName": "Proyecto1erParcialED_8a279677"
+        },
+        {
+            "type": "java",
             "name": "Launch MainFactura",
             "request": "launch",
             "mainClass": "MainFactura",
