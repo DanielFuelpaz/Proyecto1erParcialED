@@ -12,9 +12,21 @@ import java.util.ArrayList;
  */
 public class Tipo {
     public ArrayList<ArrayList<Auto>> lista;
-
+    
     public Tipo(ArrayList<ArrayList<Auto>> lista) {
         this.lista = lista;
+    }
+
+    public void setLista(ArrayList<ArrayList<Auto>> lista) {
+        this.lista = lista;
+        ArrayList<Auto> Camioneta=new ArrayList();
+        ArrayList<Auto> Suv=new ArrayList();
+        ArrayList<Auto> Sedan=new ArrayList();
+        ArrayList<Auto> Sport=new ArrayList();
+        this.lista.add(Camioneta);
+        this.lista.add(Suv);
+        this.lista.add(Sedan);
+        this.lista.add(Sport);
     }
     
     public boolean InsertarFinal(ArrayList<Auto>b, Auto a){
@@ -139,7 +151,7 @@ public class Tipo {
         return false;
     }
     
-    public void ImprimirTodo(){   
+    public void Imprimir(){   
         for(int i=0;i<this.lista.size();i++){
             for(int j=0;j<this.lista.get(i).size();j++){
                 System.out.println(this.lista.get(i).get(j).toString());
@@ -148,13 +160,6 @@ public class Tipo {
         }
     }
 
-    public void ImprimirLista(ArrayList<Auto>b){
-        int pos=this.lista.indexOf(b);   
-        for(int i=0;i<b.size();i++){
-                System.out.println(this.lista.get(pos).get(i).toString());               
-        }
-    }
-    
     public boolean Buscar(ArrayList<Auto>b, int posbusq){
         if(this.lista.contains(b)==false){
             return false;
