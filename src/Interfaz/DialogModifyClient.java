@@ -3,10 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package Interfaz;
-
-import Clases.Cliente;
 import Gestion.GestorClientes;
-import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 /**
