@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch MainFactura",
+            "request": "launch",
+            "mainClass": "MainFactura",
+            "projectName": "Proyecto1erParcialED_8a279677"
+        },
+        {
+            "type": "java",
             "name": "Launch Interfaz",
             "request": "launch",
             "mainClass": "Interfaz",
