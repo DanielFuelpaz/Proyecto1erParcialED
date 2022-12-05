@@ -15,9 +15,9 @@ public class MainAuto {
         coso.lista.add(Camion);
         coso.InsertarFinal(Camion, mercedes);
         coso.InsertarInicio(suv, spark);
-        coso.Imprimir();
+        coso.ImprimirTodo();
         coso.Modificar(suv, mercedes,"color","plomo");
-        coso.Imprimir();
+        coso.ImprimirTodo();
         coso.Buscar(suv, 1);
     }
 }   
