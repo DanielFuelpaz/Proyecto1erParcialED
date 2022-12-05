@@ -4,9 +4,7 @@
  */
 package Interfaz;
 
-import Clases.Cliente;
 import Gestion.GestorClientes;
-import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author Personal
  */
 public class DialogModifyClient extends javax.swing.JDialog {
-    GestorClientes GC = Inicio.GC; 
+    GestorClientes GC = FormAddClient.GC; 
     String cliente;
     /**
      * Creates new form DialogModifyClient

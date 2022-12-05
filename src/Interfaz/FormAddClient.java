@@ -14,7 +14,7 @@ import javax.swing.JComboBox;
  */
 public class FormAddClient extends javax.swing.JDialog {
 
-    public GestorClientes GC = new GestorClientes();
+    public static GestorClientes GC = new GestorClientes();
 
     /**
      * Creates new form FormAddClient
