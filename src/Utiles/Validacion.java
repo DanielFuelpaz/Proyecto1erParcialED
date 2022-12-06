@@ -7,5 +7,7 @@ public class Validacion {
     public boolean validarTelefono(String telefono) {
         return telefono.matches("09[0-9]{8}");
     }
-    
+        public boolean validarPersona(String telefono) {
+        return telefono.matches("[A-Z]([a-z])*");
+    }
 }
