@@ -2,17 +2,30 @@ import Gestion.GestorClientes;
 import Clases.Cliente;
 import java.time.LocalDate;
 import java.time.Month;
-
+import java.util.Scanner;
 
 public class Principal {
         public static void main(String[] args) {
+                String respuesta;
                 GestorClientes GC = new GestorClientes();
+                System.out.println("Bienvenido al Sistema de Clientes");
+                System.out.println("Desea ingresar un cliente");
+                Scanner leer = new Scanner(System.in);
+                respuesta = leer.nextLine();
+                if (respuesta.equalsIgnoreCase("si")) {
+                        Cliente c1 = new Cliente();
+                        System.out.println("Ingrese su # de cedula:");
+                        c1.cedula = leer.nextLine();
+                        System.out.println("Ingrese su nombre:");
+                        System.out.println("Ingrese su Apellido:");
+                        System.out.println("Ingrese su # de telefono:");
+                        System.out.println("Ingrese su dirección:");
+
+                } else {
+                }
                 LocalDate fecha = LocalDate.now();
-                LocalDate fecha2 = LocalDate.of(2022, Month.DECEMBER, 15);
+                LocalDate fecha2 = LocalDate.of(2022, Month.DECEMBER, 7);
                 LocalDate fecha3 = LocalDate.now().plusDays(10);
-                
-                
-                System.out.println("Ingrese ");
                 Cliente cliente1 = new Cliente("1850178870", "Stalin", "Badillo", "0912345678", "Mall de los Andes",
                                 true,
                                 fecha);

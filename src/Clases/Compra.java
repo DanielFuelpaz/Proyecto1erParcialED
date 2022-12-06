@@ -4,9 +4,9 @@ import java.util.ArrayList;
 public class Compra {
     public ArrayList<Auto> autCom;
     public String fecha;
-    public Double valorCompra;
+    public String valorCompra;
 
-    public Compra(ArrayList<Auto> autCom, String fecha, Double valorCompra) {
+    public Compra(ArrayList<Auto> autCom, String fecha, String valorCompra) {
         this.autCom = autCom;
         this.fecha = fecha;
         this.valorCompra = valorCompra;
@@ -28,12 +28,21 @@ public class Compra {
         this.fecha = fecha;
     }
 
-    public Double getValorCompra() {
+    public String getValorCompra() {
         return valorCompra;
     }
 
-    public void setValorCompra(Double valorCompra) {
+    public void setValorCompra(String valorCompra) {
         this.valorCompra = valorCompra;
     }
     
+    @Override
+    public String toString() {
+        System.out.println("Fecha: "+this.fecha+"\n");
+        for(int i=0;i<autCom.size();i++){
+            System.out.println(autCom.get(i).toString());
+        }
+        System.out.println("Valor: "+this.valorCompra);
+        return "";
+    }
 }

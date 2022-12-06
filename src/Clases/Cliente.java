@@ -4,6 +4,9 @@ import java.time.LocalDate;
 
 public class Cliente {
 
+    public Cliente() {
+    }
+
     public String cedula, nombre, apellido, telefono, dirección;
     public boolean interesado;
     public LocalDate fechaVisita;
