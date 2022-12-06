@@ -16,7 +16,7 @@ public class GestionCompra {
         this.respaldo.add(a);
     }
     
-    public void GenerarFactura(String fecha,Double valor){
+    public void GenerarFactura(String fecha,String valor){
         ArrayList<Auto> lista= new ArrayList(this.respaldo);
         factura=new Compra(lista,fecha,valor);
     }

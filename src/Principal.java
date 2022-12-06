@@ -53,13 +53,14 @@ public class Principal {
                 GC.addClient(cliente1);
                 GC.add(cliente2);
                 System.out.println(GC.search(0));
-                System.out.println(GC.search(1));
-                // GC.modifyClient(1, cliente4);
-                // GC.modifyClient(0, cliente3);
-                // interfaz1.imprimir(GC);
-                // GC.eraseFirstClient();
-                // GC.eraseClient(0);
-                // interfaz1.imprimir(GC);
+//                System.out.println(GC.search(1));
+//                 GC.modifyClient(1, cliente4);
+//                 GC.modifyClient(0, cliente3);
+                 GC.Listar();
+//                 GC.eraseFirstClient();
+//                 GC.eraseClient(0);
+//                 GC.Listar();
         }
 
 }
+
