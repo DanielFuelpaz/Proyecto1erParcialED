@@ -127,21 +127,21 @@ public class GestorAuto {
         return false;
     }
     
-    public boolean Modificar (ArrayList<Auto>b, Auto a, String dato, String datomod){
+    public boolean Modificar (ArrayList<Auto>b, int num, String dato, String datomod){
         if(this.lista.contains(b)){
             int pos=this.lista.indexOf(b);
-            if(this.lista.get(pos).contains(a)){
+            if(this.lista.get(pos).contains(this.lista.get(pos).get(num-1))){
                 if(dato.equals("placa"))
-                    this.lista.get(pos).get(this.lista.get(pos).indexOf(a)).setPlaca(datomod);
+                    this.lista.get(pos).get(num-1).setPlaca(datomod);
                 
                 if(dato.equals("color"))
-                    this.lista.get(pos).get(this.lista.get(pos).indexOf(a)).setColor(datomod);
+                    this.lista.get(pos).get(num-1).setColor(datomod);
                 
                 if(dato.equals("marca"))
-                    this.lista.get(pos).get(this.lista.get(pos).indexOf(a)).setMarca(datomod);
+                    this.lista.get(pos).get(num-1).setMarca(datomod);
                 
                 if(dato.equals("año"))
-                    this.lista.get(pos).get(this.lista.get(pos).indexOf(a)).setAño(datomod);
+                    this.lista.get(pos).get(num-1).setAño(datomod);
                 
                 System.out.println("Vehículo Modificado");
                 return true;
@@ -155,7 +155,6 @@ public class GestorAuto {
         for(int i=0;i<this.lista.size();i++){
             for(int j=0;j<this.lista.get(i).size();j++){
                 System.out.println(this.lista.get(i).get(j).toString());
-                
             }
         }
     }
