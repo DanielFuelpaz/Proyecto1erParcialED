@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Principal {
         public static void main(String[] args) {
                 String respuesta;
-                Validacion val=new Validacion();
+                Validacion val = new Validacion();
                 GestorClientes GC = new GestorClientes();
                 System.out.println("Bienvenido al Sistema de Clientes");
                 System.out.println("Desea ingresar un cliente");
@@ -18,14 +18,14 @@ public class Principal {
                         Cliente c1 = new Cliente();
                         boolean validacion = false;
                         System.out.println("Ingrese su # de cedula:");
-                        
-                        do{
-                            c1.cedula = leer.nextLine();
-                            if (!val.validarCedula(c1.cedula)) {
-                                System.out.println("cedula mal ingresada");
-                            }
-                            validacion=true;
-                        }while(validacion!=false);
+
+                        do {
+                                c1.cedula = leer.nextLine();
+                                if (!val.validarCedula(c1.cedula)) {
+                                        System.out.println("cedula mal ingresada");
+                                }
+                                validacion = true;
+                        } while (validacion != false);
                         System.out.println("Ingrese su nombre:");
                         c1.nombre = leer.nextLine();
                         System.out.println("Ingrese su Apellido:");
@@ -53,14 +53,13 @@ public class Principal {
                 GC.addClient(cliente1);
                 GC.add(cliente2);
                 System.out.println(GC.search(0));
-//                System.out.println(GC.search(1));
-//                 GC.modifyClient(1, cliente4);
-//                 GC.modifyClient(0, cliente3);
-                 GC.Listar();
-//                 GC.eraseFirstClient();
-//                 GC.eraseClient(0);
-//                 GC.Listar();
+                // System.out.println(GC.search(1));
+                // GC.modifyClient(1, cliente4);
+                // GC.modifyClient(0, cliente3);
+                GC.Listar();
+                // GC.eraseFirstClient();
+                // GC.eraseClient(0);
+                // GC.Listar();
         }
 
 }
-
