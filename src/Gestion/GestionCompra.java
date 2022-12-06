@@ -7,18 +7,24 @@ import Clases.Compra;
 
 public class GestionCompra {
     ArrayList<Auto> respaldo;
+    Compra factura;
 
-    public boolean GenerarFactura(String fecha,Double valor){
-        Compra factura = new Compra(this.respaldo,fecha,valor);
-        return true;
+    public GestionCompra(ArrayList<Auto> respaldo) {
+        this.respaldo = respaldo;
     }
-
-    public boolean Agregar(Auto a){
+    
+    
+    public void Agregar(Auto a){
         this.respaldo.add(a);
-        return true;
+    }
+    
+     public void GenerarFactura(String fecha,Double valor){
+        ArrayList<Auto> lista= new ArrayList(this.respaldo);
+        factura=new Compra(lista,fecha,valor);
     }
 
-    public void ImprimirFactura(Compra a){
-        a.toString();
+    public void ImprimirFactura(){
+        factura.toString();
     }
+
 }

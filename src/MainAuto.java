@@ -5,19 +5,19 @@ import Clases.Auto;
 
 public class MainAuto {
     public static void main(String[] args) {
-        ArrayList<Auto> Camion=new ArrayList<>();
-        ArrayList<Auto> suv=new ArrayList<>();
+        ArrayList<Auto> Camioneta=new ArrayList<>();
+        ArrayList<Auto> Suv=new ArrayList<>();
         ArrayList<ArrayList<Auto>> lista= new ArrayList<>();
         Auto mercedes=new Auto("tgy125","rojo","mercedes","2001");
         Auto spark=new Auto("pcm125","rojo","chevrolet","2001");
-        Camion.add(mercedes);
+        Camioneta.add(mercedes);
         Tipo coso=new Tipo(lista);
-        coso.lista.add(Camion);
-        coso.InsertarFinal(Camion, mercedes);
-        coso.InsertarInicio(suv, spark);
+        coso.lista.add(Camioneta);
+        coso.InsertarFinal(Camioneta, mercedes);
+        coso.InsertarInicio(Suv, spark);
         coso.ImprimirTodo();
-        coso.Modificar(suv, mercedes,"color","plomo");
+        coso.Modificar(Suv, mercedes,"color","plomo");
         coso.ImprimirTodo();
-        coso.Buscar(suv, 1);
+        coso.Buscar(Suv, 0);
     }
 }   
