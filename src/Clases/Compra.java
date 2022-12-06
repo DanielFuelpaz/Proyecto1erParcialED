@@ -38,7 +38,7 @@ public class Compra {
     
     @Override
     public String toString() {
-        System.out.println("Fecha: "+this.fecha);
+        System.out.println("Fecha: "+this.fecha+"\n");
         for(int i=0;i<autCom.size();i++){
             System.out.println(autCom.get(i).toString());
         }

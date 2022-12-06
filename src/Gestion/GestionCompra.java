@@ -23,6 +23,15 @@ public class GestionCompra {
         factura=new Compra(lista,fecha,valor);
     }
 
+    public void MostrarLista(){
+        for(int i=0; i<this.respaldo.size();i++){
+            System.out.println(this.respaldo.get(i).toString());
+        }
+    }
+    public boolean BorrarCarro(int a){
+        this.respaldo.remove(a);
+        return true;
+    }
     public void ImprimirFactura(){
         factura.toString();
     }
