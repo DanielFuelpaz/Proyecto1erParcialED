@@ -1,5 +1,6 @@
 import Gestion.GestorClientes;
 import Clases.Cliente;
+import Utiles.Validacion;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Scanner;
@@ -7,6 +8,7 @@ import java.util.Scanner;
 public class Principal {
         public static void main(String[] args) {
                 String respuesta;
+                Validacion val=new Validacion();
                 GestorClientes GC = new GestorClientes();
                 System.out.println("Bienvenido al Sistema de Clientes");
                 System.out.println("Desea ingresar un cliente");
@@ -14,13 +16,24 @@ public class Principal {
                 respuesta = leer.nextLine();
                 if (respuesta.equalsIgnoreCase("si")) {
                         Cliente c1 = new Cliente();
+                        boolean validacion = false;
                         System.out.println("Ingrese su # de cedula:");
-                        c1.cedula = leer.nextLine();
+                        
+                        do{
+                            c1.cedula = leer.nextLine();
+                            if (!val.validarCedula(c1.cedula)) {
+                                System.out.println("cedula mal ingresada");
+                            }
+                            validacion=true;
+                        }while(validacion!=false);
                         System.out.println("Ingrese su nombre:");
+                        c1.nombre = leer.nextLine();
                         System.out.println("Ingrese su Apellido:");
+                        c1.apellido = leer.nextLine();
                         System.out.println("Ingrese su # de telefono:");
+                        c1.telefono = leer.nextLine();
                         System.out.println("Ingrese su dirección:");
-
+                        c1.dirección = leer.nextLine();
                 } else {
                 }
                 LocalDate fecha = LocalDate.now();
