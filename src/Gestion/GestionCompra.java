@@ -1,9 +1,7 @@
 package Gestion;
 import java.util.ArrayList;
 import Clases.Compra;
-
 import Clases.Auto;
-import Clases.Compra;
 
 public class GestionCompra {
     ArrayList<Auto> respaldo;
@@ -18,7 +16,7 @@ public class GestionCompra {
         this.respaldo.add(a);
     }
     
-     public void GenerarFactura(String fecha,Double valor){
+    public void GenerarFactura(String fecha,Double valor){
         ArrayList<Auto> lista= new ArrayList(this.respaldo);
         factura=new Compra(lista,fecha,valor);
     }

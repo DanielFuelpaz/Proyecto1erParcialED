@@ -32,11 +32,9 @@ public class GestorClientes extends LinkedList<Cliente> {
     public Cliente search(int pos) {
         if (pos < 0 || pos > GestorClientes.super.size()) {
             return null;
-
-
         } else {
 
-            System.out.println(GestorClientes.super.get(pos-1).toString());
+            System.out.println(GestorClientes.super.get(pos - 1).toString());
 
         }
 
@@ -44,10 +42,9 @@ public class GestorClientes extends LinkedList<Cliente> {
     }
 
     public void Listar() {
-            for (int i = 0; i < GestorClientes.super.size(); i++) {
-                System.out.println(GestorClientes.super.get(i).toString());
-            }
-        
+        for (int i = 0; i < GestorClientes.super.size(); i++) {
+            System.out.println(GestorClientes.super.get(i).toString());
+        }
     }
 
 }
