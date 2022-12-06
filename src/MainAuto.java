@@ -1,4 +1,4 @@
-import Gestion.Tipo;
+import Gestion.GestorAuto;
 import java.util.ArrayList;
 
 import Clases.Auto;
@@ -11,7 +11,7 @@ public class MainAuto {
         Auto mercedes=new Auto("tgy125","rojo","mercedes","2001");
         Auto spark=new Auto("pcm125","rojo","chevrolet","2001");
         Camioneta.add(mercedes);
-        Tipo coso=new Tipo(lista);
+        GestorAuto coso=new GestorAuto(lista);
         coso.lista.add(Camioneta);
         coso.InsertarFinal(Camioneta, mercedes);
         coso.InsertarInicio(Suv, spark);

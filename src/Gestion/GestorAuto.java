@@ -10,10 +10,10 @@ import java.util.ArrayList;
  *
  * @author Gato
  */
-public class Tipo {
+public class GestorAuto {
     public ArrayList<ArrayList<Auto>> lista;
     
-    public Tipo(ArrayList<ArrayList<Auto>> lista) {
+    public GestorAuto(ArrayList<ArrayList<Auto>> lista) {
         this.lista = lista;
     }
 
