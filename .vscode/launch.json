@@ -9,6 +9,13 @@
             "name": "Launch MainFactura",
             "request": "launch",
             "mainClass": "MainFactura",
+            "projectName": "Proyecto1erParcialED_7c4690"
+        },
+        {
+            "type": "java",
+            "name": "Launch MainFactura",
+            "request": "launch",
+            "mainClass": "MainFactura",
             "projectName": "Proyecto1erParcialED_e2571b3f"
         },
         {
