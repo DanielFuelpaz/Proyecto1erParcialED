@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package Interfaz;
+
 import Gestion.GestorClientes;
 import javax.swing.JOptionPane;
 
@@ -11,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author Personal
  */
 public class DialogModifyClient extends javax.swing.JDialog {
-    GestorClientes GC = Inicio.GC; 
+    GestorClientes GC = FormAddClient.GC; 
     String cliente;
     /**
      * Creates new form DialogModifyClient

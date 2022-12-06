@@ -1,10 +1,14 @@
 package Interfaz;
 
+import Gestion.GestorClientes;
+
 /**
  *
  * @author Daniel
  */
 public class FormEraseClient extends javax.swing.JDialog {
+
+    GestorClientes GC = FormAddClient.GC;
 
     /**
      * Creates new form FormEraseCliente
@@ -12,6 +16,9 @@ public class FormEraseClient extends javax.swing.JDialog {
     public FormEraseClient(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        for (int i = 0; i < GC.size(); i++) {
+            ClientesCB.addItem(GC.get(i).getNombreYApellido());
+        }
     }
 
     /**
@@ -23,21 +30,63 @@ public class FormEraseClient extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ClientesCB = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        EliminarBT = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        ClientesCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Clientes" }));
+        ClientesCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClientesCBActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Seleccione el Cliente a Eliminar:");
+
+        EliminarBT.setText("Eliminar");
+        EliminarBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarBTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(EliminarBT)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ClientesCB, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ClientesCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(38, 38, 38)
+                .addComponent(EliminarBT)
+                .addContainerGap(206, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ClientesCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientesCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ClientesCBActionPerformed
+
+    private void EliminarBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBTActionPerformed
+        ClientesCB.remove(ClientesCB.getSelectedIndex() - 1);
+    }//GEN-LAST:event_EliminarBTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -82,6 +131,11 @@ public class FormEraseClient extends javax.swing.JDialog {
         });
     }
 
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ClientesCB;
+    private javax.swing.JButton EliminarBT;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
