@@ -31,6 +31,8 @@ public class MainAuto {
     public static void menuPrincipal(GestorAuto b) {
         crearAuto(b);
         ImprimirTodo(b);
+        Moodificar(b);
+        Buscar(b);
     }
 
     public static void crearAuto(GestorAuto b) {
