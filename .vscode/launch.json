@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch MainFactura",
+            "request": "launch",
+            "mainClass": "MainFactura",
+            "projectName": "Proyecto1erParcialED_e2571b3f"
+        },
+        {
+            "type": "java",
             "name": "Launch DialogModifyClient",
             "request": "launch",
             "mainClass": "Interfaz.DialogModifyClient",

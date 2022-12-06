@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 import Clases.Auto;
-import Clases.Compra;
 import Gestion.GestionCompra;
 
 public class MainFactura {
@@ -16,7 +15,7 @@ public class MainFactura {
         coso.Agregar(Mercedes);
         coso.MostrarLista();
         coso.BorrarCarro(2);
-        coso.GenerarFactura("21/12/2022", 15000.45);
+        coso.GenerarFactura("21/12/2022", "12346.231");
         coso.ImprimirFactura();
     }
 }
