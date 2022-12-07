@@ -29,23 +29,53 @@ public class MainAuto {
     }
 
     public static void menuPrincipal(GestorAuto b) {
-        crearAuto(b);
-        ImprimirTodo(b);
-        Moodificar(b);
-        Buscar(b);
+        Scanner coso = new Scanner(System.in);
+        String dato;
+        System.out.println("======Menú Vehiculos======\n");
+        System.out.println("1.-Agregar Auto \n2.-Mostrar Todos los vehiculos \n3.-Modificar un vehiculo \n4.-Buscar un vehiculo\n");
+        System.out.println("Seleccione la Opcion que desea ejecutar");
+        System.out.println("utilice solo números"); 
+        dato=coso.next();
+        
+        switch (dato) {
+            case "1":
+            crearAuto(b);
+                break;
+            
+            case "2":
+                ImprimirTodo(b);
+                break;
+
+            case "3":
+                Moodificar(b);
+                break;
+
+            case "4":
+                Buscar(b);
+                break;
+
+            default:
+                System.out.println("Opcion seleccionada fuera de rango\nPor favor ocupar un numero dentor del rango de opciones\n");
+                menuPrincipal(b);
+                break;
+        }
+        
+        
+        
+        
     }
 
     public static void crearAuto(GestorAuto b) {
         Scanner coso = new Scanner(System.in);
-        int dato;
+        String dato;
         String placa, color, marca, año, des;
 
         System.out.println("Seleccione el tipo de vehiculo que desea agregar");
         System.out.println("1.-Camioneta \n2.-Suv \n3.-Sedan \n4.-Deportivo");
         System.out.println("Coloque solo el numero de la opcion deseada");
-        dato = coso.nextInt();
+        dato = coso.next();
         switch (dato) {
-            case 1:
+            case "1":
                 ArrayList<Auto> Camioneta = new ArrayList<>();
                 System.out.println("Ingrese la placa");
                 placa = coso.next();
@@ -65,7 +95,7 @@ public class MainAuto {
                 menuPrincipal(b);
                 break;
 
-            case 2:
+            case "2":
                 ArrayList<Auto> Suv = new ArrayList<>();
                 System.out.println("Ingrese la placa");
                 placa = coso.next();
@@ -84,7 +114,7 @@ public class MainAuto {
                 }
                 menuPrincipal(b);
                 break;
-            case 3:
+            case "3":
                 ArrayList<Auto> Sedan = new ArrayList<>();
                 System.out.println("Ingrese la placa");
                 placa = coso.next();
@@ -103,7 +133,7 @@ public class MainAuto {
                 }
                 menuPrincipal(b);
                 break;
-            case 4:
+            case "4":
                 ArrayList<Auto> Deportivo = new ArrayList<>();
                 System.out.println("Ingrese la placa");
                 placa = coso.next();
@@ -137,14 +167,15 @@ public class MainAuto {
 
     public static void Moodificar(GestorAuto b) {
         Scanner coso = new Scanner(System.in);
-        int dato,num;
+        int num;
+        String dato;
         String placa, color, marca, año,des,respuesta;
         System.out.println("Seleccione el tipo de vehiculo que quiere modificar");
         System.out.println("1.-Camioneta \n2.-Suv \n3.-Sedan \n4.-Deportivo");
         System.out.println("Coloque solo el numero de la opcion deseada");
-        dato = coso.nextInt();
+        dato = coso.next();
         switch (dato) {
-            case 1:
+            case "1":
                 ArrayList<Auto> Camioneta = new ArrayList<>();
                 b.ImprimirLista(Camioneta);
                 System.out.println("Ingrese el número del vehiculo que desea modificar");
@@ -185,7 +216,7 @@ public class MainAuto {
                 menuPrincipal(b);
                 break;
 
-            case 2:
+            case "2":
                 ArrayList<Auto> Suv = new ArrayList<>();
                 b.ImprimirLista(Suv);
                 System.out.println("Ingrese el número del vehiculo que desea modificar");
@@ -225,7 +256,7 @@ public class MainAuto {
                 }
                 menuPrincipal(b);
                 break;
-            case 3:
+            case "3":
                 ArrayList<Auto> Sedan = new ArrayList<>();
                 b.ImprimirLista(Sedan);
                 System.out.println("Ingrese el número del vehiculo que desea modificar");
@@ -265,7 +296,7 @@ public class MainAuto {
                 }
                 menuPrincipal(b);
                 break;
-            case 4:
+            case "4":
                 ArrayList<Auto> Deportivo = new ArrayList<>();
                 b.ImprimirLista(Deportivo);
                 System.out.println("Ingrese el número del vehiculo que desea modificar");
@@ -314,15 +345,16 @@ public class MainAuto {
 
     public static void Buscar(GestorAuto b){
         Scanner coso = new Scanner(System.in);
-        int dato;
+        String op;
         String des;
+        int dato;
 
         System.out.println("Seleccione el tipo de vehiculo que desea Buscar");
         System.out.println("1.-Camioneta \n2.-Suv \n3.-Sedan \n4.-Deportivo");
         System.out.println("Coloque solo el número de la opcion deseada");
-        dato = coso.nextInt();
-        switch (dato) {
-            case 1:
+        op = coso.next();
+        switch (op) {
+            case "1":
                 ArrayList<Auto> Camioneta = new ArrayList<>();
                 System.out.println("ingrese la posicion del auto que desea Buscar");
                 dato=coso.nextInt();
@@ -335,7 +367,7 @@ public class MainAuto {
                 menuPrincipal(b);
                 break;
 
-            case 2:
+            case "2":
                 ArrayList<Auto> Suv = new ArrayList<>();
                 System.out.println("ingrese la posicion del auto que desea Buscar");
                 dato=coso.nextInt();
@@ -347,7 +379,7 @@ public class MainAuto {
                 }
                 menuPrincipal(b);
                 break;
-            case 3:
+            case "3":
                 ArrayList<Auto> Sedan = new ArrayList<>();
                 System.out.println("ingrese la posicion del auto que desea Buscar");
                 dato=coso.nextInt();
@@ -359,7 +391,7 @@ public class MainAuto {
                 }
                 menuPrincipal(b);
                 break;
-            case 4:
+            case "4":
                 ArrayList<Auto> Deportivo = new ArrayList<>();
                 System.out.println("ingrese la posicion del auto que desea Buscar");
                 dato=coso.nextInt();
