@@ -1,6 +1,5 @@
 package Interfaz;
 
-import Clases.PopUp;
 import Gestion.GestorClientes;
 
 /**

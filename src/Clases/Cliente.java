@@ -3,13 +3,13 @@ package Clases;
 import java.time.LocalDate;
 
 public class Cliente {
+    public String cedula, nombre, apellido, telefono, dirección;
+    public boolean interesado;
+    public LocalDate fechaVisita;
 
     public Cliente() {
     }
 
-    public String cedula, nombre, apellido, telefono, dirección;
-    public boolean interesado;
-    public LocalDate fechaVisita;
     public Cliente(String cedula, String nombre, String apellido, String telefono, String dirección, boolean interesado,
             LocalDate fechaVisita) {
         this.cedula = cedula;
@@ -20,7 +20,6 @@ public class Cliente {
         this.interesado = interesado;
         this.fechaVisita = fechaVisita;
     }
-
 
     public String getNombreYApellido() {
         return this.nombre + " " + this.apellido;
@@ -73,13 +72,12 @@ public class Cliente {
     public void setInteresado(boolean interesado) {
         this.interesado = interesado;
     }
-    
-    
+
     @Override
     public String toString() {
-        return "Cliente \nCedula= " + cedula + "\nNombre= " + nombre + "\nApellido= " + apellido + "\nTelefono= " + telefono
+        return "Cliente \nCedula= " + cedula + "\nNombre= " + nombre + "\nApellido= " + apellido + "\nTelefono= "
+                + telefono
                 + "\nDirección= " + dirección + "\nInteresado=" + interesado + "\nFecha Visita= " + fechaVisita;
     }
 
-    
 }
