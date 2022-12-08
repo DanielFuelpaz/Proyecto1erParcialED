@@ -9,7 +9,7 @@ public class Principal {
 
         public static void main(String[] args) {
                 String respuesta;
-                var validacion = false;
+                boolean validacion = false;
                 Validacion val = new Validacion();
                 GestorClientes GC = new GestorClientes();
                 System.out.println("Bienvenido al Sistema de Clientes");
