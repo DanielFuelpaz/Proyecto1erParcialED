@@ -72,7 +72,7 @@ public class Principal {
                                                         case 2:
                                                         System.out.println("Ingrese el nuevo nombre");
                                                         do {
-                                                                if (val.validarPersona(temp=leer.nextLine())){1
+                                                                if (val.validarPersona(temp=leer.nextLine())){
                                                                         GC.get(i).setNombre(temp);
                                                                         validacion = true;
                                                                 } else {
