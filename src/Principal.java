@@ -33,7 +33,7 @@ public class Principal {
                                         }while(respuesta.equalsIgnoreCase("si"));
                                 break;
                         case 2:
-                        if(GC.size()<=0){
+                        if(GC.size()==0){
                                 System.out.println("Usted no ha creado clientes, debe crear uno primero");
                                 GC.establecerCliente(temp, val, leer, new Cliente(), GC);;
                         }
@@ -57,8 +57,7 @@ public class Principal {
                                                                 case 1:
                                                                         System.out.println("Ingrese la nueva cédula");
                                                                         do {
-                                                                                if (val.validarPersona(temp = leer
-                                                                                                .nextLine())) {
+                                                                                if (val.validarCedula(temp = leer.nextLine())) {
                                                                                         GC.get(i).setCedula(temp);
                                                                                         validacion = true;
                                                                                 } else {
