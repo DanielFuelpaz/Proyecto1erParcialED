@@ -33,7 +33,7 @@ public class MainAuto {
         String dato;
         System.out.println("======Menú Vehiculos======\n");
         System.out.println(
-                "1.-Agregar Auto \n2.-Mostrar Todos los vehiculos \n3.-Modificar un vehiculo \n4.-Buscar un vehiculo\n");
+                "1.-Agregar Auto \n2.-Mostrar Todos los vehiculos \n3.-Modificar un vehiculo \n4.-Buscar un vehiculo\n5.-Borrar un vehiculo\n");
         System.out.println("Seleccione la Opcion que desea ejecutar");
         System.out.println("utilice solo números");
         dato = coso.next();
@@ -56,7 +56,7 @@ public class MainAuto {
                 break;
 
             case "5":
-                Buscar(b);
+                Borrar(b);;
                 break;
             default:
                 System.out.println(
