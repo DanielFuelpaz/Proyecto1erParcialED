@@ -31,30 +31,45 @@ public class GestorClientes extends LinkedList<Cliente> {
     }
 
     // Establecimiento
-    public void establecerCliente(String temp, Validacion val, Scanner leer, Cliente c1) {
-        this.establecerCedula(temp, val, leer, false, c1);
+    public void establecerCliente(String temp, Validacion val, Scanner leer, Cliente c1, GestorClientes GC) {
+        this.establecerCedula(temp, val, leer, false, c1, GC);
         System.out.println("Ingrese su nombre:");
         this.establecerNombre(temp, val, leer, false, c1);
         System.out.println("Ingrese su Apellido:");
         this.establecerApellido(temp, val, leer, false, c1);
         System.out.println("Ingrese su # de telefono:");
-        this.establecerTelefono(temp, val, leer, false, c1);
+        this.establecerTelefono(temp, val, leer, false, c1,GC);
         System.out.println("Ingrese su dirección:");
         this.establecerDireccion(temp, leer, c1);
         c1.fechaVisita = LocalDate.now();
         this.add(c1);
     }
 
-    public void establecerCedula(String temp, Validacion val, Scanner leer, boolean validacion, Cliente c1) {
+    public void establecerCedula(String temp, Validacion val, Scanner leer, boolean validacion, Cliente c1,GestorClientes GC) {
         System.out.println("Ingrese su número de cedula:");
         do {
+            temp = leer.nextLine();
+            if(GC.size()>0){
+                for (int i = 0; i < GC.size(); i++) {
+                        if (val.validarCedula(temp)&& !GC.get(i).getCedula().equals(temp)) {
+                        c1.setCedula(temp);
+                        validacion = true;
+                        return;
+                    }else if(GC.get(i).getCedula().equals(temp)){
+                        System.out.println("Número de teléfono mal ingresado o ya existe, ingrese otro número de teléfono");
+                        validacion = false;
+                        break;
+                    }    
+                }
+            }else{
             if (val.validarCedula(temp = leer.nextLine())) {
                 c1.setCedula(temp);
                 validacion = true;
             } else {
-                System.out.println("cedula mal ingresada");
+                System.out.println("cedula mal ingresada, ingrese otra vez");
                 validacion = false;
             }
+        }
         } while (validacion == false);
 
     }
@@ -66,7 +81,7 @@ public class GestorClientes extends LinkedList<Cliente> {
 
                 validacion = true;
             } else {
-                System.out.println("Nombre mal ingresado");
+                System.out.println("Nombre mal ingresado, ingrese otra vez");
                 validacion = false;
             }
         } while (validacion == false);
@@ -80,22 +95,36 @@ public class GestorClientes extends LinkedList<Cliente> {
                 c1.setApellido(temp);
                 validacion = true;
             } else {
-                System.out.println("Apellido mal ingresado");
+                System.out.println("Apellido mal ingresado, ingrese otra vez");
                 validacion = false;
             }
         } while (validacion == false);
 
     }
 
-    public void establecerTelefono(String temp, Validacion val, Scanner leer, boolean validacion, Cliente c1) {
+    public void establecerTelefono(String temp, Validacion val, Scanner leer, boolean validacion, Cliente c1, GestorClientes GC) {
         do {
-
-            if (val.validarTelefono(temp = leer.nextLine())) {
-                c1.setTelefono(temp);
-                validacion = true;
-            } else {
-                System.out.println("Número de teléfono mal ingresado");
-                validacion = false;
+            temp = leer.nextLine();
+            if(GC.size()>0){
+                for (int i = 0; i < GC.size(); i++) {
+                        if (val.validarTelefono(temp)&& !GC.get(i).getTelefono().equals(temp)) {
+                        c1.setTelefono(temp);
+                        validacion = true;
+                        return;
+                    }else if(GC.get(i).getTelefono().equals(temp)){
+                        System.out.println("Número de teléfono mal ingresado o ya existe, ingrese otro número de teléfono");
+                        validacion = false;
+                    }    
+                }
+            }else{
+                if (val.validarTelefono(temp)) {
+                    c1.setTelefono(temp);
+                    validacion = true;
+                    return;
+                }else {
+                    System.out.println("Número de teléfono mal ingresado, ingrese otra vez");
+                    validacion = false;
+                }    
             }
         } while (validacion == false);
     }

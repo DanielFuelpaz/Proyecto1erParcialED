@@ -30,7 +30,7 @@ public class Principal {
                                         do {
                                                 Cliente c1 = new Cliente();
                                                 c1.fechaVisita = fecha;
-                                                GC.establecerCliente(temp,val, leer, c1);
+                                                GC.establecerCliente(temp,val, leer, c1, GC);
                                                 System.out.println("Desea ingresar otro cliente?");
                                                 respuesta = leer.next();
                                         }while(respuesta.equalsIgnoreCase("si"));
@@ -38,7 +38,7 @@ public class Principal {
                         case 2:
                         if(GC.size()<=0){
                                 System.out.println("Usted no ha creado clientes, debe crear uno primero");
-                                GC.establecerCliente(temp, val, leer, new Cliente());;
+                                GC.establecerCliente(temp, val, leer, new Cliente(), GC);;
                         }
                         int n=0;
                                         for (int i = 0; i < GC.size(); i++) {
