@@ -52,7 +52,6 @@ public class GestorClientes extends LinkedList<Cliente> {
                 c1.setCedula(temp);
                 validacion = true;
             } else {
-                System.out.println("cedula mal ingresada");
                 validacion = false;
             }
         } while (validacion == false);
