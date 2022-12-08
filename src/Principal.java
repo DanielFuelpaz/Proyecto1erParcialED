@@ -23,7 +23,7 @@ public class Principal {
                 LocalDate fecha = LocalDate.now();
                 do {
                         System.out.println(
-                                        "Escoja y escriba el número que necesite: \n 1: Agregar Cliente. \n 2: Modificar Cliente. \n 3: Eliminar Cliente. \n 4: Buscar cliente \n 5: Salir");
+                                        "Escoja y escriba el número que necesite: \n 1: Agregar Cliente. \n 2: Modificar Cliente. \n 3: Eliminar Cliente. \n 4: Buscar cliente \n 5: Ver los clientes \n 6: Salir");
                         op = leer.nextByte();
                         switch (op) {
                                 case 1:
@@ -42,7 +42,8 @@ public class Principal {
                         }
                         int n=0;
                                         for (int i = 0; i < GC.size(); i++) {
-                                                System.out.println("Lista Clientes\n" + (i + 1) + " "
+                                                System.out.println("Lista clientes");
+                                                System.out.println((i + 1) + " "
                                                                 + GC.get(i).getNombreYApellido());
                                         }
                                         do{
@@ -124,9 +125,10 @@ public class Principal {
                                                                         break;
                                                                 }
                                                                 System.out.println("Tu cliente modificado ahora es: " + GC.get(n-1));
-                                        break;
+                                        
                                                         }}
-                                case 3:
+                                break;
+                                                        case 3:
                                         System.out.println("Lista Clientes");
                                         for (int i = 0; i < GC.size(); i++) {
                                                 System.out.println((i + 1) + " "
@@ -139,7 +141,7 @@ public class Principal {
                                                         GC.remove(n - 1);
                                                         validacion=true;
                                                         System.out.println("Nueva Lista Clientes");
-                                                        for (int i = 0; i < GC.size(); i++) {
+                                                     for (int i = 0; i < GC.size(); i++) {
                                                                 System.out.println((i + 1)
                                                                                 + " "
                                                                                 + GC.get(i).getNombreYApellido());
@@ -161,7 +163,7 @@ public class Principal {
                                         System.out.println("Elija el número del cliente que desea buscar");
                                         n = leer.nextInt();
                                         if (n > 0 || n < GC.size()) {
-                                                GC.get(n).toString();
+                                                System.out.println(GC.get(n-1).toString());
                                                 validacion=true;
                                         }else{
                                                 System.out.println("numero fuera de rango");
@@ -178,14 +180,13 @@ public class Principal {
                                         System.out.println("Adiós");
                                         break;
                                 default:
-                                        System.out.println("Las Opciones son de 1 a 5");
+                                        System.out.println("Las Opciones son de 1 a 6");
                                         break;
                         }
                         
         }while(op!=6);
 
                 // System.out.println(GC.search(0));
-                GC.Listar();
                 // GC.eraseFirstClient();
                 // GC.eraseClient(0);
                 // GC.Listar();

@@ -26,7 +26,7 @@ public class GestorClientes extends LinkedList<Cliente> {
             return;
         }
         for (int i = 0; i < GestorClientes.super.size(); i++) {
-            System.out.println("Cliente " + (i + 1) + "\n" + GestorClientes.super.get(i).toString());
+            System.out.println("Cliente " + (i + 1) + GestorClientes.super.get(i).toString());
         }
     }
 
@@ -102,10 +102,6 @@ public class GestorClientes extends LinkedList<Cliente> {
 
     public void establecerDireccion(String temp, Scanner leer, Cliente c1) {
         c1.setDirección(temp = leer.nextLine());
-    }
-
-    public void establecerInteres(String temp, Validacion val, Scanner leer, boolean validacion, Cliente c1) {
-
     }
 
 }
