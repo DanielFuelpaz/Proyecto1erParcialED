@@ -5,6 +5,7 @@ import javax.sound.sampled.SourceDataLine;
 
 import Clases.Auto;
 import Gestion.GestionCompra;
+import Utiles.Validacion;
 
 public class MainFactura {
     public static void main(String[] args) {
@@ -27,23 +28,22 @@ public class MainFactura {
 
         */
         Scanner leer = new Scanner(System.in);
-        String fin;
+        String fin,respuesta,agregar;
+        int entrada;
+        boolean validar=false;
 
-        
+        Validacion control = new Validacion();
             do {
-                
-           
-        
-
+               
         System.out.println("===== MENU DE FACTURACION =====\n"
                 + "1. Agregar Auto Interesado\n"
                 + "2. Eliminar Auto Interesado\n"
                 + "3. Generar Factura\n"
                 + "4. Imprimir Factura");
-        String entrada = leer.next();
-        String respuesta,agregar;
+         entrada = leer.nextInt();
+      
         switch (entrada) {
-            case "1":
+            case 1:
 
             do {
 
@@ -55,8 +55,20 @@ public class MainFactura {
                 System.out.println(Bugati.toString());
                 System.out.println(Challenger.toString());
 
+
                 System.out.println(" Que autos desea Ingresar");
+
+                do {
                 agregar = leer.next().toLowerCase();
+                if (!control.validarOpcion(agregar)) {
+                    System.out.println("== DATO INCORRECTO ==");
+                    System.out.println("== Ingrese Nuevamente ==");
+                    validar=false;
+                } else {
+                    validar=true;
+                }
+
+            } while (validar==false);
 
                 if (agregar.equals("1")) {
                     coso.Agregar(Audi);
@@ -80,7 +92,7 @@ public class MainFactura {
 
                 break;
 
-            case "2":
+            case 2:
 
                 coso.MostrarLista();
                 System.out.println();
@@ -89,7 +101,7 @@ public class MainFactura {
                 coso.BorrarCarro(eliminar);
                 break;
 
-             case "3":
+             case 3:
 
                 System.out.println("Ingrese la Fecha: ");
                 String fecha = leer.next();
@@ -99,13 +111,16 @@ public class MainFactura {
 
                 break;
 
-            case "4":
+            case 4:
                 
                 System.out.println("====== IMPRESION FACTURA =======");
                 coso.ImprimirFactura();
                 break;
 
             default:
+
+                System.out.println("===== Opcion No Valida ======");
+
                 break;
                 
         }
