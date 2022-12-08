@@ -11,5 +11,8 @@ public class Validacion {
         return string.matches("[A-Z]([a-z])*");
     }
 
+    public boolean validarNúmero(String numero) {
+        return numero.matches("[1-9]*");
+    }
     
 }
