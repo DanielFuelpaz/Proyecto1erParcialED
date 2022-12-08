@@ -55,6 +55,9 @@ public class MainAuto {
                 Buscar(b);
                 break;
 
+            case "5":
+                Buscar(b);
+                break;
             default:
                 System.out.println(
                         "Opcion seleccionada fuera de rango\nPor favor ocupar un numero dentor del rango de opciones\n");
@@ -75,7 +78,7 @@ public class MainAuto {
         dato = coso.next();
         switch (dato) {
             case "1":
-                tipo="Camioneta";
+                tipo = "Camioneta";
                 System.out.println("Ingrese la placa");
                 placa = coso.next();
                 System.out.println("Ingrese el color");
@@ -95,7 +98,7 @@ public class MainAuto {
                 break;
 
             case "2":
-                tipo="Suv";
+                tipo = "Suv";
                 System.out.println("Ingrese la placa");
                 placa = coso.next();
                 System.out.println("Ingrese el color");
@@ -114,7 +117,7 @@ public class MainAuto {
                 menuPrincipal(b);
                 break;
             case "3":
-                tipo="Sedan";
+                tipo = "Sedan";
                 System.out.println("Ingrese la placa");
                 placa = coso.next();
                 System.out.println("Ingrese el color");
@@ -133,7 +136,7 @@ public class MainAuto {
                 menuPrincipal(b);
                 break;
             case "4":
-                tipo="Deportivo";
+                tipo = "Deportivo";
                 System.out.println("Ingrese la placa");
                 placa = coso.next();
                 System.out.println("Ingrese el color");
@@ -340,14 +343,14 @@ public class MainAuto {
                     ;
                 }
                 menuPrincipal(b);
-                break;                
+                break;
         }
     }
 
     public static void Buscar(GestorAuto b) {
         Scanner coso = new Scanner(System.in);
         String op;
-        String des,tipo;
+        String des, tipo;
         int dato;
         System.out.println("Seleccione el tipo de vehiculo que desea Buscar");
         System.out.println("1.-Camioneta \n2.-Suv \n3.-Sedan \n4.-Deportivo");
@@ -355,7 +358,7 @@ public class MainAuto {
         op = coso.next();
         switch (op) {
             case "1":
-                tipo="Camioneta";
+                tipo = "Camioneta";
                 System.out.println("ingrese la posicion del auto que desea Buscar");
                 dato = coso.nextInt();
                 b.Buscar(tipo, dato);
@@ -368,7 +371,7 @@ public class MainAuto {
                 break;
 
             case "2":
-                tipo="Suv";
+                tipo = "Suv";
                 System.out.println("ingrese la posicion del auto que desea Buscar");
                 dato = coso.nextInt();
                 b.Buscar(tipo, dato);
@@ -380,7 +383,7 @@ public class MainAuto {
                 menuPrincipal(b);
                 break;
             case "3":
-                tipo="Sedan";
+                tipo = "Sedan";
                 System.out.println("ingrese la posicion del auto que desea Buscar");
                 dato = coso.nextInt();
                 b.Buscar(tipo, dato);
@@ -392,7 +395,7 @@ public class MainAuto {
                 menuPrincipal(b);
                 break;
             case "4":
-                tipo="Deportivo";
+                tipo = "Deportivo";
                 System.out.println("ingrese la posicion del auto que desea Buscar");
                 dato = coso.nextInt();
                 b.Buscar(tipo, dato);
@@ -406,6 +409,74 @@ public class MainAuto {
             default:
                 System.out.println("Dato no valido");
                 crearAuto(b);
+                break;
+        }
+    }
+
+    public static void Borrar(GestorAuto b){
+        Scanner coso = new Scanner(System.in);
+        int num;
+        String dato, tipo;
+        String placa, color, marca, año, des, respuesta;
+        System.out.println("Seleccione el tipo de vehiculo que quiere Eliminar");
+        System.out.println("1.-Camioneta \n2.-Suv \n3.-Sedan \n4.-Deportivo");
+        System.out.println("Coloque solo el numero de la opcion deseada");
+        dato = coso.next();
+        switch (dato) {
+            case "1":
+                tipo = "Camioneta";
+                b.ImprimirLista(tipo);
+                System.out.println("\nIngrese el número del vehiculo que desea Eliminar");
+                num = coso.nextInt();
+                b.Eliminarporpos(tipo, num);
+                System.out.println("Desea eliminar otro vehiculo? (s/n)");
+                des=coso.next().toUpperCase();
+                if(des=="S"){
+                    Borrar(b);
+                }
+                menuPrincipal(b);
+                break;
+
+            case "2":
+                tipo = "Suv";
+                b.ImprimirLista(tipo);
+                System.out.println("\nIngrese el número del vehiculo que desea Eliminar");
+                num = coso.nextInt();
+                b.Eliminarporpos(tipo, num);
+                System.out.println("Desea eliminar otro vehiculo? (s/n)");
+                des=coso.next().toUpperCase();
+                if(des=="S"){
+                    Borrar(b);
+                }
+                menuPrincipal(b);
+                break;
+
+            case "3":
+                tipo = "Sedan";
+                b.ImprimirLista(tipo);
+                System.out.println("\nIngrese el número del vehiculo que desea Eliminar");
+                num = coso.nextInt();
+                b.Eliminarporpos(tipo, num);
+                System.out.println("Desea eliminar otro vehiculo? (s/n)");
+                des=coso.next().toUpperCase();
+                if(des=="S"){
+                    Borrar(b);
+                }
+                menuPrincipal(b);
+                break;
+
+            case "4":
+                tipo = "Deportivo";
+                b.ImprimirLista(tipo);
+                System.out.println("\nIngrese el número del vehiculo que desea Eliminar");
+                num = coso.nextInt();
+                b.Eliminarporpos(tipo, num);
+                System.out.println("Desea eliminar otro vehiculo? (s/n)");
+                des=coso.next().toUpperCase();
+                if(des=="S"){
+                    Borrar(b);
+                }
+                menuPrincipal(b);
                 break;
         }
     }
