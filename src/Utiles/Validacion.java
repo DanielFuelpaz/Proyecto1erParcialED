@@ -11,4 +11,7 @@ public class Validacion {
         public boolean validarPersona(String telefono) {
         return telefono.matches("[A-Z]([a-z])*");
     }
+    public boolean validarNúmero(String numero) {
+        return numero.matches("[1-9]*");
+    }
 }
