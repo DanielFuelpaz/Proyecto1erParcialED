@@ -33,7 +33,7 @@ public class Principal {
                                         }while(respuesta.equalsIgnoreCase("si"));
                                 break;
                         case 2:
-                        if(GC.size()<=0){
+                        if(GC.size()==0){
                                 System.out.println("Usted no ha creado clientes, debe crear uno primero");
                                 GC.establecerCliente(temp, val, leer, new Cliente(), GC);;
                         }

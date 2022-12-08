@@ -200,7 +200,7 @@ public class GestorAuto {
     
     public boolean Eliminarporpos(String tipo, int num){
         if(tipo.equals("Camioneta")){
-            if(num-1>this.lista.get(0).size()-1){
+            if(num>this.lista.get(0).size() || num<1){
                 System.out.println("El vehículo a eliminar no existe");
                 return false;
             }
@@ -210,7 +210,7 @@ public class GestorAuto {
         }
 
         if(tipo.equals("Suv")){
-            if(num-1>this.lista.get(1).size()-1){
+            if(num>this.lista.get(1).size() || num<1){
                 System.out.println("El vehículo a eliminar no existe");
                 return false;
             }
@@ -220,7 +220,7 @@ public class GestorAuto {
         }
 
         if(tipo.equals("Sedan")){
-            if(num-1>this.lista.get(2).size()-1){
+            if(num>this.lista.get(2).size() || num<1){
                 System.out.println("El vehículo a eliminar no existe");
                 return false;
             }
@@ -230,7 +230,7 @@ public class GestorAuto {
         }
 
         if(tipo.equals("Deportivo")){
-            if(num-1>this.lista.get(3).size()-1){
+            if(num>this.lista.get(3).size() || num<1){
                 System.out.println("El vehículo a eliminar no existe");
                 return false;
             }
