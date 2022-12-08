@@ -75,7 +75,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente \nCedula= " + cedula + "\nNombre= " + nombre + "\nApellido= " + apellido + "\nTelefono= "
+        return "\nCedula= " + cedula + "\nNombre= " + nombre + "\nApellido= " + apellido + "\nTelefono= "
                 + telefono
                 + "\nDirección= " + dirección + "\nInteresado=" + interesado + "\nFecha Visita= " + fechaVisita;
     }

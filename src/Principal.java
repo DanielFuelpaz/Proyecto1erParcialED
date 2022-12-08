@@ -3,107 +3,208 @@ import Gestion.GestorClientes;
 import Clases.Cliente;
 import Utiles.Validacion;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.Scanner;
 
 public class Principal {
 
         public static void main(String[] args) {
                 String respuesta;
+                boolean validacion = false;
                 Validacion val = new Validacion();
+                String temp = "";
                 GestorClientes GC = new GestorClientes();
                 System.out.println("Bienvenido al Sistema de Clientes");
-                System.out.println("Desea ingresar un cliente");
                 Scanner leer = new Scanner(System.in);
-                respuesta = leer.nextLine();
-                byte op;
-                System.out.println(
-                                "Escoja y escriba el número que necesite: \n 1: Agregar Cliente. \n 2: Modificar Cliente. \n 3: Eliminar Cliente. \n 4: Buscar cliente");
-                op = leer.nextByte();
-                switch (op) {
-                        case 1:
 
-                                do {
-                                        if (respuesta.equalsIgnoreCase("si")) {
-
+                int op;
+                LocalDate fecha = LocalDate.now();
+                do {
+                        System.out.println(
+                                        "Escoja y escriba el número que necesite: \n 1: Agregar Cliente. \n 2: Modificar Cliente. \n 3: Eliminar Cliente. \n 4: Buscar cliente \n 5: Ver los clientes \n 6: Salir");
+                        op = leer.nextInt();
+                        switch (op) {
+                                case 1:
+                                        do {
                                                 Cliente c1 = new Cliente();
-                                                LocalDate fecha = LocalDate.now();
                                                 c1.fechaVisita = fecha;
-                                                var temp = "";
-                                                var validacion = false;
-                                                System.out.println("Ingrese su # de cedula:");
-                                                do {
-                                                        temp = leer.nextLine();
-                                                        if (!val.validarCedula(c1.cedula)) {
-                                                                c1.setCedula(temp);
-                                                                System.out.println("cedula mal ingresada");
-                                                                validacion = false;
-                                                        } else {
-                                                                validacion = true;
-                                                        }
-                                                } while (validacion == false);
-                                                System.out.println("Ingrese su nombre:");
-                                                do {
-                                                        temp = leer.nextLine();
-                                                        if (val.validarPersona(temp)) {
-                                                                c1.setNombre(temp);
-                                                                validacion = true;
-                                                        } else {
-                                                                System.out.println("Nombre mal ingresado");
-                                                                validacion = false;
-                                                        }
-                                                } while (validacion == false);
-                                                System.out.println("Ingrese su Apellido:");
-                                                do {
-                                                        temp = leer.nextLine();
-                                                        if (val.validarPersona(temp)) {
-                                                                c1.setApellido(temp);
-                                                                validacion = true;
-                                                        } else {
-                                                                System.out.println("Apellido mal ingresado");
-                                                                validacion = false;
-                                                        }
-                                                } while (validacion == false);
-                                                System.out.println("Ingrese su # de telefono:");
-                                                do {
-                                                        temp = leer.nextLine();
-                                                        if (val.validarTelefono(temp)) {
-                                                                c1.setTelefono(temp);
-                                                                validacion = true;
-                                                        } else {
-                                                                System.out.println("Número de teléfono mal ingresado");
-                                                                validacion = false;
-                                                        }
-                                                } while (validacion == false);
-                                                System.out.println("Ingrese su dirección:");
-                                                c1.setDirección(leer.nextLine());
-                                                GC.add(c1);
+                                                GC.establecerCliente(temp, val, leer, c1);
                                                 System.out.println("Desea ingresar otro cliente?");
-                                                respuesta = leer.nextLine();
+                                                respuesta =leer.nextLine();
+                                        } while (respuesta.equalsIgnoreCase("si"));
+                                        break;
+                                case 2:
+                                        if (GC.size() <= 0) {
+                                                System.out.println(
+                                                                "Usted no ha creado clientes, debe crear uno primero");
+                                                GC.establecerCliente(temp, val, leer, new Cliente());
+                                                ;
                                         }
-                                } while (respuesta.equalsIgnoreCase("si"));
-                                break;
-                        case 2:
-                        int n=0;
-                                for (int i = 0; i < GC.size(); i++) {
-                                        System.out.println((i+1) + GC.get(i).getNombreYApellido());
-                                }
-                                do{
-                                System.out.println("Elija el número del cliente que desea modificar");
-                                n = leer.nextInt();  
-                                }while(n<0||n>GC.size());
-                                
-                                break;
-                        case 3:
+                                        int n = 0;
+                                        for (int i = 0; i < GC.size(); i++) {
+                                                System.out.println("Lista clientes");
+                                                System.out.println((i + 1) + " "
+                                                                + GC.get(i).getNombreYApellido());
+                                        }
+                                        do {
+                                                System.out.println("Elija el número del cliente que desea modificar");
+                                                n = leer.nextInt();
+                                        } while (n < 0 || n > GC.size());
 
-                                break;
-                        default:
+                                        System.out.println(
+                                                        "Ingrese el número de la opción que desea modificar \n 1.Cédula. \n 2.Nombre. \n 3.Apellido. \n 4.Teléfono. \n 5.Dirección. \n 6.Interés.");
+                                        int modificar = leer.nextInt();
+                                        for (int i = 0; i < GC.size(); i++) {
+                                                if ((n - 1) == i) {
+                                                        switch (modificar) {
+                                                                case 1:
+                                                                        System.out.println("Ingrese la nueva cédula");
+                                                                        do {
+                                                                                if (val.validarPersona(temp = leer
+                                                                                                .nextLine())) {
+                                                                                        GC.get(i).setCedula(temp);
+                                                                                        validacion = true;
+                                                                                } else {
+                                                                                        System.out.println(
+                                                                                                        "Cédula mal ingresada,intente otra vez.");
+                                                                                        validacion = false;
+                                                                                }
+                                                                        } while (validacion == false);
 
-                                break;
-                }
+                                                                        break;
+                                                                case 2:
+                                                                        System.out.println("Ingrese el nuevo nombre");
+                                                                        do {
+                                                                                if (val.validarPersona(temp = leer
+                                                                                                .nextLine())) {
+                                                                                        GC.get(i).setNombre(temp);
+                                                                                        validacion = true;
+                                                                                } else {
+                                                                                        System.out.println(
+                                                                                                        "Nombre mal ingresado, intente otra vez.");
+                                                                                        validacion = false;
+                                                                                }
+                                                                        } while (validacion == false);
+
+                                                                        break;
+                                                                case 3:
+                                                                        System.out.println("Ingrese el nuevo apellido");
+                                                                        do {
+                                                                                if (val.validarPersona(temp = leer
+                                                                                                .nextLine())) {
+                                                                                        GC.get(i).setApellido(temp);
+                                                                                        validacion = true;
+                                                                                } else {
+                                                                                        System.out.println(
+                                                                                                        "Apellido mal ingresado, intente otra vez.");
+                                                                                        validacion = false;
+                                                                                }
+                                                                        } while (validacion == false);
+                                                                        break;
+                                                                case 4:
+                                                                        System.out.println("Ingrese el nuevo teléfono");
+                                                                        do {
+                                                                                if (val.validarTelefono(temp = leer
+                                                                                                .nextLine())) {
+                                                                                        GC.get(i).setTelefono(temp);
+                                                                                        validacion = true;
+                                                                                } else {
+                                                                                        System.out.println(
+                                                                                                        "Teléfono mal ingresado");
+                                                                                        validacion = false;
+                                                                                }
+                                                                        } while (validacion == false);
+                                                                        break;
+                                                                case 5:
+                                                                        System.out.println(
+                                                                                        "Ingrese la nueva dirección");
+                                                                        GC.get(i).setDirección(temp = leer.nextLine());
+                                                                        break;
+                                                                case 6:
+                                                                        System.out.println(
+                                                                                        "Ingrese una s(Sí) u otra letra(No), dependiendo del interés del cliente");
+                                                                        if ((temp = leer.nextLine())
+                                                                                        .equalsIgnoreCase("s")) {
+                                                                                GC.get(i).setInteresado(true);
+                                                                        } else {
+                                                                                GC.get(i).setInteresado(false);
+
+                                                                        }
+                                                                        break;
+                                                                default:
+                                                                        System.out.println(
+                                                                                        "Escoja un número del 1 al 6");
+                                                                        break;
+                                                        }
+                                                        System.out.println("Tu cliente modificado ahora es: "
+                                                                        + GC.get(n - 1));
+
+                                                }
+                                        }
+                                        break;
+                                case 3:
+                                        if (GC.size()!=0) {
+                                                System.out.println("Lista Clientes");
+                                                for (int i = 0; i < GC.size(); i++) {
+                                                        System.out.println((i + 1) + " "
+                                                                        + GC.get(i).getNombreYApellido());
+                                                }
+                                                do {
+                                                        System.out.println(
+                                                                        "Elija el número del cliente que desea eliminar");
+                                                        n = leer.nextInt();
+                                                        if (n > 0 || n < GC.size()) {
+                                                                GC.remove(n - 1);
+                                                                validacion = true;
+                                                                System.out.println("Nueva Lista Clientes");
+                                                                for (int i = 0; i < GC.size(); i++) {
+                                                                        System.out.println((i + 1)
+                                                                                        + " "
+                                                                                        + GC.get(i).getNombreYApellido());
+                                                                }
+                                                        } else {
+                                                                System.out.println("numero fuera de rango");
+                                                                validacion = false;
+                                                        }
+
+                                                } while (validacion == false);
+                                        } else {
+                                                System.out.println("Debe crear un cliente primero");
+                                        }
+                                        break;
+                                case 4:
+                                        System.out.println("Lista Clientes");
+                                        for (int i = 0; i < GC.size(); i++) {
+                                                System.out.println((i + 1) + " "
+                                                                + ": " + GC.get(i).getNombreYApellido());
+                                        }
+                                        do {
+                                                System.out.println("Elija el número del cliente que desea buscar");
+                                                n = leer.nextInt();
+                                                if (n > 0 || n < GC.size()) {
+                                                        System.out.println(GC.get(n - 1).toString());
+                                                        validacion = true;
+                                                } else {
+                                                        System.out.println("numero fuera de rango");
+                                                        validacion = false;
+                                                }
+
+                                        } while (validacion == false);
+                                        break;
+
+                                case 5:
+                                        GC.Listar();
+                                        break;
+                                case 6:
+                                        System.out.println("Adiós");
+                                        break;
+                                default:
+                                        System.out.println("Las Opciones son de 1 a 6");
+                                        break;
+                        }
+
+                } while (op != 6);
 
                 // System.out.println(GC.search(0));
-                GC.Listar();
                 // GC.eraseFirstClient();
                 // GC.eraseClient(0);
                 // GC.Listar();

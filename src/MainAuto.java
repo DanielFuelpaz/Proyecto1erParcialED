@@ -1,4 +1,6 @@
 import Gestion.GestorAuto;
+import Utiles.Validacion;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,24 +31,57 @@ public class MainAuto {
     }
 
     public static void menuPrincipal(GestorAuto b) {
-        crearAuto(b);
-        ImprimirTodo(b);
-        Moodificar(b);
-        Buscar(b);
+        Scanner coso = new Scanner(System.in);
+        String dato;
+        System.out.println("======Menú Vehiculos======\n");
+        System.out.println(
+                "1.-Agregar Auto \n2.-Mostrar Todos los vehiculos \n3.-Modificar un vehiculo \n4.-Buscar un vehiculo\n5.-Borrar un vehiculo\n");
+        System.out.println("Seleccione la Opcion que desea ejecutar");
+        System.out.println("utilice solo números");
+        dato = coso.next();
+
+        switch (dato) {
+            case "1":
+                crearAuto(b);
+                break;
+
+            case "2":
+                ImprimirTodo(b);
+                break;
+
+            case "3":
+                Moodificar(b);
+                break;
+
+            case "4":
+                Buscar(b);
+                break;
+
+            case "5":
+                Borrar(b);
+                ;
+                break;
+            default:
+                System.out.println(
+                        "Opcion seleccionada fuera de rango\nPor favor ocupar un numero dentor del rango de opciones\n");
+                menuPrincipal(b);
+                break;
+        }
+
     }
 
     public static void crearAuto(GestorAuto b) {
         Scanner coso = new Scanner(System.in);
-        int dato;
-        String placa, color, marca, año, des;
+        String dato;
+        String placa, color, marca, año, des, tipo;
 
         System.out.println("Seleccione el tipo de vehiculo que desea agregar");
         System.out.println("1.-Camioneta \n2.-Suv \n3.-Sedan \n4.-Deportivo");
         System.out.println("Coloque solo el numero de la opcion deseada");
-        dato = coso.nextInt();
+        dato = coso.next();
         switch (dato) {
-            case 1:
-                ArrayList<Auto> Camioneta = new ArrayList<>();
+            case "1":
+                tipo = "Camioneta";
                 System.out.println("Ingrese la placa");
                 placa = coso.next();
                 System.out.println("Ingrese el color");
@@ -56,7 +91,7 @@ public class MainAuto {
                 System.out.println("Ingrese el año");
                 año = coso.next();
                 Auto camioneta = new Auto(placa, color, marca, año);
-                b.InsertarFinal(Camioneta, camioneta);
+                b.InsertarFinal(tipo, camioneta);
                 System.out.println("desea agreagr otro auto? (s/n)");
                 des = coso.next().toUpperCase();
                 if (des.equals("S")) {
@@ -65,8 +100,8 @@ public class MainAuto {
                 menuPrincipal(b);
                 break;
 
-            case 2:
-                ArrayList<Auto> Suv = new ArrayList<>();
+            case "2":
+                tipo = "Suv";
                 System.out.println("Ingrese la placa");
                 placa = coso.next();
                 System.out.println("Ingrese el color");
@@ -76,16 +111,16 @@ public class MainAuto {
                 System.out.println("Ingrese el año");
                 año = coso.next();
                 Auto suv = new Auto(placa, color, marca, año);
-                b.InsertarFinal(Suv, suv);
+                b.InsertarFinal(tipo, suv);
                 System.out.println("desea agreagr otro auto? (s/n)");
-                des = coso.nextLine().toUpperCase();
+                des = coso.next().toUpperCase();
                 if (des.equals("S")) {
                     crearAuto(b);
                 }
                 menuPrincipal(b);
                 break;
-            case 3:
-                ArrayList<Auto> Sedan = new ArrayList<>();
+            case "3":
+                tipo = "Sedan";
                 System.out.println("Ingrese la placa");
                 placa = coso.next();
                 System.out.println("Ingrese el color");
@@ -95,16 +130,16 @@ public class MainAuto {
                 System.out.println("Ingrese el año");
                 año = coso.next();
                 Auto sedan = new Auto(placa, color, marca, año);
-                b.InsertarFinal(Sedan, sedan);
+                b.InsertarFinal(tipo, sedan);
                 System.out.println("desea agreagr otro auto? (s/n)");
-                des = coso.nextLine().toUpperCase();
+                des = coso.next().toUpperCase();
                 if (des.equals("S")) {
                     crearAuto(b);
                 }
                 menuPrincipal(b);
                 break;
-            case 4:
-                ArrayList<Auto> Deportivo = new ArrayList<>();
+            case "4":
+                tipo = "Deportivo";
                 System.out.println("Ingrese la placa");
                 placa = coso.next();
                 System.out.println("Ingrese el color");
@@ -114,7 +149,7 @@ public class MainAuto {
                 System.out.println("Ingrese el año");
                 año = coso.next();
                 Auto deportivo = new Auto(placa, color, marca, año);
-                b.InsertarFinal(Deportivo, deportivo);
+                b.InsertarFinal(tipo, deportivo);
                 System.out.println("desea agreagr otro auto? (s/n)");
                 des = coso.next().toUpperCase();
                 if (des.equals("S")) {
@@ -137,171 +172,317 @@ public class MainAuto {
 
     public static void Moodificar(GestorAuto b) {
         Scanner coso = new Scanner(System.in);
-        int dato,num;
-        String placa, color, marca, año,des,respuesta;
+        Validacion validacion = new Validacion();
+        boolean estado = true;
+        String val;
+        int num;
+        String dato, tipo;
+        String placa, color, marca, año, des, respuesta;
         System.out.println("Seleccione el tipo de vehiculo que quiere modificar");
         System.out.println("1.-Camioneta \n2.-Suv \n3.-Sedan \n4.-Deportivo");
         System.out.println("Coloque solo el numero de la opcion deseada");
-        dato = coso.nextInt();
+        dato = coso.next();
         switch (dato) {
-            case 1:
-                ArrayList<Auto> Camioneta = new ArrayList<>();
-                b.ImprimirLista(Camioneta);
-                System.out.println("Ingrese el número del vehiculo que desea modificar");
-                num = coso.nextInt();
-                System.out.println("Desea modificar la matricula? (s/n)");
-                respuesta = coso.next().toUpperCase();
-                if (respuesta.equals("S")) {
-                    System.out.println("Ingrese la placa");
-                    placa = coso.next();
-                    b.Modificar(Camioneta, num, "placa", placa);
-                }
-                System.out.println("Desea modificar el color? (s/n)");
-                respuesta = coso.next().toUpperCase();
-                if (respuesta.equals("S")) {
-                    System.out.println("Ingrese el color");
-                    color = coso.next();
-                    b.Modificar(Camioneta, num, "color", color);
-                }
-                System.out.println("Desea modificar la marca? (s/n)");
-                respuesta = coso.next().toUpperCase();
-                if (respuesta.equals("S")) {
-                    System.out.println("Ingrese la marca");
-                    marca = coso.next();
-                    b.Modificar(Camioneta, num, "marca", marca);
-                }
-                System.out.println("Desea modificar el año? (s/n)");
-                respuesta = coso.next().toUpperCase();
-                if (respuesta.equals("S")) {
-                    System.out.println("Ingrese el año");
-                    año = coso.next();
-                    b.Modificar(Camioneta, num, "año", año);
-                }  
+            case "1":
+                tipo = "Camioneta";
+                b.ImprimirLista(tipo);
+                do {
+                    System.out.println("\nIngrese el número del vehiculo que desea modificar");
+                    val = coso.next();
+                    if (validacion.validarNúmero(val)) {
+                        estado = true;
+                        num = Integer.parseInt(val);
+                        System.out.println("Desea modificar la matricula? (s/n)");
+                        respuesta = coso.next().toUpperCase();
+                        if (respuesta.equals("S")) {
+                            System.out.println("Ingrese la placa");
+                            placa = coso.next();
+                            b.Modificar(tipo, num, "placa", placa);
+                        }
+                        System.out.println("Desea modificar el color? (s/n)");
+                        respuesta = coso.next().toUpperCase();
+                        if (respuesta.equals("S")) {
+                            System.out.println("Ingrese el color");
+                            color = coso.next();
+                            b.Modificar(tipo, num, "color", color);
+                        }
+                        System.out.println("Desea modificar la marca? (s/n)");
+                        respuesta = coso.next().toUpperCase();
+                        if (respuesta.equals("S")) {
+                            System.out.println("Ingrese la marca");
+                            marca = coso.next();
+                            b.Modificar(tipo, num, "marca", marca);
+                        }
+                        System.out.println("Desea modificar el año? (s/n)");
+                        respuesta = coso.next().toUpperCase();
+                        if (respuesta.equals("S")) {
+                            System.out.println("Ingrese el año");
+                            año = coso.next();
+                            b.Modificar(tipo, num, "año", año);
+                        }
+                    } else {
+                        System.out.println("Ingrese un dato valido");
+                        estado = false;
+                    }
+                } while (estado == false);
+
                 System.out.println("Desea Modificar otro auto? (s/n)");
                 des = coso.next();
                 if (des.equals("s")) {
-                    Moodificar(b);;
+                    Moodificar(b);
                 }
                 menuPrincipal(b);
                 break;
 
-            case 2:
-                ArrayList<Auto> Suv = new ArrayList<>();
-                b.ImprimirLista(Suv);
-                System.out.println("Ingrese el número del vehiculo que desea modificar");
-                num = coso.nextInt();
-                System.out.println("Desea modificar la matricula? (s/n)");
-                respuesta = coso.next().toUpperCase();
-                if (respuesta.equals("S")) {
-                    System.out.println("Ingrese la placa");
-                    placa = coso.next();
-                    b.Modificar(Suv, num, "placa", placa);
-                }
-                System.out.println("Desea modificar el color? (s/n)");
-                respuesta = coso.next().toUpperCase();
-                if (respuesta.equals("S")) {
-                    System.out.println("Ingrese el color");
-                    color = coso.next();
-                    b.Modificar(Suv, num, "color", color);
-                }
-                System.out.println("Desea modificar la marca? (s/n)");
-                respuesta = coso.next().toUpperCase();
-                if (respuesta.equals("S")) {
-                    System.out.println("Ingrese la marca");
-                    marca = coso.next();
-                    b.Modificar(Suv, num, "marca", marca);
-                }
-                System.out.println("Desea modificar el año? (s/n)");
-                respuesta = coso.next().toUpperCase();
-                if (respuesta.equals("S")) {
-                    System.out.println("Ingrese el año");
-                    año = coso.next();
-                    b.Modificar(Suv, num, "año", año);
-                }  
+            case "2":
+                tipo = "Suv";
+                do {
+                    System.out.println("\nIngrese el número del vehiculo que desea modificar");
+                    val = coso.next();
+                    if (validacion.validarNúmero(val)) {
+                        estado = true;
+                        num = Integer.parseInt(val);
+                        System.out.println("Desea modificar la matricula? (s/n)");
+                        respuesta = coso.next().toUpperCase();
+                        if (respuesta.equals("S")) {
+                            System.out.println("Ingrese la placa");
+                            placa = coso.next();
+                            b.Modificar(tipo, num, "placa", placa);
+                        }
+                        System.out.println("Desea modificar el color? (s/n)");
+                        respuesta = coso.next().toUpperCase();
+                        if (respuesta.equals("S")) {
+                            System.out.println("Ingrese el color");
+                            color = coso.next();
+                            b.Modificar(tipo, num, "color", color);
+                        }
+                        System.out.println("Desea modificar la marca? (s/n)");
+                        respuesta = coso.next().toUpperCase();
+                        if (respuesta.equals("S")) {
+                            System.out.println("Ingrese la marca");
+                            marca = coso.next();
+                            b.Modificar(tipo, num, "marca", marca);
+                        }
+                        System.out.println("Desea modificar el año? (s/n)");
+                        respuesta = coso.next().toUpperCase();
+                        if (respuesta.equals("S")) {
+                            System.out.println("Ingrese el año");
+                            año = coso.next();
+                            b.Modificar(tipo, num, "año", año);
+                        }
+                    } else {
+                        System.out.println("Ingrese un dato valido");
+                        estado = false;
+                    }
+                } while (estado == false);
                 System.out.println("Desea Modificar otro auto? (s/n)");
                 des = coso.next();
                 if (des.equals("s")) {
-                    Moodificar(b);;
+                    Moodificar(b);
+                    ;
                 }
                 menuPrincipal(b);
                 break;
-            case 3:
-                ArrayList<Auto> Sedan = new ArrayList<>();
-                b.ImprimirLista(Sedan);
-                System.out.println("Ingrese el número del vehiculo que desea modificar");
-                num = coso.nextInt();
-                System.out.println("Desea modificar la matricula? (s/n)");
-                respuesta = coso.next().toUpperCase();
-                if (respuesta.equals("S")) {
-                    System.out.println("Ingrese la placa");
-                    placa = coso.next();
-                    b.Modificar(Sedan, num, "placa", placa);
-                }
-                System.out.println("Desea modificar el color? (s/n)");
-                respuesta = coso.next().toUpperCase();
-                if (respuesta.equals("S")) {
-                    System.out.println("Ingrese el color");
-                    color = coso.next();
-                    b.Modificar(Sedan, num, "color", color);
-                }
-                System.out.println("Desea modificar la marca? (s/n)");
-                respuesta = coso.next().toUpperCase();
-                if (respuesta.equals("S")) {
-                    System.out.println("Ingrese la marca");
-                    marca = coso.next();
-                    b.Modificar(Sedan, num, "marca", marca);
-                }
-                System.out.println("Desea modificar el año? (s/n)");
-                respuesta = coso.next().toUpperCase();
-                if (respuesta.equals("S")) {
-                    System.out.println("Ingrese el año");
-                    año = coso.next();
-                    b.Modificar(Sedan, num, "año", año);
-                }  
+
+            case "3":
+                tipo = "Sedan";
+                b.ImprimirLista(tipo);
+                do {
+                    System.out.println("\nIngrese el número del vehiculo que desea modificar");
+                    val = coso.next();
+                    if (validacion.validarNúmero(val)) {
+                        estado = true;
+                        num = Integer.parseInt(val);
+                        System.out.println("Desea modificar la matricula? (s/n)");
+                        respuesta = coso.next().toUpperCase();
+                        if (respuesta.equals("S")) {
+                            System.out.println("Ingrese la placa");
+                            placa = coso.next();
+                            b.Modificar(tipo, num, "placa", placa);
+                        }
+                        System.out.println("Desea modificar el color? (s/n)");
+                        respuesta = coso.next().toUpperCase();
+                        if (respuesta.equals("S")) {
+                            System.out.println("Ingrese el color");
+                            color = coso.next();
+                            b.Modificar(tipo, num, "color", color);
+                        }
+                        System.out.println("Desea modificar la marca? (s/n)");
+                        respuesta = coso.next().toUpperCase();
+                        if (respuesta.equals("S")) {
+                            System.out.println("Ingrese la marca");
+                            marca = coso.next();
+                            b.Modificar(tipo, num, "marca", marca);
+                        }
+                        System.out.println("Desea modificar el año? (s/n)");
+                        respuesta = coso.next().toUpperCase();
+                        if (respuesta.equals("S")) {
+                            System.out.println("Ingrese el año");
+                            año = coso.next();
+                            b.Modificar(tipo, num, "año", año);
+                        }
+                    } else {
+                        System.out.println("Ingrese un dato valido");
+                        estado = false;
+                    }
+                } while (estado == false);
                 System.out.println("Desea Modificar otro auto? (s/n)");
                 des = coso.next();
                 if (des.equals("s")) {
-                    Moodificar(b);;
+                    Moodificar(b);
+                    ;
                 }
                 menuPrincipal(b);
                 break;
-            case 4:
-                ArrayList<Auto> Deportivo = new ArrayList<>();
-                b.ImprimirLista(Deportivo);
-                System.out.println("Ingrese el número del vehiculo que desea modificar");
-                num = coso.nextInt();
-                System.out.println("Desea modificar la matricula? (s/n)");
-                respuesta = coso.next().toUpperCase();
-                if (respuesta.equals("S")) {
-                    System.out.println("Ingrese la placa");
-                    placa = coso.next();
-                    b.Modificar(Deportivo, num, "placa", placa);
-                }
-                System.out.println("Desea modificar el color? (s/n)");
-                respuesta = coso.next().toUpperCase();
-                if (respuesta.equals("S")) {
-                    System.out.println("Ingrese el color");
-                    color = coso.next();
-                    b.Modificar(Deportivo, num, "color", color);
-                }
-                System.out.println("Desea modificar la marca? (s/n)");
-                respuesta = coso.next().toUpperCase();
-                if (respuesta.equals("S")) {
-                    System.out.println("Ingrese la marca");
-                    marca = coso.next();
-                    b.Modificar(Deportivo, num, "marca", marca);
-                }
-                System.out.println("Desea modificar el año? (s/n)");
-                respuesta = coso.next().toUpperCase();
-                if (respuesta.equals("S")) {
-                    System.out.println("Ingrese el año");
-                    año = coso.next();
-                    b.Modificar(Deportivo, num, "año", año);
-                }  
+
+            case "4":
+                tipo = "Deportivo";
+                b.ImprimirLista(tipo);
+                do {
+                    System.out.println("\nIngrese el número del vehiculo que desea modificar");
+                    val = coso.next();
+                    if (validacion.validarNúmero(val)) {
+                        estado = true;
+                        num = Integer.parseInt(val);
+                        System.out.println("Desea modificar la matricula? (s/n)");
+                        respuesta = coso.next().toUpperCase();
+                        if (respuesta.equals("S")) {
+                            System.out.println("Ingrese la placa");
+                            placa = coso.next();
+                            b.Modificar(tipo, num, "placa", placa);
+                        }
+                        System.out.println("Desea modificar el color? (s/n)");
+                        respuesta = coso.next().toUpperCase();
+                        if (respuesta.equals("S")) {
+                            System.out.println("Ingrese el color");
+                            color = coso.next();
+                            b.Modificar(tipo, num, "color", color);
+                        }
+                        System.out.println("Desea modificar la marca? (s/n)");
+                        respuesta = coso.next().toUpperCase();
+                        if (respuesta.equals("S")) {
+                            System.out.println("Ingrese la marca");
+                            marca = coso.next();
+                            b.Modificar(tipo, num, "marca", marca);
+                        }
+                        System.out.println("Desea modificar el año? (s/n)");
+                        respuesta = coso.next().toUpperCase();
+                        if (respuesta.equals("S")) {
+                            System.out.println("Ingrese el año");
+                            año = coso.next();
+                            b.Modificar(tipo, num, "año", año);
+                        }
+                    } else {
+                        System.out.println("Ingrese un dato valido");
+                        estado = false;
+                    }
+                } while (estado == false);
                 System.out.println("Desea Modificar otro auto? (s/n)");
                 des = coso.next();
                 if (des.equals("s")) {
-                    Moodificar(b);;
+                    Moodificar(b);
+                    ;
+                }
+                menuPrincipal(b);
+                break;
+        }
+    }
+
+    public static void Buscar(GestorAuto b) {
+        Validacion validacion = new Validacion();
+        Scanner coso = new Scanner(System.in);
+        boolean estado = false;
+        String op;
+        String des, tipo;
+        int dato;
+        String val;
+        System.out.println("Seleccione el tipo de vehiculo que desea Buscar");
+        System.out.println("1.-Camioneta \n2.-Suv \n3.-Sedan \n4.-Deportivo");
+        System.out.println("Coloque solo el número de la opcion deseada");
+        op = coso.next();
+        switch (op) {
+            case "1":
+                tipo = "Camioneta";
+                do {
+                    System.out.println("Ingrese la posicion del auto que desea Buscar");
+                    val = coso.next();
+                    if (validacion.validarNúmero(val)) {
+                        dato = Integer.parseInt(val);
+                        b.Buscar(tipo, dato);
+                        estado = true;
+                    } else {
+                        System.out.println("Dato no valido.\nProfavor ingrese un Dato válido");
+                    }
+
+                } while (estado == false);
+                System.out.println("desea Buscar otro auto? (s/n)");
+                des = coso.next().toUpperCase();
+                if (des.equals("S")) {
+                    Buscar(b);
+                }
+                menuPrincipal(b);
+                break;
+
+            case "2":
+                tipo = "Suv";
+                do {
+                    System.out.println("Ingrese la posicion del auto que desea Buscar");
+                    val = coso.next();
+                    if (validacion.validarNúmero(val)) {
+                        dato = Integer.parseInt(val);
+                        b.Buscar(tipo, dato);
+                        estado = true;
+                    } else {
+                        System.out.println("Dato no valido.\nProfavor ingrese un Dato válido");
+                    }
+
+                } while (estado == false);
+                System.out.println("desea Buscar otro auto? (s/n)");
+                des = coso.next().toUpperCase();
+                if (des.equals("S")) {
+                    Buscar(b);
+                }
+                menuPrincipal(b);
+                break;
+            case "3":
+                tipo = "Sedan";
+                do {
+                    System.out.println("Ingrese la posicion del auto que desea Buscar");
+                    val = coso.next();
+                    if (validacion.validarNúmero(val)) {
+                        dato = Integer.parseInt(val);
+                        b.Buscar(tipo, dato);
+                        estado = true;
+                    } else {
+                        System.out.println("Dato no valido.\nProfavor ingrese un Dato válido");
+                    }
+
+                } while (estado == false);
+                System.out.println("desea Buscar otro auto? (s/n)");
+                des = coso.next().toUpperCase();
+                if (des.equals("S")) {
+                    Buscar(b);
+                }
+                menuPrincipal(b);
+                break;
+            case "4":
+                tipo = "Deportivo";
+                do {
+                    System.out.println("Ingrese la posicion del auto que desea Buscar");
+                    val = coso.next();
+                    if (validacion.validarNúmero(val)) {
+                        dato = Integer.parseInt(val);
+                        b.Buscar(tipo, dato);
+                        estado = true;
+                    } else {
+                        System.out.println("Dato no valido.\nProfavor ingrese un Dato válido");
+                    }
+
+                } while (estado == false);
+                System.out.println("desea Buscar otro auto? (s/n)");
+                des = coso.next().toUpperCase();
+                if (des.equals("S")) {
+                    Buscar(b);
                 }
                 menuPrincipal(b);
                 break;
@@ -312,68 +493,108 @@ public class MainAuto {
         }
     }
 
-    public static void Buscar(GestorAuto b){
+    public static void Borrar(GestorAuto b) {
+        Validacion validacion = new Validacion();
         Scanner coso = new Scanner(System.in);
-        int dato;
-        String des;
-
-        System.out.println("Seleccione el tipo de vehiculo que desea Buscar");
+        int num;
+        boolean estado = false;
+        String dato, tipo;
+        String placa, color, marca, año, des, respuesta, val;
+        System.out.println("Seleccione el tipo de vehiculo que quiere Eliminar");
         System.out.println("1.-Camioneta \n2.-Suv \n3.-Sedan \n4.-Deportivo");
-        System.out.println("Coloque solo el número de la opcion deseada");
-        dato = coso.nextInt();
+        System.out.println("Coloque solo el numero de la opcion deseada");
+        dato = coso.next();
         switch (dato) {
-            case 1:
-                ArrayList<Auto> Camioneta = new ArrayList<>();
-                System.out.println("ingrese la posicion del auto que desea Buscar");
-                dato=coso.nextInt();
-                b.Buscar(Camioneta, dato);
-                System.out.println("desea Buscar otro auto? (s/n)");
+            case "1":
+                tipo = "Camioneta";
+                b.ImprimirLista(tipo);
+                do {
+                    System.out.println("Ingrese la posicion del auto que desea Eliminar");
+                    val = coso.next();
+                    if (validacion.validarNúmero(val)) {
+                        num = Integer.parseInt(val);
+                        b.Eliminarporpos(tipo, num);
+                        estado = true;
+                    } else {
+                        System.out.println("Dato no valido.\nProfavor ingrese un Dato válido");
+                    }
+
+                } while (estado == false);
+                System.out.println("Desea eliminar otro vehiculo? (s/n)");
                 des = coso.next().toUpperCase();
-                if (des.equals("S")) {
-                    Buscar(b);
+                if (des == "S") {
+                    Borrar(b);
                 }
                 menuPrincipal(b);
                 break;
 
-            case 2:
-                ArrayList<Auto> Suv = new ArrayList<>();
-                System.out.println("ingrese la posicion del auto que desea Buscar");
-                dato=coso.nextInt();
-                b.Buscar(Suv, dato);
-                System.out.println("desea Buscar otro auto? (s/n)");
+            case "2":
+                tipo = "Suv";
+                b.ImprimirLista(tipo);
+                do {
+                    System.out.println("Ingrese la posicion del auto que desea Eliminar");
+                    val = coso.next();
+                    if (validacion.validarNúmero(val)) {
+                        num = Integer.parseInt(val);
+                        b.Eliminarporpos(tipo, num);
+                        estado = true;
+                    } else {
+                        System.out.println("Dato no valido.\nProfavor ingrese un Dato válido");
+                    }
+
+                } while (estado == false);
+                System.out.println("Desea eliminar otro vehiculo? (s/n)");
                 des = coso.next().toUpperCase();
-                if (des.equals("S")) {
-                    Buscar(b);
+                if (des == "S") {
+                    Borrar(b);
                 }
                 menuPrincipal(b);
                 break;
-            case 3:
-                ArrayList<Auto> Sedan = new ArrayList<>();
-                System.out.println("ingrese la posicion del auto que desea Buscar");
-                dato=coso.nextInt();
-                b.Buscar(Sedan, dato);
-                System.out.println("desea Buscar otro auto? (s/n)");
+
+            case "3":
+                tipo = "Sedan";
+                b.ImprimirLista(tipo);
+                do {
+                    System.out.println("Ingrese la posicion del auto que desea Eliminar");
+                    val = coso.next();
+                    if (validacion.validarNúmero(val)) {
+                        num = Integer.parseInt(val);
+                        b.Eliminarporpos(tipo, num);
+                        estado = true;
+                    } else {
+                        System.out.println("Dato no valido.\nProfavor ingrese un Dato válido");
+                    }
+
+                } while (estado == false);
+                System.out.println("Desea eliminar otro vehiculo? (s/n)");
                 des = coso.next().toUpperCase();
-                if (des.equals("S")) {
-                    Buscar(b);
+                if (des == "S") {
+                    Borrar(b);
                 }
                 menuPrincipal(b);
                 break;
-            case 4:
-                ArrayList<Auto> Deportivo = new ArrayList<>();
-                System.out.println("ingrese la posicion del auto que desea Buscar");
-                dato=coso.nextInt();
-                b.Buscar(Deportivo, dato);
-                System.out.println("desea Buscar otro auto? (s/n)");
+
+            case "4":
+                tipo = "Deportivo";
+                b.ImprimirLista(tipo);
+                do {
+                    System.out.println("Ingrese la posicion del auto que desea Eliminar");
+                    val = coso.next();
+                    if (validacion.validarNúmero(val)) {
+                        num = Integer.parseInt(val);
+                        b.Eliminarporpos(tipo, num);
+                        estado = true;
+                    } else {
+                        System.out.println("Dato no valido.\nProfavor ingrese un Dato válido");
+                    }
+
+                } while (estado == false);
+                System.out.println("Desea eliminar otro vehiculo? (s/n)");
                 des = coso.next().toUpperCase();
-                if (des.equals("S")) {
-                    Buscar(b);
+                if (des == "S") {
+                    Borrar(b);
                 }
                 menuPrincipal(b);
-                break;
-            default:
-                System.out.println("Dato no valido");
-                crearAuto(b);
                 break;
         }
     }
