@@ -10,6 +10,10 @@ public class Auto {
     private String marca;
     private String año;
 
+    
+    public Auto() {
+    }
+
     public Auto(String placa, String color, String marca, String año) {
         this.placa = placa;
         this.color = color;
