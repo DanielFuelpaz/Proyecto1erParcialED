@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Concesionario",
+            "request": "launch",
+            "mainClass": "Clases.Concesionario",
+            "projectName": "Proyecto1erParcialED_44511df1"
+        },
+        {
+            "type": "java",
+            "name": "Launch Validacion",
+            "request": "launch",
+            "mainClass": "Utiles.Validacion",
+            "projectName": "Proyecto1erParcialED_44511df1"
+        },
+        {
+            "type": "java",
             "name": "Launch MainAuto",
             "request": "launch",
             "mainClass": "MainAuto",

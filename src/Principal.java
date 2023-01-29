@@ -26,7 +26,6 @@ public class Principal {
                                 case 1:
                                         do {
                                                 Cliente c1 = new Cliente();
-                                                c1.fechaVisita = fecha;
                                                 GC.establecerCliente(temp,val, leer, c1, GC);
                                                 System.out.println("Desea ingresar otro cliente. Escriba si o no?");
                                                 respuesta = leer.next();
