@@ -4,11 +4,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Visita {
-    LocalDateTime fechaVista;
+    LocalDateTime fechaVisita;
     ArrayList<Auto> autosDeInterés;
 
     public Visita() {
-        this.fechaVista = LocalDateTime.now();
+        this.fechaVisita = LocalDateTime.now();
         this.autosDeInterés = new ArrayList<>();
     }
     

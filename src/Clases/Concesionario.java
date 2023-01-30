@@ -22,13 +22,14 @@ public class Concesionario {
         String respuesta1;
         do {
 
-            consola.imprimir(
-                    """
+            consola.imprimir("""
                                     Elija lo que desea hacer:
-                                    1:Manipulación de clientes y carros
-                                    2: Clientes interesados en un modelo/marca de carro dado cuya última compra no sea de los últimos tres años.
-                                    3:  Historial de un cliente
-                                    4: Carros vendidos en un margen de tiempo dado (fecha inicial a fecha final). Incluir en este informe estadísticas de cantidad de carros y valor total facturado
+                                    1:Manipulación de clientes.
+                                    2:Manipulación de autos.
+                                    2:Clientes interesados en un modelo/marca de carro dado cuya última compra no sea de los últimos tres años.
+                                    3:Historial de un cliente
+                                    4:Carros vendidos en un margen de tiempo dado (fecha inicial a fecha final).
+                                     Incluir en este informe estadísticas de cantidad de carros y valor total facturado
                                     5: Salir
                             """);
             respuesta1 = consola.ingresar();
@@ -36,14 +37,22 @@ public class Concesionario {
                 case "1":
                     String respuesta2;
                     do {
-                        consola.imprimir(
-                                "Elija lo que quiere hacer del cliente: \n1: Crear cliente. \n2: Ver vehículos. \n3: Eliminar vehículos de interés. \n4:Comprar vehículo(s). \n5:Ir al menú principal");
+                        consola.imprimir("""
+                                    Elija lo que quiere hacer del cliente:
+                                    1: Crear cliente.
+                                    2: Modificar cliente.
+                                    3: Eliminar cliente.
+                                    4: Buscar clientes.
+                                    5: Listar clientes.
+                                    6: Añadir visita.
+                                    7: Salir al menú.
+                                """);
                         respuesta2 = consola.ingresar();
                         switch (respuesta2) {
                             case "1":
                                 do {
                                     Cliente c1;
-                                    consola.imprimir("Ingrese un cliente \n -----------------1");
+                                    consola.imprimir("Ingrese un cliente \n -----------------");
                                     String cédula = "";
                                     do {
                                         consola.imprimir("Ingrese la cédula del cliente");
@@ -79,30 +88,128 @@ public class Concesionario {
 
                                 break;
                             case "2":
-                                // Presenta los vehículos al cliente según sus necesidades, se agrega el
-                                // vehículo de interés a la lista de visita. (Carlos usa
-                                // cliente.historial.get(i).autosDeInterés;)
+                                GClientes.Listar();
+                                consola.imprimir("Elija el número del cliente que desea modificar");
+                                int numClienteModificar;
+                                do {
+                                    numClienteModificar = consola.ingresarEntero();
+                                } while (numClienteModificar > GClientes.clientes.size());
+
+                                consola.imprimir(
+                                        "Ingrese lo que desea modificar del cliente: \n 1:Modificar cédula  \n 2:Modificar nombre \n 3:Modificar apellido \n 4:Modificar teléfono \n 5:Modificar dirección \n 6:Salir");
+                                int AModificar = consola.ingresarEntero();
+                                switch (AModificar) {
+                                    case 1:
+                                        consola.imprimir("Ingrese la nueva cédula");
+                                        GClientes.clientes.get(numClienteModificar - 1).cedula = consola.ingresar();
+                                        break;
+                                    case 2:
+                                        consola.imprimir("Ingrese el nuevo nombre");
+                                        GClientes.clientes.get(numClienteModificar - 1).nombre = consola.ingresar();
+                                        break;
+                                    case 3:
+                                        consola.imprimir("Ingrese el nuevo apellido");
+                                        GClientes.clientes.get(numClienteModificar - 1).apellido = consola.ingresar();
+                                        break;
+                                    case 4:
+                                        consola.imprimir("Ingrese el nuevo teléfono");
+                                        GClientes.clientes.get(numClienteModificar - 1).telefono = consola.ingresar();
+                                        break;
+                                    case 5:
+                                        consola.imprimir("Ingrese la nueva dirección");
+                                        GClientes.clientes.get(numClienteModificar - 1).dirección = consola.ingresar();
+                                        break;
+                                    case 6:
+                                        break;
+                                    default:
+                                        consola.imprimir("Debe escribir las letras solicitadas");
+                                        break;
+                                }
                                 break;
                             case "3":
-                                // Elimina un carro de la lista de interés de visita
+                                if (GClientes.clientes.size() != 0) {
+                                    GClientes.Listar();
+                                    consola.imprimir("Elija el número del cliente que desea eliminar");
+                                    int numClienteCambio;
+                                    do {
+                                        numClienteCambio = consola.ingresarEntero();
+                                    } while (numClienteCambio - 1 > GClientes.clientes.size()
+                                            || numClienteCambio - 1 <= 0);
+                                    GClientes.clientes.remove(numClienteCambio - 1);
+                                    GClientes.Listar();
+                                } else {
+                                    consola.imprimir("Debe crear un cliente primero");
+                                }
                                 break;
                             case "4":
-                                // Compra los vehículos de la lista de interés.
+                                GClientes.Listar();
+                                int n;
+                                do {
+                                    consola.imprimirS("Elija el número del cliente que desea buscar: ");
+                                    n = consola.ingresarEntero();
+                                } while (n < 0 || n > GClientes.clientes.size());
+                                consola.imprimir(GClientes.clientes.get(n - 1).toString());
                                 break;
                             case "5":
-                                respuesta2 = "5";
+                                GClientes.Listar();
+                                break;
+                            case "6":
+                                GClientes.Listar();
+                                consola.imprimir("Ingrese el número del cliente del que desea agregar una nueva visita");
+                                int numCliente = consola.ingresarEntero();
+                                GClientes.clientes.get(numCliente-1).historial.add(new Visita());
                                 break;
                             default:
-                                consola.imprimir("Elija un número del 1 al 5");
+                                consola.imprimir("Elija un número del 1 al 7");
                                 break;
                         }
-                    } while (respuesta2 != "5");
+                    } while (respuesta2.equals("7"));
                     break;
                 case "2":
-                    //
+                    String respuestaCaso2;
+                    do {
+                        consola.imprimir("""
+                                Elija lo que quiere hacer con el auto.
+                                1: Ver vehículos.
+                                2:Eliminar vehículos de interés.
+                                3:Comprar vehículo(s).
+                                4:Ir al menú principal
+                                """);
+                        respuestaCaso2 = consola.ingresar();
+                        switch (respuestaCaso2) {
+                            case "1":
+                                // Presenta los vehículos al cliente según sus necesidades, se agrega el
+                                // vehículo de interés a la lista de visita.
+                                // (Carlos usa cliente.historial.get(i).autosDeInterés;)
+                                break;
+                            case "2":
+                                // Elimina un carro de la lista de interés de visita
+
+                                break;
+                            case "3":
+                                // Compra los vehículos de la lista de interés.
+                                break;
+                            default:
+                                consola.imprimir("Ingrese un número del 1 al 4");
+                                break;
+                        }
+                    } while (!respuestaCaso2.equals(4));
                     break;
 
                 case "3":
+                    // Historial de un cliente
+                    GClientes.Listar();
+                    consola.imprimir("Ingrese el número del cliente del que desea saber su historial");
+                    int numCliente = consola.ingresarEntero();
+                    consola.imprimir("Historial del cliente " + numCliente);
+                    for (int index = 0; index < GClientes.clientes.get(numCliente - 1).historial.size(); index++) {
+                        consola.imprimir("Visita: " + index+1);
+                        consola.imprimir("Fecha:" + String.valueOf(
+                                GClientes.clientes.get(numCliente - 1).historial.get(index).fechaVisita + "\n"));
+                        consola.imprimir("Autos de Interés:"
+                                + GClientes.clientes.get(numCliente - 1).historial.get(index).autosDeInterés
+                                        .toString());
+                    }
                     break;
                 case "4":
 

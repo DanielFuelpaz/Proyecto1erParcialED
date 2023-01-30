@@ -59,25 +59,11 @@ public class Validacion {
     // return false;
     // }
 
-    public void existeCedula() {
-
-    }
-
-    public void existeNumero() {
-
-    }
-
     public boolean validarNúmero(String numero) {
         return numero.matches("[1-9]*");
     }
 
     public boolean validarOpcion(String opcion) {
         return opcion.matches("[1-7]");
-    }
-
-    public static void main(String[] args) {
-        Validacion v = new Validacion();
-        Cliente c1 = new Cliente("1850178870", "joaquin", "Fernandez", "0983201541", "Av Atahualpa");
-        System.out.println(v.validarCliente(c1));
     }
 }

@@ -25,7 +25,7 @@ public class Cliente {
     @Override
     public String toString() {
         return "\nCedula= " + cedula + "\nNombre= " + nombre + "\nApellido= " + apellido + "\nTelefono= "
-                + telefono + "\nDirección= " + dirección + "\nInteresado=" + historial.toString();
+                + telefono + "\nDirección= " + dirección+"\n\n";
     }
 
 }
