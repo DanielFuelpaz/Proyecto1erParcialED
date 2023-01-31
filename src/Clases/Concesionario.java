@@ -22,7 +22,7 @@ public class Concesionario {
         String respuesta1;
         do {
 
-            consola.imprimir("""
+            consola.imprimir("
                                     Elija lo que desea hacer:
                                     1:Manipulación de clientes.
                                     2:Manipulación de autos.
@@ -31,13 +31,13 @@ public class Concesionario {
                                     4:Carros vendidos en un margen de tiempo dado (fecha inicial a fecha final).
                                      Incluir en este informe estadísticas de cantidad de carros y valor total facturado
                                     5: Salir
-                            """);
+                            ");
             respuesta1 = consola.ingresar();
             switch (respuesta1) {
                 case "1":
                     String respuesta2;
                     do {
-                        consola.imprimir("""
+                        consola.imprimir("
                                     Elija lo que quiere hacer del cliente:
                                     1: Crear cliente.
                                     2: Modificar cliente.
@@ -46,7 +46,7 @@ public class Concesionario {
                                     5: Listar clientes.
                                     6: Añadir visita.
                                     7: Salir al menú.
-                                """);
+                                ");
                         respuesta2 = consola.ingresar();
                         switch (respuesta2) {
                             case "1":
