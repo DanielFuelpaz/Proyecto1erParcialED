@@ -6,7 +6,6 @@ import Gestion.GestionCompra;
 import Gestion.GestionVehiculos;
 import Gestion.GestorClientes;
 import Utiles.Interfaz;
-import Utiles.Validacion;
 
 public class Concesionario {
     public static void main(String[] args) {
@@ -15,14 +14,13 @@ public class Concesionario {
         GestionCompra GCompras = new GestionCompra(auto);
         GestionVehiculos GVehiculos = new GestionVehiculos();
         Interfaz consola = new Interfaz();
-        Concesionario c = new Concesionario();
         consola.imprimir("Bienvenido al Concesionario FISEI");
         String masClientes = "";
-        Validacion validar = new Validacion();
         String respuesta1;
         do {
 
-            consola.imprimir("""
+            consola.imprimir(
+                    """
                                     Elija lo que desea hacer:
                                     1:Manipulación de clientes.
                                     2:Manipulación de autos.
@@ -51,34 +49,35 @@ public class Concesionario {
                         switch (respuesta2) {
                             case "1":
                                 do {
-                                    Cliente c1;
-                                    consola.imprimir("Ingrese un cliente \n -----------------");
-                                    String cédula = "";
-                                    do {
-                                        consola.imprimir("Ingrese la cédula del cliente");
-                                        cédula = consola.ingresar();
-                                    } while (!validar.validarCedula(cédula, GClientes));
-                                    String nombre = "";
-                                    do {
-                                        consola.imprimir("Ingrese el nombre del cliente");
-                                        nombre = consola.ingresar();
-                                    } while (!validar.validarPersona(nombre));
+                                    Cliente c1 = null;
 
-                                    String apellido = "";
-                                    do {
-                                        consola.imprimir("Ingrese el apellido del cliente");
-                                        apellido = consola.ingresar();
-                                    } while (!validar.validarPersona(apellido));
-                                    String teléfono = "";
-                                    do {
-                                        consola.imprimir("Ingrese el teléfono del cliente");
-                                        teléfono = consola.ingresar();
-                                    } while (!validar.validarTelefono(teléfono, GClientes));
-                                    consola.imprimir("Ingrese la dirección del cliente");
-                                    String direccion = consola.ingresar();
-                                    c1 = new Cliente(cédula, nombre, apellido, teléfono, direccion);
-                                    c1.historial.add(new Visita());
-                                    GClientes.clientes.add(c1);
+                                    // consola.imprimir("Ingrese un cliente \n -----------------");
+                                    // String cédula = "";
+                                    // do {
+                                    // consola.imprimir("Ingrese la cédula del cliente");
+                                    // cédula = consola.ingresar();
+                                    // } while (!validar.validarCedula(cédula, GClientes));
+                                    // String nombre = "";
+                                    // do {
+                                    // consola.imprimir("Ingrese el nombre del cliente");
+                                    // nombre = consola.ingresar();
+                                    // } while (!validar.validarPersona(nombre));
+
+                                    // String apellido = "";
+                                    // do {
+                                    // consola.imprimir("Ingrese el apellido del cliente");
+                                    // apellido = consola.ingresar();
+                                    // } while (!validar.validarPersona(apellido));
+                                    // String teléfono = "";
+                                    // do {
+                                    // consola.imprimir("Ingrese el teléfono del cliente");
+                                    // teléfono = consola.ingresar();
+                                    // } while (!validar.validarTelefono(teléfono, GClientes));
+                                    // consola.imprimir("Ingrese la dirección del cliente");
+                                    // String direccion = consola.ingresar();
+                                    // c1 = new Cliente(cédula, nombre, apellido, teléfono, direccion);
+                                    // c1.historial.add(new Visita());
+                                    GClientes.clientes.add(GClientes.crearCliente(c1));
                                     do {
                                         consola.imprimir("¿Desea ingresar más clientes? \n Si:si N:no");
                                         masClientes = consola.ingresar();
@@ -89,75 +88,84 @@ public class Concesionario {
                                 break;
                             case "2":
                                 GClientes.Listar();
-                                consola.imprimir("Elija el número del cliente que desea modificar");
-                                int numClienteModificar;
-                                do {
-                                    numClienteModificar = consola.ingresarEntero();
-                                } while (numClienteModificar > GClientes.clientes.size());
+                                GClientes.modificarCliente();
+                                // consola.imprimir("Elija el número del cliente que desea modificar");
+                                // int numClienteModificar;
+                                // do {
+                                // numClienteModificar = consola.ingresarEntero();
+                                // } while (numClienteModificar > GClientes.clientes.size());
 
-                                consola.imprimir(
-                                        "Ingrese lo que desea modificar del cliente: \n 1:Modificar cédula  \n 2:Modificar nombre \n 3:Modificar apellido \n 4:Modificar teléfono \n 5:Modificar dirección \n 6:Salir");
-                                int AModificar = consola.ingresarEntero();
-                                switch (AModificar) {
-                                    case 1:
-                                        consola.imprimir("Ingrese la nueva cédula");
-                                        GClientes.clientes.get(numClienteModificar - 1).cedula = consola.ingresar();
-                                        break;
-                                    case 2:
-                                        consola.imprimir("Ingrese el nuevo nombre");
-                                        GClientes.clientes.get(numClienteModificar - 1).nombre = consola.ingresar();
-                                        break;
-                                    case 3:
-                                        consola.imprimir("Ingrese el nuevo apellido");
-                                        GClientes.clientes.get(numClienteModificar - 1).apellido = consola.ingresar();
-                                        break;
-                                    case 4:
-                                        consola.imprimir("Ingrese el nuevo teléfono");
-                                        GClientes.clientes.get(numClienteModificar - 1).telefono = consola.ingresar();
-                                        break;
-                                    case 5:
-                                        consola.imprimir("Ingrese la nueva dirección");
-                                        GClientes.clientes.get(numClienteModificar - 1).dirección = consola.ingresar();
-                                        break;
-                                    case 6:
-                                        break;
-                                    default:
-                                        consola.imprimir("Debe escribir las letras solicitadas");
-                                        break;
-                                }
+                                // consola.imprimir(
+                                // "Ingrese lo que desea modificar del cliente: \n 1:Modificar cédula \n
+                                // 2:Modificar nombre \n 3:Modificar apellido \n 4:Modificar teléfono \n
+                                // 5:Modificar dirección \n 6:Salir");
+                                // int AModificar = consola.ingresarEntero();
+                                // switch (AModificar) {
+                                // case 1:
+                                // consola.imprimir("Ingrese la nueva cédula");
+                                // GClientes.clientes.get(numClienteModificar - 1).cedula = consola.ingresar();
+                                // break;
+                                // case 2:
+                                // consola.imprimir("Ingrese el nuevo nombre");
+                                // GClientes.clientes.get(numClienteModificar - 1).nombre = consola.ingresar();
+                                // break;
+                                // case 3:
+                                // consola.imprimir("Ingrese el nuevo apellido");
+                                // GClientes.clientes.get(numClienteModificar - 1).apellido =
+                                // consola.ingresar();
+                                // break;
+                                // case 4:
+                                // consola.imprimir("Ingrese el nuevo teléfono");
+                                // GClientes.clientes.get(numClienteModificar - 1).telefono =
+                                // consola.ingresar();
+                                // break;
+                                // case 5:
+                                // consola.imprimir("Ingrese la nueva dirección");
+                                // GClientes.clientes.get(numClienteModificar - 1).dirección =
+                                // consola.ingresar();
+                                // break;
+                                // case 6:
+                                // break;
+                                // default:
+                                // consola.imprimir("Opcion no valida");
+                                // break;
+                                // }
                                 break;
                             case "3":
-                                if (GClientes.clientes.size() != 0) {
-                                    GClientes.Listar();
-                                    consola.imprimir("Elija el número del cliente que desea eliminar");
-                                    int numClienteCambio;
-                                    do {
-                                        numClienteCambio = consola.ingresarEntero();
-                                    } while (numClienteCambio - 1 > GClientes.clientes.size()
-                                            || numClienteCambio - 1 <= 0);
-                                    GClientes.clientes.remove(numClienteCambio - 1);
-                                    GClientes.Listar();
-                                } else {
-                                    consola.imprimir("Debe crear un cliente primero");
-                                }
+                                GClientes.eliminarCliente();
+                                // if (GClientes.clientes.size() != 0) {
+                                // GClientes.Listar();
+                                // consola.imprimir("Elija el número del cliente que desea eliminar");
+                                // int numClienteCambio;
+                                // do {
+                                // numClienteCambio = consola.ingresarEntero();
+                                // } while (numClienteCambio - 1 > GClientes.clientes.size()
+                                // || numClienteCambio - 1 <= 0);
+                                // GClientes.clientes.remove(numClienteCambio - 1);
+                                // GClientes.Listar();
+                                // } else {
+                                // consola.imprimir("Debe crear un cliente primero");
+                                // }
                                 break;
                             case "4":
                                 GClientes.Listar();
-                                int n;
-                                do {
-                                    consola.imprimirS("Elija el número del cliente que desea buscar: ");
-                                    n = consola.ingresarEntero();
-                                } while (n < 0 || n > GClientes.clientes.size());
-                                consola.imprimir(GClientes.clientes.get(n - 1).toString());
+                                GClientes.buscarCliente();
+                                // int n;
+                                // do {
+                                //     consola.imprimirS("Elija el número del cliente que desea buscar: ");
+                                //     n = consola.ingresarEntero();
+                                // } while (n < 0 || n > GClientes.clientes.size());
+                                // consola.imprimir(GClientes.clientes.get(n - 1).toString());
                                 break;
                             case "5":
                                 GClientes.Listar();
                                 break;
                             case "6":
                                 GClientes.Listar();
-                                consola.imprimir("Ingrese el número del cliente del que desea agregar una nueva visita");
+                                consola.imprimir(
+                                        "Ingrese el número del cliente del que desea agregar una nueva visita");
                                 int numCliente = consola.ingresarEntero();
-                                GClientes.clientes.get(numCliente-1).historial.add(new Visita());
+                                GClientes.clientes.get(numCliente - 1).historial.add(new Visita());
                                 break;
                             default:
                                 consola.imprimir("Elija un número del 1 al 7");
@@ -193,7 +201,7 @@ public class Concesionario {
                                 consola.imprimir("Ingrese un número del 1 al 4");
                                 break;
                         }
-                    } while (!respuestaCaso2.equals(4));
+                    } while (!respuestaCaso2.equals("4"));
                     break;
 
                 case "3":
@@ -203,7 +211,7 @@ public class Concesionario {
                     int numCliente = consola.ingresarEntero();
                     consola.imprimir("Historial del cliente " + numCliente);
                     for (int index = 0; index < GClientes.clientes.get(numCliente - 1).historial.size(); index++) {
-                        consola.imprimir("Visita: " + index+1);
+                        consola.imprimir("Visita: " + index + 1);
                         consola.imprimir("Fecha:" + String.valueOf(
                                 GClientes.clientes.get(numCliente - 1).historial.get(index).fechaVisita + "\n"));
                         consola.imprimir("Autos de Interés:"
