@@ -38,6 +38,10 @@ public class Validacion {
         return nombre.matches("[A-Z]([a-z])+");
     }
 
+    public boolean validarTipos(String cadena){
+        return cadena.matches("([A-Z])*");
+    }
+
     // public boolean validarCliente(Cliente c) {
     // // validacion
     // if (c.cedula != null && c.cedula.matches("[0-9]{10}")) {

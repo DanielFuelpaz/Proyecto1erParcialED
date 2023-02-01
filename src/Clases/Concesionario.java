@@ -6,45 +6,47 @@ import Gestion.GestionCompra;
 import Gestion.GestionVehiculos;
 import Gestion.GestorClientes;
 import Utiles.Interfaz;
+import Utiles.Validacion;
 
 public class Concesionario {
     public static void main(String[] args) {
-        ArrayList<Auto> auto = new ArrayList<>();
         GestorClientes GClientes = new GestorClientes();
-        GestionCompra GCompras = new GestionCompra(auto);
+        GestionCompra GCompras = new GestionCompra();
         GestionVehiculos GVehiculos = new GestionVehiculos();
+        Validacion r = new Validacion();
         Interfaz consola = new Interfaz();
+        ArrayList<Auto> listacompras = new ArrayList<>();
         consola.imprimir("Bienvenido al Concesionario FISEI");
-        String masClientes = ""; 
+        String masClientes = "";
         String respuesta1;
         do {
 
             consola.imprimir(
                     """
-                                    Elija lo que desea hacer:
-                                    1:Manipulación de clientes.
-                                    2:Manipulación de autos.
-                                    2:Clientes interesados en un modelo/marca de carro dado cuya última compra no sea de los últimos tres años.
-                                    3:Historial de un cliente
-                                    4:Carros vendidos en un margen de tiempo dado (fecha inicial a fecha final).
-                                     Incluir en este informe estadísticas de cantidad de carros y valor total facturado
-                                    5: Salir
-                    """);
+                                            Elija lo que desea hacer:
+                                            1:Manipulación de clientes.
+                                            2:Manipulación de autos.
+                                            3:Clientes interesados en un modelo/marca de carro dado cuya última compra no sea de los últimos tres años.
+                                            4:Historial de un cliente
+                                            5:Carros vendidos en un margen de tiempo dado (fecha inicial a fecha final).
+                                             Incluir en este informe estadísticas de cantidad de carros y valor total facturado
+                                            6: Salir
+                            """);
             respuesta1 = consola.ingresar();
             switch (respuesta1) {
                 case "1":
                     String respuesta2;
                     do {
                         consola.imprimir("""
-                                    Elija lo que quiere hacer del cliente:
-                                    1: Crear cliente.
-                                    2: Modificar cliente.
-                                    3: Eliminar cliente.
-                                    4: Buscar clientes.
-                                    5: Listar clientes.
-                                    6: Añadir visita.
-                                    7: Salir al menú.
-                                    """);
+                                Elija lo que quiere hacer del cliente:
+                                1: Crear cliente.
+                                2: Modificar cliente.
+                                3: Eliminar cliente.
+                                4: Buscar clientes.
+                                5: Listar clientes.
+                                6: Añadir visita.
+                                7: Salir al menú.
+                                """);
                         respuesta2 = consola.ingresar();
                         switch (respuesta2) {
                             case "1":
@@ -152,8 +154,8 @@ public class Concesionario {
                                 GClientes.buscarCliente();
                                 // int n;
                                 // do {
-                                //     consola.imprimirS("Elija el número del cliente que desea buscar: ");
-                                //     n = consola.ingresarEntero();
+                                // consola.imprimirS("Elija el número del cliente que desea buscar: ");
+                                // n = consola.ingresarEntero();
                                 // } while (n < 0 || n > GClientes.clientes.size());
                                 // consola.imprimir(GClientes.clientes.get(n - 1).toString());
                                 break;
@@ -175,27 +177,105 @@ public class Concesionario {
                     break;
                 case "2":
                     String respuestaCaso2;
+                    String num = "";
+                    String num2 = "";
                     do {
                         consola.imprimir("""
                                 Elija lo que quiere hacer con el auto.
                                 1: Ver vehículos.
-                                2:Eliminar vehículos de interés.
+                                2: Eliminar vehículos de interés.
                                 3:Comprar vehículo(s).
                                 4:Ir al menú principal
                                 """);
                         respuestaCaso2 = consola.ingresar();
                         switch (respuestaCaso2) {
                             case "1":
+                                if (GClientes.clientes.isEmpty()) {
+                                    consola.imprimir("No existen clientes");
+                                    break;
+                                }
+                                GClientes.Listar();
+                                do {
+                                    consola.imprimir("Ingrese el numero de cliente que desea ver la visita");
+                                    num = consola.ingresar();
+                                    if (!r.validarNúmero(num)) {
+                                        consola.imprimir("Solo se permiten valores númericos");
+                                    }
+                                } while (!r.validarNúmero(num));
+                                for (int i = 0; i < GClientes.clientes.get(Integer.parseInt(num)).historial
+                                        .size(); i++) {
+                                    consola.imprimir(
+                                            (i + 1) + ": " + GClientes.clientes.get(Integer.parseInt(num)).historial
+                                                    .get(i).fechaVisita);
+                                }
+                                do {
+                                    consola.imprimir("Ingrese el numero de la visita que desea registar los vehiculos");
+                                    num2 = consola.ingresar();
+                                    if (!r.validarNúmero(num2)) {
+                                        consola.imprimir("Solo se permiten valores númericos");
+                                    }
+                                } while (!r.validarNúmero(num2));
+
+                                do {
+                                    GClientes.clientes.get(Integer.parseInt(num)).historial
+                                            .get(Integer.parseInt(num2)).autosDeInterés
+                                            .add(GVehiculos.AgregsrAListaDeInteres());
+                                    do {
+                                        consola.imprimir(
+                                                "¿Desea agrgar mas vehiculos a la lista de interes? \n Si:si N:no");
+                                        masClientes = consola.ingresar();
+                                    } while (!(masClientes.equalsIgnoreCase("Si")
+                                            || masClientes.equalsIgnoreCase("No")));
+                                } while (masClientes.equalsIgnoreCase("Si"));
                                 // Presenta los vehículos al cliente según sus necesidades, se agrega el
                                 // vehículo de interés a la lista de visita.
                                 // (Carlos usa cliente.historial.get(i).autosDeInterés;)
                                 break;
                             case "2":
+                                if (GClientes.clientes.isEmpty()) {
+                                    consola.imprimir("No existen clientes");
+                                    break;
+                                }
+                                GClientes.Listar();
+                                do {
+                                    consola.imprimir("Ingrese el numero de cliente que desea ver la visita");
+                                    num = consola.ingresar();
+                                    if (!r.validarNúmero(num)) {
+                                        consola.imprimir("Solo se permiten valores númericos");
+                                    }
+                                } while (!r.validarNúmero(num));
+                                for (int i = 0; i < GClientes.clientes.get(Integer.parseInt(num)).historial
+                                        .size(); i++) {
+                                    consola.imprimir(
+                                            (i + 1) + ": " + GClientes.clientes.get(Integer.parseInt(num)).historial
+                                                    .get(i).fechaVisita);
+                                }
+                                do {
+                                    consola.imprimir("Ingrese el numero de la visita que desea registar los vehiculos");
+                                    num2 = consola.ingresar();
+                                    if (!r.validarNúmero(num2)) {
+                                        consola.imprimir("Solo se permiten valores númericos");
+                                    }
+                                } while (!r.validarNúmero(num2));
                                 // Elimina un carro de la lista de interés de visita
+                                do {
+                                    GClientes.clientes.get(Integer.parseInt(num)).historial
+                                            .get(Integer.parseInt(num2)).autosDeInterés
+                                            .remove(GVehiculos.BorrarVehiculoInteres(
+                                                    GClientes.clientes.get(0).historial.get(0).autosDeInterés));
+                                    do {
+                                        consola.imprimir(
+                                                "¿Desea eliminar otro vehiculos de la lista de interes? \n Si:si N:no");
+                                        masClientes = consola.ingresar();
+                                    } while (!(masClientes.equalsIgnoreCase("Si")
+                                            || masClientes.equalsIgnoreCase("No")));
+                                } while (masClientes.equalsIgnoreCase("Si"));
 
                                 break;
                             case "3":
-                                // Compra los vehículos de la lista de interés.
+
+                                GCompras.compraVehiculo(GClientes.clientes.get(0).historial.get(0).autosDeInterés);
+
                                 break;
                             default:
                                 consola.imprimir("Ingrese un número del 1 al 4");
@@ -223,7 +303,8 @@ public class Concesionario {
 
                     break;
                 case "5":
-                    respuesta1 = "5";
+                    break;
+                case "6":
                     break;
                 default:
                     consola.imprimir("Escoja un número del 1 al 5");
@@ -232,6 +313,6 @@ public class Concesionario {
             }
             // Para saber que ya salio preguntar si desea comprar o no.
 
-        } while (respuesta1 != "5");
+        } while (respuesta1 != "6");
     }
 }

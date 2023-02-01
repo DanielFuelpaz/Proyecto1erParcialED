@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Visita {
     LocalDateTime fechaVisita;
     ArrayList<Auto> autosDeInterés;
+    ArrayList<Auto> autosCompradors;
 
     public Visita() {
         this.fechaVisita = LocalDateTime.now();
