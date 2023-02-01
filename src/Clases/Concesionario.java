@@ -13,6 +13,7 @@ public class Concesionario {
         GestionCompra GCompras = new GestionCompra();
         GestionVehiculos GVehiculos = new GestionVehiculos();
         Interfaz consola = new Interfaz();
+       ArrayList <Auto> listacompras = new  ArrayList <>();
         consola.imprimir("Bienvenido al Concesionario FISEI");
         String masClientes = ""; 
         String respuesta1;
@@ -178,7 +179,7 @@ public class Concesionario {
                         consola.imprimir("""
                                 Elija lo que quiere hacer con el auto.
                                 1: Ver vehículos.
-                                2:Eliminar vehículos de interés.
+                                2: Eliminar vehículos de interés.
                                 3:Comprar vehículo(s).
                                 4:Ir al menú principal
                                 """);
@@ -195,7 +196,9 @@ public class Concesionario {
 
                                 break;
                             case "3":
-                                // Compra los vehículos de la lista de interés.
+                                
+                                GCompras.compraVehiculo(GClientes.clientes.get(0).historial.get(0).autosDeInterés);
+
                                 break;
                             default:
                                 consola.imprimir("Ingrese un número del 1 al 4");

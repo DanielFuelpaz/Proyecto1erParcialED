@@ -1,5 +1,6 @@
 package Gestion;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import Clases.Auto;
 import Clases.Cliente;
@@ -14,6 +15,7 @@ public class GestionCompra {
     Visita listainteres = new Visita();
     Interfaz consola = new Interfaz();
     Auto a = new Auto();
+    LocalDate fecha;
 
 
 
@@ -48,10 +50,7 @@ public class GestionCompra {
 
         for (int i = 0; i < catalogo.size(); i++) {
             System.out.println("\n" + "Vehiculo " + i + 1 + ": ");
-            System.out.println("Marca: " + catalogo.get(i).getMarca());
-            System.out.println("Año: " + catalogo.get(i).getAño());
-            System.out.println("Placa: " + catalogo.get(i).getPlaca());
-            System.out.println("Color: " + catalogo.get(i).getColor());     
+            System.out.println(catalogo.get(i).toString());
         }
         do {
             consola.imprimir("Ingrese el Número del Vehiculo: ");
@@ -61,5 +60,15 @@ public class GestionCompra {
         } while (vehiculo<-1);
 
         return catalogo.get(vehiculo-1);
+    }
+
+    
+
+    public void fechasCompra(){
+
+        consola.imprimir("Ingrese La fecha Inicial de la Compra: ");
+        String fechaInicial = consola.ingresar();
+
+
     }
 }
