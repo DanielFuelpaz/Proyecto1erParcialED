@@ -16,7 +16,6 @@ public class Concesionario {
         Visita listas = new Visita();
         Validacion r = new Validacion();
         Interfaz consola = new Interfaz();
-        ArrayList<Auto> listacompras = new ArrayList<>();
         consola.imprimir("Bienvenido al Concesionario FISEI");
         String masClientes = "";
         String respuesta1;
@@ -301,11 +300,11 @@ public class Concesionario {
                                 break;
                             case "5":
 
-                                GCompras.compraVehiculo(GClientes.clientes.get(0).historial.get(0).autosDeInterés);
+                                //GCompras.compraVehiculo(GClientes.clientes.get(0).historial.get(0).autosDeInterés);
 
                                 break;
                             default:
-                                consola.imprimir("Ingrese un número del 1 al 4");
+                                consola.imprimir("Ingrese un número del 1 al 6");
                                 break;
                         }
                     } while (!respuestaCaso2.equals("4"));
@@ -327,7 +326,7 @@ public class Concesionario {
                     }
                     break;
                 case "4":
-
+                
                     break;
                 case "5":
                     break;

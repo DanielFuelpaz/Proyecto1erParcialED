@@ -8,18 +8,28 @@ import Utiles.Validacion;
 
 public class GestionVehiculos {
     ArrayList<Tipo> tipo = new ArrayList<>();
-    Interfaz coso= new Interfaz();
-    Validacion r=new Validacion();
+    Interfaz coso = new Interfaz();
+    Validacion r = new Validacion();
 
     public void crearTipo() {
         Tipo mod = new Tipo();
         String nombre;
         coso.imprimir("Ingres un tipo de Vehículo");
         nombre = coso.ingresar().toUpperCase();
-        if(!r.validarTipos(nombre)){
+        if (!r.validarTipos(nombre)) {
             coso.imprimir("No se permiten valores numericos");
             crearTipo();
         }
+        for(int i=0;i<this.tipo.size();i++){
+            if(this.tipo.get(i).nombre.equals(nombre)){
+                coso.imprimir("""
+                    El nombre ingresado ya existe
+                    Por favor ingrese otro nombre
+                    """);
+                crearTipo();
+            }
+        }
+        
         mod.setNombre(nombre);
         tipo.add(mod);
     }
@@ -27,14 +37,33 @@ public class GestionVehiculos {
     public void cearVehiculo() {
         Auto auto = new Auto();
         String dato, placa, color, marca, año;
-        coso.imprimir("Ingrese la placa del Vehículo");
-        placa = coso.ingresar();
-        coso.imprimir("Ingrese el color del Vehiculo");
-        color = coso.ingresar();
+        do {
+            coso.imprimir("Ingrese la placa del Vehículo");
+            placa = coso.ingresar().toUpperCase();
+            if (!r.validarMatricula(placa)) {
+                coso.imprimir("""
+                        El formato de placa incorrecto
+                        Por favor ingrese un formato correcto
+                        Ejemplo: ABC-1234""");
+            }
+        } while (!r.validarMatricula(placa));
+        do {
+            coso.imprimir("Ingrese el color del Vehiculo");
+            color = coso.ingresar().toUpperCase();
+            if (!r.validarColor(color)) {
+                coso.imprimir("No se permite ingresar carateres especiales o numéricos");
+            }
+        } while (!r.validarColor(color));
+
         coso.imprimir("Ingrese la marca del Vehículo");
         marca = coso.ingresar();
-        coso.imprimir("Ingrese el año del Vehículo");
-        año = coso.ingresar();
+        do {
+            coso.imprimir("Ingrese el año del Vehículo");
+            año = coso.ingresar();
+            if (!r.validarNúmero(año)) {
+                coso.imprimir("Solo se permiten valores numéricos");
+            }
+        } while (!r.validarNúmero(año));
         auto.setPlaca(placa);
         auto.setColor(color);
         auto.setMarca(marca);
@@ -127,7 +156,7 @@ public class GestionVehiculos {
     }
 
     public Auto AgregsrAListaDeInteres() {
-        String dato1,dato2;
+        String dato1, dato2;
         ImprimirTipos();
         do {
             coso.imprimir("Seleccione el tipo de vehiculo que desea ver");
@@ -144,7 +173,7 @@ public class GestionVehiculos {
                 }
             }
         } while (!r.validarNúmero(dato1));
-        
+
         ImprimirAutos(Integer.parseInt(dato1));
         do {
             coso.imprimir("Seleccione número del vehiculo que quiere borrar");
