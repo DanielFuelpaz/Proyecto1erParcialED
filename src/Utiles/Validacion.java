@@ -35,7 +35,7 @@ public class Validacion {
     }
 
     public boolean validarPersona(String nombre) {
-        return nombre.matches("[A-Z]([a-z])*");
+        return nombre.matches("[A-Z]([a-z])+");
     }
 
     // public boolean validarCliente(Cliente c) {
@@ -58,6 +58,9 @@ public class Validacion {
     // consola.imprimir("cédula no valida o vacía");
     // return false;
     // }
+    public boolean validarDirección(String dirección){
+        return dirección.matches("[(A-Za-z) 0-9]{3,}");
+    }
 
     public boolean validarNúmero(String numero) {
         return numero.matches("[1-9]*");

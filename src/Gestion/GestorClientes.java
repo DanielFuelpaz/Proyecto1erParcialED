@@ -2,6 +2,8 @@ package Gestion;
 
 import java.util.LinkedList;
 
+import javax.naming.InsufficientResourcesException;
+
 import Clases.Cliente;
 import Clases.Visita;
 import Utiles.Interfaz;
@@ -44,31 +46,80 @@ public class GestorClientes {
     }
 
     public void modificarCliente() {
+        // Hay que recorrer y solo cédula y teléfono
+        if (this.clientes.size() <= 0) {
+            consola.imprimir("La lista está vacía, primero debe crear un cliente");
+            return;
+        }
         consola.imprimir("Elija el número del cliente que desea modificar");
         int numClienteModificar;
         do {
             numClienteModificar = consola.ingresarEntero();
-        } while (numClienteModificar > this.clientes.size());
+        } while (numClienteModificar - 1 > this.clientes.size() || numClienteModificar - 1 < 0);
 
         consola.imprimir(
                 "Ingrese lo que desea modificar del cliente: \n 1:Modificar cédula  \n 2:Modificar nombre \n 3:Modificar apellido \n 4:Modificar teléfono \n 5:Modificar dirección \n 6:Salir");
         int AModificar = consola.ingresarEntero();
         switch (AModificar) {
             case 1:
-                consola.imprimir("Ingrese la nueva cédula");
-                this.clientes.get(numClienteModificar - 1).cedula = consola.ingresar();
+                String nuevaCedula;
+                boolean existe = false;
+                do {
+                    consola.imprimir("Ingrese la nueva cédula");
+                    nuevaCedula = consola.ingresar();
+                    for (int index = 0; index < this.clientes.size(); index++) {
+                        if (this.clientes.get(index).cedula.equals(nuevaCedula)) {
+                            consola.imprimir("La cédula ya existe");
+                            existe = true;
+                            break;
+                        } else {
+                            if (validar.validarCedula(nuevaCedula, this)) {
+                                this.clientes.get(numClienteModificar - 1).cedula = nuevaCedula;
+                                existe = true;
+                                break;
+                            }
+                        }
+                        existe = false;
+                        break;
+                    }
+                } while (existe);
                 break;
             case 2:
                 consola.imprimir("Ingrese el nuevo nombre");
-                this.clientes.get(numClienteModificar - 1).nombre = consola.ingresar();
+                String nuevoNombre = consola.ingresar();
+                if (validar.validarPersona(nuevoNombre)) {
+                    this.clientes.get(numClienteModificar - 1).nombre = nuevoNombre;
+                }
                 break;
             case 3:
                 consola.imprimir("Ingrese el nuevo apellido");
-                this.clientes.get(numClienteModificar - 1).apellido = consola.ingresar();
+                String nuevoApellido = consola.ingresar();
+                if (validar.validarPersona(nuevoApellido)) {
+                    this.clientes.get(numClienteModificar - 1).apellido = nuevoApellido;
+                }
                 break;
             case 4:
-                consola.imprimir("Ingrese el nuevo teléfono");
-                this.clientes.get(numClienteModificar - 1).telefono = consola.ingresar();
+                String nuevoTelefono;
+                boolean existeTelefono = false;
+                do {
+                    consola.imprimir("Ingrese el nuevo teléfono");
+                    nuevoTelefono = consola.ingresar();
+                    for (int index = 0; index < this.clientes.size(); index++) {
+                        if (this.clientes.get(index).telefono.equals(nuevoTelefono)) {
+                            consola.imprimir("El teléfono ya existe");
+                            existe = true;
+                            break;
+                        } else {
+                            if (validar.validarTelefono(nuevoTelefono, this)) {
+                                this.clientes.get(numClienteModificar - 1).telefono = nuevoTelefono;
+                                existeTelefono = true;
+                                break;
+                            }
+                            existeTelefono = false;
+                            break;
+                        }
+                    }
+                } while (existeTelefono);
                 break;
             case 5:
                 consola.imprimir("Ingrese la nueva dirección");
@@ -77,20 +128,21 @@ public class GestorClientes {
             case 6:
                 break;
             default:
-                consola.imprimir("Debe escribir las letras solicitadas");
+                consola.imprimir("Debe escribir un número del 1 al 6");
                 break;
         }
+
     }
 
     public void eliminarCliente() {
         if (this.clientes.size() != 0) {
             this.Listar();
-            consola.imprimir("Elija el número del cliente que desea eliminar");
-            int numClienteCambio;
+            int numClienteCambio = 0;
             do {
+                consola.imprimir("Elija el número del cliente que desea eliminar");
                 numClienteCambio = consola.ingresarEntero();
-            } while (numClienteCambio - 1 > this.clientes.size()
-                    || numClienteCambio - 1 <= 0);
+            } while (numClienteCambio - 1 >= this.clientes.size()
+                    || numClienteCambio - 1 < 0);
             this.clientes.remove(numClienteCambio - 1);
             this.Listar();
         } else {
@@ -100,11 +152,13 @@ public class GestorClientes {
 
     public void buscarCliente() {
         int n;
-        do {
-            consola.imprimirS("Elija el número del cliente que desea buscar: ");
-            n = consola.ingresarEntero();
-        } while (n < 0 || n > this.clientes.size());
-        consola.imprimir(this.clientes.get(n - 1).toString());
+        if (this.clientes.size() > 0) {
+            do {
+                consola.imprimirS("Elija el número del cliente que desea buscar: ");
+                n = consola.ingresarEntero();
+            } while (n < 0 || n > this.clientes.size());
+            consola.imprimir(this.clientes.get(n - 1).toString());
+        }
     }
 
     public void Listar() {
