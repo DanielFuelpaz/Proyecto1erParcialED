@@ -2,8 +2,6 @@ package Gestion;
 
 import java.util.LinkedList;
 
-import javax.naming.InsufficientResourcesException;
-
 import Clases.Cliente;
 import Clases.Visita;
 import Utiles.Interfaz;

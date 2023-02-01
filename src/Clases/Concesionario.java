@@ -1,7 +1,5 @@
 package Clases;
 
-import java.util.ArrayList;
-
 import Gestion.GestionCompra;
 import Gestion.GestionVehiculos;
 import Gestion.GestorClientes;
@@ -13,7 +11,6 @@ public class Concesionario {
         GestorClientes GClientes = new GestorClientes();
         GestionCompra GCompras = new GestionCompra();
         GestionVehiculos GVehiculos = new GestionVehiculos();
-        Visita listas = new Visita();
         Validacion r = new Validacion();
         Interfaz consola = new Interfaz();
         consola.imprimir("Bienvenido al Concesionario FISEI");
