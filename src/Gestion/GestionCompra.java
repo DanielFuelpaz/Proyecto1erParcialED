@@ -7,11 +7,7 @@ public class GestionCompra {
     ArrayList<Auto> respaldo;
     Compra factura;
 
-    public GestionCompra(ArrayList<Auto> respaldo) {
-        this.respaldo = respaldo;
-    }
-    
-    
+ 
     public void Agregar(Auto a){
         this.respaldo.add(a);
     }

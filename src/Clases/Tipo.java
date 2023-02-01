@@ -13,11 +13,6 @@ public class Tipo {
     public Tipo() {
     }
 
-    public Tipo(String nombre, ArrayList<Auto> lista) {
-        this.nombre = nombre;
-        this.lista = lista;
-    }
-
     public String getNombre() {
         return nombre;
     }

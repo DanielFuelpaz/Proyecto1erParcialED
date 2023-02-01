@@ -1,17 +1,12 @@
 package Clases;
 
-import java.util.ArrayList;
-
-import Gestion.GestionCompra;
 import Gestion.GestionVehiculos;
 import Gestion.GestorClientes;
 import Utiles.Interfaz;
 
 public class Concesionario {
     public static void main(String[] args) {
-        ArrayList<Auto> auto = new ArrayList<>();
         GestorClientes GClientes = new GestorClientes();
-        GestionCompra GCompras = new GestionCompra(auto);
         GestionVehiculos GVehiculos = new GestionVehiculos();
         Interfaz consola = new Interfaz();
         consola.imprimir("Bienvenido al Concesionario FISEI");
@@ -186,6 +181,7 @@ public class Concesionario {
                         respuestaCaso2 = consola.ingresar();
                         switch (respuestaCaso2) {
                             case "1":
+                                
                                 // Presenta los vehículos al cliente según sus necesidades, se agrega el
                                 // vehículo de interés a la lista de visita.
                                 // (Carlos usa cliente.historial.get(i).autosDeInterés;)
