@@ -5,12 +5,11 @@ package Clases;
  * @author Gato
  */
 public class Auto {
-    private String placa;
-    private String color;
-    private String marca;
-    private String año;
+    public String placa;
+    public String color;
+    public String marca;
+    public String año;
 
-    
     public Auto() {
     }
 

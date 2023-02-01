@@ -13,6 +13,7 @@ public class Concesionario {
         GestorClientes GClientes = new GestorClientes();
         GestionCompra GCompras = new GestionCompra();
         GestionVehiculos GVehiculos = new GestionVehiculos();
+        Visita listas = new Visita();
         Validacion r = new Validacion();
         Interfaz consola = new Interfaz();
         ArrayList<Auto> listacompras = new ArrayList<>();
@@ -182,14 +183,40 @@ public class Concesionario {
                     do {
                         consola.imprimir("""
                                 Elija lo que quiere hacer con el auto.
-                                1: Ver vehículos.
-                                2: Eliminar vehículos de interés.
-                                3:Comprar vehículo(s).
-                                4:Ir al menú principal
+                                1: Crear Tipo
+                                2: crear Vehiculo
+                                3: Ver vehículos.
+                                4: Eliminar vehículos de interés.
+                                5:Comprar vehículo(s).
+                                6:Ir al menú principal
                                 """);
                         respuestaCaso2 = consola.ingresar();
                         switch (respuestaCaso2) {
                             case "1":
+                                do {
+                                    GVehiculos.crearTipo();
+                                    do {
+                                        consola.imprimir(
+                                                "¿Desea agrgar otro tipo de vehículo? \n Si:si N:no");
+                                        masClientes = consola.ingresar();
+                                    } while (!(masClientes.equalsIgnoreCase("Si")
+                                            || masClientes.equalsIgnoreCase("No")));
+                                } while (masClientes.equalsIgnoreCase("Si"));
+
+                            break;
+                            case "2":
+                            do {
+                                GVehiculos.cearVehiculo();
+                                do {
+                                    consola.imprimir(
+                                            "¿Desea agrgar otro de vehículo? \n Si:si N:no");
+                                    masClientes = consola.ingresar();
+                                } while (!(masClientes.equalsIgnoreCase("Si")
+                                        || masClientes.equalsIgnoreCase("No")));
+                            } while (masClientes.equalsIgnoreCase("Si"));
+
+                            break;
+                            case "3":
                                 if (GClientes.clientes.isEmpty()) {
                                     consola.imprimir("No existen clientes");
                                     break;
@@ -231,7 +258,7 @@ public class Concesionario {
                                 // vehículo de interés a la lista de visita.
                                 // (Carlos usa cliente.historial.get(i).autosDeInterés;)
                                 break;
-                            case "2":
+                            case "4":
                                 if (GClientes.clientes.isEmpty()) {
                                     consola.imprimir("No existen clientes");
                                     break;
@@ -262,7 +289,7 @@ public class Concesionario {
                                     GClientes.clientes.get(Integer.parseInt(num)).historial
                                             .get(Integer.parseInt(num2)).autosDeInterés
                                             .remove(GVehiculos.BorrarVehiculoInteres(
-                                                    GClientes.clientes.get(0).historial.get(0).autosDeInterés));
+                                                    GClientes.clientes.get(Integer.parseInt(num)).historial.get(Integer.parseInt(num2)).autosDeInterés));
                                     do {
                                         consola.imprimir(
                                                 "¿Desea eliminar otro vehiculos de la lista de interes? \n Si:si N:no");
@@ -272,7 +299,7 @@ public class Concesionario {
                                 } while (masClientes.equalsIgnoreCase("Si"));
 
                                 break;
-                            case "3":
+                            case "5":
 
                                 GCompras.compraVehiculo(GClientes.clientes.get(0).historial.get(0).autosDeInterés);
 
