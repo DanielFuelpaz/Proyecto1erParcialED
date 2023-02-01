@@ -6,11 +6,11 @@ public class Compra {
     public String fecha;
     public String valorCompra;
 
-    public Compra(ArrayList<Auto> autCom, String fecha, String valorCompra) {
-        this.autCom = autCom;
-        this.fecha = fecha;
-        this.valorCompra = valorCompra;
-    }
+   //public Compra(ArrayList<Auto> autCom, String fecha, String valorCompra) {
+    //    this.autCom = autCom;
+    //    this.fecha = fecha;
+    //    this.valorCompra = valorCompra;
+   // }
 
     public ArrayList<Auto> getAutCom() {
         return autCom;
