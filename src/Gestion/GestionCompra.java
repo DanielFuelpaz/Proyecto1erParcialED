@@ -15,11 +15,6 @@ public class GestionCompra {
     Interfaz consola = new Interfaz();
     Auto a = new Auto();
 
-    public GestionCompra(ArrayList<Auto> respaldo) {
-        this.respaldo = respaldo;
-    }
-    
-    
     public void Agregar(Auto a){
         this.respaldo.add(a);
     }

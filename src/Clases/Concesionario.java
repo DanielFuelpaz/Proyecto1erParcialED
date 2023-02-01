@@ -1,5 +1,6 @@
 package Clases;
 
+import Gestion.GestionCompra;
 import Gestion.GestionVehiculos;
 import Gestion.GestorClientes;
 import Utiles.Interfaz;
@@ -7,7 +8,7 @@ import Utiles.Interfaz;
 public class Concesionario {
     public static void main(String[] args) {
         GestorClientes GClientes = new GestorClientes();
-        GestionCompra GCompras = new GestionCompra(auto);
+        GestionCompra GCompras = new GestionCompra();
         GestionVehiculos GVehiculos = new GestionVehiculos();
         Interfaz consola = new Interfaz();
         consola.imprimir("Bienvenido al Concesionario FISEI");
