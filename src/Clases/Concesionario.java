@@ -15,36 +15,36 @@ public class Concesionario {
         GestionVehiculos GVehiculos = new GestionVehiculos();
         Interfaz consola = new Interfaz();
         consola.imprimir("Bienvenido al Concesionario FISEI");
-        String masClientes = ""; 
+        String masClientes = "";
         String respuesta1;
         do {
 
             consola.imprimir(
                     """
-                                    Elija lo que desea hacer:
-                                    1:Manipulación de clientes.
-                                    2:Manipulación de autos.
-                                    2:Clientes interesados en un modelo/marca de carro dado cuya última compra no sea de los últimos tres años.
-                                    3:Historial de un cliente
-                                    4:Carros vendidos en un margen de tiempo dado (fecha inicial a fecha final).
-                                     Incluir en este informe estadísticas de cantidad de carros y valor total facturado
-                                    5: Salir
-                    """);
+                                            Elija lo que desea hacer:
+                                            1:Manipulación de clientes.
+                                            2:Manipulación de autos.
+                                            3:Clientes interesados en un modelo/marca de carro dado cuya última compra no sea de los últimos tres años.
+                                            4:Historial de un cliente
+                                            5:Carros vendidos en un margen de tiempo dado (fecha inicial a fecha final).
+                                             Incluir en este informe estadísticas de cantidad de carros y valor total facturado
+                                            6: Salir
+                            """);
             respuesta1 = consola.ingresar();
             switch (respuesta1) {
                 case "1":
                     String respuesta2;
                     do {
                         consola.imprimir("""
-                                    Elija lo que quiere hacer del cliente:
-                                    1: Crear cliente.
-                                    2: Modificar cliente.
-                                    3: Eliminar cliente.
-                                    4: Buscar clientes.
-                                    5: Listar clientes.
-                                    6: Añadir visita.
-                                    7: Salir al menú.
-                                    """);
+                                Elija lo que quiere hacer del cliente:
+                                1: Crear cliente.
+                                2: Modificar cliente.
+                                3: Eliminar cliente.
+                                4: Buscar clientes.
+                                5: Listar clientes.
+                                6: Añadir visita.
+                                7: Salir al menú.
+                                """);
                         respuesta2 = consola.ingresar();
                         switch (respuesta2) {
                             case "1":
@@ -152,8 +152,8 @@ public class Concesionario {
                                 GClientes.buscarCliente();
                                 // int n;
                                 // do {
-                                //     consola.imprimirS("Elija el número del cliente que desea buscar: ");
-                                //     n = consola.ingresarEntero();
+                                // consola.imprimirS("Elija el número del cliente que desea buscar: ");
+                                // n = consola.ingresarEntero();
                                 // } while (n < 0 || n > GClientes.clientes.size());
                                 // consola.imprimir(GClientes.clientes.get(n - 1).toString());
                                 break;
@@ -223,7 +223,8 @@ public class Concesionario {
 
                     break;
                 case "5":
-                    respuesta1 = "5";
+                    break;
+                case "6":
                     break;
                 default:
                     consola.imprimir("Escoja un número del 1 al 5");
@@ -232,6 +233,6 @@ public class Concesionario {
             }
             // Para saber que ya salio preguntar si desea comprar o no.
 
-        } while (respuesta1 != "5");
+        } while (respuesta1 != "6");
     }
 }
