@@ -17,9 +17,7 @@ public class GestionCompra {
     Auto a = new Auto();
     LocalDate fecha;
 
-
-
-    public void Agregar(Auto a) {
+    public void Agregar(Auto a){
         this.respaldo.add(a);
     }
 
