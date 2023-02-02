@@ -1,5 +1,7 @@
 package Clases;
 
+import javax.naming.InsufficientResourcesException;
+
 import Gestion.GestionCompra;
 import Gestion.GestionVehiculos;
 import Gestion.GestorClientes;
@@ -15,7 +17,7 @@ public class Concesionario {
         Interfaz consola = new Interfaz();
         consola.imprimir("Bienvenido al Concesionario FISEI");
         String masClientes = "";
-        String respuesta1;
+        int respuesta1;
         do {
 
             consola.imprimir(
@@ -23,15 +25,15 @@ public class Concesionario {
                             Elija lo que desea hacer:
                             1:Manipulación de clientes.
                             2:Manipulación de autos.
-                            3:Clientes interesados en un modelo/marca de carro dado cuya última compra no sea de los últimos tres años.
-                            4:Historial de un cliente
+                            3:Historial de un cliente
+                            4:Clientes interesados en un modelo/marca de carro dado cuya última compra no sea de los últimos tres años.
                             5:Carros vendidos en un margen de tiempo dado (fecha inicial a fecha final).
                             Incluir en este informe estadísticas de cantidad de carros y valor total facturado
                             6: Salir
                             """);
-            respuesta1 = consola.ingresar();
+            respuesta1 = consola.ingresarEntero();
             switch (respuesta1) {
-                case "1":
+                case 1:
                     String respuesta2;
                     do {
                         consola.imprimir("""
@@ -69,17 +71,27 @@ public class Concesionario {
                                 break;
                             case "4":
                                 GClientes.Listar();
+                                try{
+                                consola.imprimir("Datos del cliente:");
                                 consola.imprimir(GClientes.buscarCliente().toString());
+                                } catch(Exception e){
+                                    consola.imprimir("La lista está vacía, debe agregar un cliente primero");
+                                }
                                 break;
                             case "5":
                                 GClientes.Listar();
                                 break;
                             case "6":
                                 GClientes.Listar();
-                                consola.imprimir(
-                                        "Ingrese el número del cliente del que desea agregar una nueva visita");
-                                int numCliente = consola.ingresarEntero();
-                                GClientes.clientes.get(numCliente - 1).historial.add(new Visita());
+                                if(GClientes.clientes.size()>0){
+                                    consola.imprimir(
+                                            "Ingrese el número del cliente del que desea agregar una nueva visita");
+                                    int numCliente = consola.ingresarEntero();
+                                    GClientes.clientes.get(numCliente - 1).historial.add(new Visita());
+                                }else{
+                                    consola.imprimir("No existen clientes, primero debe crear uno");
+                                }
+
                                 break;
                             default:
                                 consola.imprimir("Elija un número del 1 al 7");
@@ -87,7 +99,7 @@ public class Concesionario {
                         }
                     } while (respuesta2.equals("7"));
                     break;
-                case "2":
+                case 2:
                     String respuestaCaso2;
                     String num = "";
                     String num2 = "";
@@ -222,7 +234,7 @@ public class Concesionario {
                     } while (!respuestaCaso2.equals("4"));
                     break;
 
-                case "3":
+                case 3:
                     // Historial de un cliente
                     GClientes.Listar();
                     GClientes.buscarAutosInteres();
@@ -238,7 +250,7 @@ public class Concesionario {
                                         .toString());
                     }
                     break;
-                case "4":
+                case 4:
                         GClientes.Listar();
                         do {
                             consola.imprimir("Ingrese el número del cliente que desea ver el historial");
@@ -271,17 +283,18 @@ public class Concesionario {
                         }
 
                     break;
-                case "5":
+                case 5:
                     break;
-                case "6":
-                    break;
+                case 6:
+                System.out.println("Gracias por visitarnos :)");
+                break;
                 default:
-                    consola.imprimir("Escoja un número del 1 al 5");
+                    consola.imprimir("Escoja un número del 1 al 6");
                     break;
 
             }
             // Para saber que ya salio preguntar si desea comprar o no.
 
-        } while (respuesta1 != "6");
+        } while (respuesta1 !=6);
     }
 }

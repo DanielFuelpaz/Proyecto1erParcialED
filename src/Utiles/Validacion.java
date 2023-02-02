@@ -35,7 +35,7 @@ public class Validacion {
     }
 
     public boolean validarPersona(String nombre) {
-        return nombre.matches("[A-Z]([a-z])+");
+        return nombre.matches("[A-Z]([a-z]){3,}");
     }
 
     public boolean validarTipos(String cadena){
@@ -50,7 +50,7 @@ public class Validacion {
     
 
     public boolean validarDirección(String dirección){
-        return dirección.matches("[(A-Za-z) 0-9]{3,}");
+        return dirección.matches("[(A-Za-z)(0-9) ]{3,}");
     }
 
     public boolean validarNúmero(String numero) {

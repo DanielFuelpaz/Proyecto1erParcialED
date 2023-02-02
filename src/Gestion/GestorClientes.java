@@ -37,8 +37,11 @@ public class GestorClientes {
             consola.imprimir("Ingrese el teléfono del cliente");
             teléfono = consola.ingresar();
         } while (!validar.validarTelefono(teléfono, this));
-        consola.imprimir("Ingrese la dirección del cliente");
-        String direccion = consola.ingresar();
+        String direccion = "";
+        do{
+            consola.imprimir("Ingrese la dirección del cliente");
+            direccion = consola.ingresar();
+    }while(!validar.validarDirección(direccion));
         c1 = new Cliente(cédula, nombre, apellido, teléfono, direccion);
         c1.historial.add(new Visita());
 
@@ -56,10 +59,11 @@ public class GestorClientes {
         do {
             numClienteModificar = consola.ingresarEntero();
         } while (numClienteModificar - 1 > this.clientes.size() || numClienteModificar - 1 < 0);
-
-        consola.imprimir(
-                "Ingrese lo que desea modificar del cliente: \n 1:Modificar cédula  \n 2:Modificar nombre \n 3:Modificar apellido \n 4:Modificar teléfono \n 5:Modificar dirección \n 6:Salir");
-        int AModificar = consola.ingresarEntero();
+        int AModificar;
+        do{
+        consola.imprimir(        
+        "Ingrese lo que desea modificar del cliente: \n 1:Modificar cédula  \n 2:Modificar nombre \n 3:Modificar apellido \n 4:Modificar teléfono \n 5:Modificar dirección \n 6:Salir");
+        AModificar = consola.ingresarEntero();
         switch (AModificar) {
             case 1:
                 String nuevaCedula;
@@ -127,7 +131,7 @@ public class GestorClientes {
                 consola.imprimir("Debe escribir un número del 1 al 6");
                 break;
         }
-
+    }while(AModificar != 6);
     }
 
     public void eliminarCliente() {
@@ -152,7 +156,7 @@ public class GestorClientes {
             do {
                 consola.imprimirS("Elija el número del cliente que desea buscar: ");
                 n = consola.ingresarEntero();
-            } while (n < 0 || n > this.clientes.size());
+            } while (n-1 < 0 || n-1 >= this.clientes.size());
             return this.clientes.get(n - 1);
         }
         return null;
@@ -197,4 +201,5 @@ public class GestorClientes {
             }
         }
     }
+
 }
