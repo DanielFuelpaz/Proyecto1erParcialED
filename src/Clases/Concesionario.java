@@ -1,7 +1,5 @@
 package Clases;
 
-import java.util.ArrayList;
-
 import Gestion.GestionCompra;
 import Gestion.GestionVehiculos;
 import Gestion.GestorClientes;
@@ -218,7 +216,7 @@ public class Concesionario {
 
                                 break;
                             default:
-                                consola.imprimir("Ingrese un número del 1 al 4");
+                                consola.imprimir("Ingrese un número del 1 al 6");
                                 break;
                         }
                     } while (!respuestaCaso2.equals("4"));
@@ -241,7 +239,7 @@ public class Concesionario {
                     }
                     break;
                 case "4":
-
+                        
                     break;
                 case "5":
                     break;

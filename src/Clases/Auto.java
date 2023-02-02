@@ -9,7 +9,7 @@ public class Auto {
     public String color;
     public String marca;
     public String año;
-
+    
     public Auto() {
     }
 

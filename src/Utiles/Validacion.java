@@ -41,6 +41,13 @@ public class Validacion {
     public boolean validarTipos(String cadena){
         return cadena.matches("([A-Z])*");
     }
+    public boolean validarMatricula(String cadena){
+        return cadena.matches("^[a-zA-Z]{3}-[0-9]{4}$");
+    }
+    public boolean validarColor(String cadena){
+        return cadena.matches("([A-Z])*");
+    }
+    
 
     public boolean validarDirección(String dirección){
         return dirección.matches("[(A-Za-z) 0-9]{3,}");
