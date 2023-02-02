@@ -1,9 +1,9 @@
 package Gestion;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
-import javax.naming.InsufficientResourcesException;
-
+import Clases.Auto;
 import Clases.Cliente;
 import Clases.Visita;
 import Utiles.Interfaz;
@@ -150,15 +150,44 @@ public class GestorClientes {
         }
     }
 
-    public void buscarCliente() {
+    public Cliente buscarCliente() {
         int n;
         if (this.clientes.size() > 0) {
             do {
                 consola.imprimirS("Elija el número del cliente que desea buscar: ");
                 n = consola.ingresarEntero();
             } while (n < 0 || n > this.clientes.size());
-            consola.imprimir(this.clientes.get(n - 1).toString());
+            return this.clientes.get(n - 1);
         }
+        return null;
+    }
+
+    public Visita buscarVisita(Cliente c) {
+        ArrayList<Visita> aux = c.historial;
+        consola.imprimir("Seleccione la visita de la que sacar la lista de autos de interes:");
+        int n = 1;
+        for (Visita visita : aux) {
+
+            consola.imprimir("Visita " + n + " " + visita.toString());
+            n++;
+        }
+        n = consola.ingresarEntero();
+        return aux.get(n);
+
+    }
+
+    public ArrayList<Auto> buscarAutosInteres() {
+        ArrayList<Visita> aux = this.buscarCliente().historial;
+        consola.imprimir("Seleccione la visita de la que sacar la lista de autos de interes:");
+        int n = 1;
+        for (Visita visita : aux) {
+
+            consola.imprimir("Visita " + n + " " + visita.toString());
+            n++;
+        }
+        n = consola.ingresarEntero();
+        return aux.get(n).autosDeInterés;
+
     }
 
     public void Listar() {

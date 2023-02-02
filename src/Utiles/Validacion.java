@@ -42,26 +42,6 @@ public class Validacion {
         return cadena.matches("([A-Z])*");
     }
 
-    // public boolean validarCliente(Cliente c) {
-    // // validacion
-    // if (c.cedula != null && c.cedula.matches("[0-9]{10}")) {
-    // if (c.telefono != null && c.telefono.matches("09[0-9]{8}")) {
-    // if (c.nombre != null && c.nombre.matches("[A-Z]([a-z])*")) {
-    // if (c.apellido != null && c.apellido.matches("[A-Z]([a-z])*")) {
-    // return true;
-    // }
-    // consola.imprimir("apellido no valido o vacío");
-    // return false;
-    // }
-    // consola.imprimir("nombre no valida o vacio");
-    // return false;
-    // }
-    // consola.imprimir("telefono no valido o vacío");
-    // return false;
-    // }
-    // consola.imprimir("cédula no valida o vacía");
-    // return false;
-    // }
     public boolean validarDirección(String dirección){
         return dirección.matches("[(A-Za-z) 0-9]{3,}");
     }
@@ -70,7 +50,14 @@ public class Validacion {
         return numero.matches("[1-9]*");
     }
 
-    public boolean validarOpcion(String opcion) {
-        return opcion.matches("[1-7]");
+    public boolean validarDia(int opcion) {
+        return opcion<=31;
+    }
+
+    public boolean validarMes(int opcion) {
+        return opcion<=12;
+    }
+    public boolean validarAño(int opcion) {
+        return opcion>=2000;
     }
 }
