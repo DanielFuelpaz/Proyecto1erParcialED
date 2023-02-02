@@ -37,6 +37,12 @@ public class GestionVehiculos {
     public void cearVehiculo() {
         Auto auto = new Auto();
         String dato, placa, color, marca, año;
+        if(this.tipo.isEmpty()){
+            coso.imprimir("""
+                No existen Tipos de vehiculos a los que pueda agregar un Automovil
+                Cree un tipo de Vehiculo pra poder crear un Automovil""");
+            crearTipo();
+        }
         do {
             coso.imprimir("Ingrese la placa del Vehículo");
             placa = coso.ingresar().toUpperCase();
@@ -77,6 +83,12 @@ public class GestionVehiculos {
             dato = coso.ingresar();
             if (!r.validarNúmero(dato)) {
                 coso.imprimir("Solo se permiten los datos númericos\nPor favor ingres un valor válido");
+            }
+            if(Integer.parseInt(dato)<0 || Integer.parseInt(dato)>this.tipo.size()){
+                coso.imprimir("""
+                    El valor ingresado no esta dentro del rango de opciones
+                    Por favor vuelvalo a ingresar correctamente""");
+                dato="ª";
             }
         } while (!r.validarNúmero(dato));
         this.tipo.get(Integer.parseInt(dato) - 1).lista.add(auto);
@@ -155,7 +167,7 @@ public class GestionVehiculos {
         return catalogo.get(Integer.parseInt(num) - 1);
     }
 
-    public Auto AgregsrAListaDeInteres() {
+    public Auto AgregarAListaDeInteres() {
         String dato1, dato2;
         ImprimirTipos();
         do {

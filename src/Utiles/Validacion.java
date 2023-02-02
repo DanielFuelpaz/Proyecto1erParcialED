@@ -54,7 +54,7 @@ public class Validacion {
     }
 
     public boolean validarNúmero(String numero) {
-        return numero.matches("[1-9]*");
+        return numero.matches("[0-9]*");
     }
 
     public boolean validarDia(int opcion) {

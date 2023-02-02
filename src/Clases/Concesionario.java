@@ -157,7 +157,7 @@ public class Concesionario {
                                 do {
                                     GClientes.clientes.get(Integer.parseInt(num)).historial
                                             .get(Integer.parseInt(num2)).autosDeInterés
-                                            .add(GVehiculos.AgregsrAListaDeInteres());
+                                            .add(GVehiculos.AgregarAListaDeInteres());
                                     do {
                                         consola.imprimir(
                                                 "¿Desea agrgar mas vehiculos a la lista de interes? \n Si:si N:no");
