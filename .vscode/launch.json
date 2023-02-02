@@ -9,6 +9,13 @@
             "name": "Launch Concesionario",
             "request": "launch",
             "mainClass": "Clases.Concesionario",
+            "projectName": "Proyecto1erParcialED_e2571b3f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Concesionario",
+            "request": "launch",
+            "mainClass": "Clases.Concesionario",
             "projectName": "Proyecto1erParcialED_8a279677"
         },
         {

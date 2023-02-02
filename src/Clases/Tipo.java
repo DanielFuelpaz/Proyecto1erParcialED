@@ -6,6 +6,7 @@ public class Tipo {
     public ArrayList<Auto> lista;
 
     public Tipo() {
+        this.lista=new ArrayList<>();
     }
 
     public String getNombre() {

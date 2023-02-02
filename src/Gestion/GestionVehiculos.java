@@ -7,9 +7,13 @@ import Utiles.Interfaz;
 import Utiles.Validacion;
 
 public class GestionVehiculos {
-    ArrayList<Tipo> tipo = new ArrayList<>();
+    ArrayList<Tipo> tipo;
     Interfaz coso = new Interfaz();
     Validacion r = new Validacion();
+
+    public GestionVehiculos() {
+        this.tipo=new ArrayList<>();
+    }
 
     public void crearTipo() {
         Tipo mod = new Tipo();
@@ -99,7 +103,7 @@ public class GestionVehiculos {
             coso.imprimir("\n" + "Tipo: " + this.tipo.get(i).nombre);
             for (int j = 0; j < this.tipo.get(i).lista.size(); j++) {
                 coso.imprimir("\n" + "Vehiculo " + j + 1 + ": ");
-                coso.imprimir(this.tipo.get(i).toString());
+                coso.imprimir( this.tipo.get(i).lista.get(j).toString());
             }
         }
     }
@@ -114,7 +118,7 @@ public class GestionVehiculos {
         coso.imprimir("\n" + "Tipo: " + this.tipo.get(tipoVe).nombre);
         for (int j = 0; j < this.tipo.get(tipoVe).lista.size(); j++) {
             coso.imprimir("\n" + "Vehiculo " + j + 1 + ": ");
-            coso.imprimir(this.tipo.get(tipoVe).toString());
+            coso.imprimir(this.tipo.get(tipoVe).lista.get(j).toString());
         }
     }
 
@@ -122,10 +126,7 @@ public class GestionVehiculos {
         String num;
         for (int i = 0; i < this.tipo.get(pos).lista.size(); i++) {
             coso.imprimir("\n" + "Vehiculo " + i + 1 + ": ");
-            coso.imprimir("Marca: " + this.tipo.get(pos).lista.get(i).getMarca());
-            coso.imprimir("Año: " + this.tipo.get(pos).lista.get(i).getAño());
-            coso.imprimir("Placa: " + this.tipo.get(pos).lista.get(i).getPlaca());
-            coso.imprimir("Color: " + this.tipo.get(pos).lista.get(i).getColor());
+            this.tipo.get(pos).lista.get(i).toString();
         }
         do {
             coso.imprimir("Seleccione número del vehiculo que quiere borrar");

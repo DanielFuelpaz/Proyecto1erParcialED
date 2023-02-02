@@ -54,7 +54,7 @@ public class Auto {
     
     @Override
     public String toString() { 
-        return "Vehiculo [Placa: "+placa+" Color: "+color+" Marca: "+marca+" Año: "+año+"]"+"\n";
+        return "[Placa: "+placa+" \nColor: "+color+" \nMarca: "+marca+" \nAño: "+año+"]"+"\n";
     }
     
 }
