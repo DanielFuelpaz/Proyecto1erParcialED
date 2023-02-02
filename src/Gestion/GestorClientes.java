@@ -71,16 +71,12 @@ public class GestorClientes {
                         if (this.clientes.get(index).cedula.equals(nuevaCedula)) {
                             consola.imprimir("La cédula ya existe");
                             existe = true;
-                            break;
                         } else {
                             if (validar.validarCedula(nuevaCedula, this)) {
                                 this.clientes.get(numClienteModificar - 1).cedula = nuevaCedula;
                                 existe = true;
-                                break;
                             }
-                        }
-                        existe = false;
-                        break;
+                        } 
                     }
                 } while (existe);
                 break;
