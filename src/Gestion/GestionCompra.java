@@ -1,72 +1,50 @@
 package Gestion;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
+
 import Clases.Auto;
 import Clases.Cliente;
 import Clases.Compra;
-import Clases.Visita;
 import Utiles.Interfaz;
+import Utiles.Validacion;
 
 public class GestionCompra {
-    Cliente c = new Cliente();
-    ArrayList<Auto> respaldo;
-    Compra factura;
-    Visita listainteres = new Visita();
+    ArrayList<Compra> compras;
     Interfaz consola = new Interfaz();
-    Auto a = new Auto();
-    LocalDate fecha;
+    Validacion validar = new Validacion();
+    Compra c = null;
 
-    public void Agregar(Auto a){
-        this.respaldo.add(a);
-    }
+    public void crearCompra(GestorClientes GClientes) {
+        Cliente aux = GClientes.buscarCliente();
+        ArrayList<Auto> autosInteres = GClientes.buscarAutosInteres();
+        int in;
+        GClientes.Listar();
+        consola.imprimir("Ingrese el indice del auto a comprar:");
+        in = consola.ingresarEntero();
 
-    public void GenerarFactura(String fecha, String valor) {
-        ArrayList<Auto> lista = new ArrayList(this.respaldo);
-        factura = new Compra();
-    }
-
-    public void MostrarLista() {
-        for (int i = 0; i < this.respaldo.size(); i++) {
-            System.out.println(this.respaldo.get(i).toString());
-        }
-    }
-
-    public boolean BorrarCarro(int a) {
-        this.respaldo.remove(a - 1);
-        return true;
-    }
-
-    public void ImprimirFactura() {
-        factura.toString();
-    }
-
-    public Auto compraVehiculo(ArrayList<Auto> catalogo) {
-
-        Integer vehiculo;
-        String respuesta;
-
-        for (int i = 0; i < catalogo.size(); i++) {
-            System.out.println("\n" + "Vehiculo " + i + 1 + ": ");
-            System.out.println(catalogo.get(i).toString());
-        }
+        consola.imprimir("Fecha:");
+        int dia;
         do {
-            consola.imprimir("Ingrese el Número del Vehiculo: ");
-            vehiculo = consola.ingresarEntero();
-            
+            consola.imprimir("Ingrese el Dia:");
+            dia = consola.ingresarEntero();
+        } while (validar.validarDia(dia));
+        int mes;
+        do {
+            consola.imprimir("Ingrese el Mes:");
+            mes = consola.ingresarEntero();
+        } while (validar.validarMes(mes));
+        int a;
+        do {
+            consola.imprimir("Ingrese el Año:");
+            a = consola.ingresarEntero();
+        } while (validar.validarAño(a));
 
-        } while (vehiculo<-1);
-
-        return catalogo.get(vehiculo-1);
+        c = new Compra(LocalDate.of(consola.ingresarEntero(), Month.of(consola.ingresarEntero()), 0), null);
+        c.autCom.add(autosInteres.get(in));
+        GClientes.buscarVisita(aux).compras.add(c);
+        GClientes.buscarVisita(aux).autosDeInterés.remove(in);
     }
 
-    
-
-    public void fechasCompra(){
-
-        consola.imprimir("Ingrese La fecha Inicial de la Compra: ");
-        String fechaInicial = consola.ingresar();
-
-
-    }
 }

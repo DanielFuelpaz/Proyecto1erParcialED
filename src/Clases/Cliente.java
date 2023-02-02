@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Cliente {
     public String cedula, nombre, apellido, telefono, dirección;
     public ArrayList<Visita> historial;
-    public ArrayList<Compra> compras;
+    
 
     public Cliente() {
     }

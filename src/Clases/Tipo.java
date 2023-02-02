@@ -1,16 +1,12 @@
 package Clases;
 import java.util.ArrayList;
 
-
-/**
- *
- * @author Gato
- */
 public class Tipo {
     public String nombre;
     public ArrayList<Auto> lista;
 
     public Tipo() {
+        this.lista=new ArrayList<>();
     }
 
     public String getNombre() {

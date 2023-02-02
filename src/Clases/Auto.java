@@ -5,11 +5,10 @@ package Clases;
  * @author Gato
  */
 public class Auto {
-    private String placa;
-    private String color;
-    private String marca;
-    private String año;
-
+    public String placa;
+    public String color;
+    public String marca;
+    public String año;
     
     public Auto() {
     }
@@ -55,7 +54,7 @@ public class Auto {
     
     @Override
     public String toString() { 
-        return "Vehiculo [Placa: "+placa+" Color: "+color+" Marca: "+marca+" Año: "+año+"]"+"\n";
+        return "[Placa: "+placa+" \nColor: "+color+" \nMarca: "+marca+" \nAño: "+año+"]"+"\n";
     }
     
 }
