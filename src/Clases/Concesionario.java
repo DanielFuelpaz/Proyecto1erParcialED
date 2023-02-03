@@ -62,7 +62,7 @@ public class Concesionario {
                             case "2":
                                 GClientes.Listar();
                                 GClientes.modificarCliente();
-
+                                GClientes.Listar();
                                 break;
                             case "3":
                                 GClientes.eliminarCliente();
@@ -74,7 +74,7 @@ public class Concesionario {
                                         consola.imprimir("Datos del cliente:");
                                         consola.imprimir(GClientes.buscarCliente().toString());
                                 } catch  (Exception e)  {
-                                    consola.imprimir("La lista está vacía, debe agregar un cliente primero");
+                                    consola.imprimir("La lista está vacía");
                                 }
                                 break;
                             case "5":
@@ -85,7 +85,10 @@ public class Concesionario {
                                 if (GClientes.clientes.size() > 0) {
                                     consola.imprimir(
                                             "Ingrese el número del cliente del que desea agregar una nueva visita");
-                                    int numCliente = consola.ingresarEntero();
+                                    
+                                            
+                                    
+                                            int numCliente = consola.ingresarEntero();
                                     GClientes.clientes.get(numCliente - 1).historial.add(new Visita());
                                 } else {
                                     consola.imprimir("No existen clientes, primero debe crear uno");
@@ -307,6 +310,6 @@ public class Concesionario {
                     break;
 
             }
-        } while (r.validarNúmero(String.valueOf(op))&&op==6);
+        } while (op!=6);
     }
 }

@@ -72,7 +72,6 @@ public class Validacion {
 
     public int validarOpcion() {
         String op;
-
         do {
             op = consola.ingresar();
             if (!this.validarNúmero(op)) {
