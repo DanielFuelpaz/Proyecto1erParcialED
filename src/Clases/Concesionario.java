@@ -1,5 +1,9 @@
 package Clases;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
+
 import Gestion.GestionCompra;
 import Gestion.GestionVehiculos;
 import Gestion.GestorClientes;
@@ -249,11 +253,11 @@ public class Concesionario {
                                 } while (!r.validarNúmero(num2));
                                 // Elimina un carro de la lista de interés de visita
                                 do {
-                                    GClientes.clientes.get(Integer.parseInt(num)-1).historial
-                                            .get(Integer.parseInt(num2)-1).autosDeInterés
+                                    GClientes.clientes.get(Integer.parseInt(num) - 1).historial
+                                            .get(Integer.parseInt(num2) - 1).autosDeInterés
                                             .remove(GVehiculos.BorrarVehiculoInteres(
-                                                    GClientes.clientes.get(Integer.parseInt(num)-1).historial
-                                                            .get(Integer.parseInt(num2)-1).autosDeInterés));
+                                                    GClientes.clientes.get(Integer.parseInt(num) - 1).historial
+                                                            .get(Integer.parseInt(num2) - 1).autosDeInterés));
                                     do {
                                         consola.imprimir(
                                                 "¿Desea eliminar otro vehiculos de la lista de interes? \n Si:si N:no");
@@ -321,7 +325,7 @@ public class Concesionario {
                     } while (!respuestaCaso2.equals("7"));
                     break;
                 case 3:
-                    if(GClientes.clientes.isEmpty()){
+                    if (GClientes.clientes.isEmpty()) {
                         consola.imprimir("No hay clientes existentes");
                         break;
                     }
@@ -374,6 +378,27 @@ public class Concesionario {
 
                     break;
                 case 4:
+                    consola.imprimir(GVehiculos.listarMarcas().toString());
+                    consola.imprimir("Seleccione una marca:");
+                    String marca=GVehiculos.listarMarcas().get(consola.ingresarEntero());
+                    consola.imprimir("Historial clientes interesados:\n");
+                    for (Cliente c : GClientes.clientes) {
+                        for (Visita v : c.historial) {
+                            for (Compra com : v.compras) {
+                                LocalDate aux=com.getFechaCompra();
+
+                                for (Auto a : com.autCom) {
+                                    a.getMarca().equals(marca);
+                                    return;
+                                }
+                                
+                                if(com.getFechaCompra().isAfter(aux)){
+                                    aux=com.getFechaCompra();
+                                }
+                            }
+
+                        }
+                    }
 
                     break;
                 case 5:

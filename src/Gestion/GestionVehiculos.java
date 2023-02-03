@@ -112,7 +112,7 @@ public class GestionVehiculos {
         }
         for (int i = 0; i < this.tipo.size(); i++) {
             if (!this.tipo.get(i).lista.isEmpty()) {
-                coso.imprimir("\n" + (i+1)+".-Tipo: " + this.tipo.get(i).nombre);
+                coso.imprimir("\n" + (i + 1) + ".-Tipo: " + this.tipo.get(i).nombre);
             }
 
             for (int j = 0; j < this.tipo.get(i).lista.size(); j++) {
@@ -125,7 +125,7 @@ public class GestionVehiculos {
     public void ImprimirTipos() {
         for (int i = 0; i < this.tipo.size(); i++) {
             if (!this.tipo.get(i).lista.isEmpty()) {
-                coso.imprimir("\n" +(i+1)+ ".-Tipo: " + this.tipo.get(i).nombre);
+                coso.imprimir("\n" + (i + 1) + ".-Tipo: " + this.tipo.get(i).nombre);
             }
         }
     }
@@ -205,7 +205,7 @@ public class GestionVehiculos {
             }
         } while (!r.validarNúmero(dato1));
 
-        ImprimirAutos(Integer.parseInt(dato1)-1);
+        ImprimirAutos(Integer.parseInt(dato1) - 1);
         do {
             coso.imprimir("Seleccione número del vehiculo que quiere agragar a la lista de interes");
             dato2 = coso.ingresar();
@@ -220,6 +220,18 @@ public class GestionVehiculos {
                 }
             }
         } while (!r.validarNúmero(dato2));
-        return this.tipo.get(Integer.parseInt(dato1)-1).lista.get(Integer.parseInt(dato2)-1);
+        return this.tipo.get(Integer.parseInt(dato1) - 1).lista.get(Integer.parseInt(dato2) - 1);
+    }
+
+    public ArrayList<String> listarMarcas() {
+        ArrayList<String> marcas = new ArrayList<>();
+        for (Tipo t : this.tipo) {
+            for (Auto a : t.lista) {
+                if (!marcas.contains(a.getMarca())) {
+                    marcas.add(a.getMarca());
+                }
+            }
+        }
+        return marcas;
     }
 }
