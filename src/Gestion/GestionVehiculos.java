@@ -99,6 +99,13 @@ public class GestionVehiculos {
     }
 
     public void ImprimirTodo() {
+        if(this.tipo.isEmpty()){
+            coso.imprimir("""
+                No existen tipos ni vehiculos instanciados
+                Por avor agreguelos""");
+            crearTipo();
+            crearVehiculo();
+        }
         for (int i = 0; i < this.tipo.size(); i++) {
             coso.imprimir("\n" + "Tipo: " + this.tipo.get(i).nombre);
             for (int j = 0; j < this.tipo.get(i).lista.size(); j++) {
@@ -111,6 +118,13 @@ public class GestionVehiculos {
     }
 
     public void ImprimirTipos() {
+        if(this.tipo.isEmpty()){
+            coso.imprimir("""
+                No existen tipos ni vehiculos instanciados
+                Por favor agreguelos""");
+            crearTipo();
+            crearVehiculo();
+        }
         for (int i = 0; i < this.tipo.size(); i++) {
             if (!this.tipo.get(i).lista.isEmpty()) {
                 coso.imprimir("\n" +(i+1)+ ".-Tipo: " + this.tipo.get(i).nombre);
@@ -119,6 +133,13 @@ public class GestionVehiculos {
     }
 
     public void ImprimirAutos(int tipoVe) {
+        if(this.tipo.isEmpty()){
+            coso.imprimir("""
+                No existen tipos ni vehiculos instanciados
+                Por favor agreguelos""");
+            crearTipo();
+            crearVehiculo();
+        }
         coso.imprimir("\n" + "Tipo: " + this.tipo.get(tipoVe).nombre);
         for (int j = 0; j < this.tipo.get(tipoVe).lista.size(); j++) {
             coso.imprimir("\n" + "Vehiculo " + (j + 1) + ": ");
@@ -173,6 +194,13 @@ public class GestionVehiculos {
     }
 
     public Auto AgregarAListaDeInteres() {
+        if(this.tipo.isEmpty()){
+            coso.imprimir("""
+                No existen tipos ni vehiculos instanciados
+                Por favor agreguelos""");
+            crearTipo();
+            crearVehiculo();
+        }
         String dato1, dato2;
         do {
             do {

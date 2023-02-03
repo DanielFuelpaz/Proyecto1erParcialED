@@ -43,8 +43,9 @@ public class GestionCompra {
                 }
             } while (!r.validarNúmero(num));
             c.autCom.add(catalogo.get(Integer.parseInt(num) - 1));
+            catalogo.remove(Integer.parseInt(num) - 1);
             do {
-                coso.imprimir("¿Desea ingresar más clientes? \n Si/No");
+                coso.imprimir("¿Desea ingresar más Autos? \n Si/No");
                 res = coso.ingresar();
             } while (!(res.equalsIgnoreCase("Si")
                     || res.equalsIgnoreCase("No")));
@@ -74,7 +75,7 @@ public class GestionCompra {
             val = coso.ingresar();
             if(!r.validarNúmero(val)){
                 coso.imprimir("""
-                    Solo se permiten valores numericos
+                    Solo se permiten valores numéricos
                     Ejemplo: 21,12""");
             }
         } while (!r.validarNúmeroDecimal(val));  

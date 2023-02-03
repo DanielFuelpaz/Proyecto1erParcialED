@@ -57,13 +57,17 @@ public class Validacion {
     public boolean validarNúmero(String numero) {
         return numero.matches("[0-9]*");
     }
+    
+    public boolean validarNúmeroDecimal(String numero) {
+        return numero.matches("^[0-9]+(,[0-9]+)?$");
+    }
 
     public boolean validarDia(int opcion) {
-        return opcion <= 31;
+        return opcion <= 31 && opcion>0;
     }
 
     public boolean validarMes(int opcion) {
-        return opcion <= 12;
+        return opcion <= 12 && opcion>0;
     }
 
     public boolean validarAño(int opcion) {

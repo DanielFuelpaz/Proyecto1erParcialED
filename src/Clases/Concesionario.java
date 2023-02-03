@@ -16,7 +16,7 @@ public class Concesionario {
         consola.imprimir("Bienvenido al Concesionario FISEI");
         String masClientes = "";
         int op;
-            do{
+        do {
             consola.imprimir(
                     """
                             Elija lo que desea hacer:
@@ -28,7 +28,7 @@ public class Concesionario {
                             Incluir en este informe estadísticas de cantidad de carros y valor total facturado
                             6: Salir
                             """);
-            op=r.validarOpcion();
+            op = r.validarOpcion();
 
             switch (op) {
                 case 1:
@@ -69,10 +69,10 @@ public class Concesionario {
                                 break;
                             case "4":
                                 GClientes.Listar();
-                                try  {
-                                        consola.imprimir("Datos del cliente:");
-                                        consola.imprimir(GClientes.buscarCliente().toString());
-                                } catch  (Exception e)  {
+                                try {
+                                    consola.imprimir("Datos del cliente:");
+                                    consola.imprimir(GClientes.buscarCliente().toString());
+                                } catch (Exception e) {
                                     consola.imprimir("La lista está vacía");
                                 }
                                 break;
@@ -84,10 +84,8 @@ public class Concesionario {
                                 if (GClientes.clientes.size() > 0) {
                                     consola.imprimir(
                                             "Ingrese el número del cliente del que desea agregar una nueva visita");
-                                    
-                                            
-                                    
-                                            int numCliente = consola.ingresarEntero();
+
+                                    int numCliente = consola.ingresarEntero();
                                     GClientes.clientes.get(numCliente - 1).historial.add(new Visita());
                                 } else {
                                     consola.imprimir("No existen clientes, primero debe crear uno");
@@ -145,7 +143,7 @@ public class Concesionario {
                                             || masClientes.equalsIgnoreCase("No")));
                                 } while (masClientes.equalsIgnoreCase("Si"));
                                 break;
-                                
+
                             case "3":
                                 GVehiculos.ImprimirTodo();
                                 break;
@@ -157,29 +155,45 @@ public class Concesionario {
                                 }
                                 GClientes.Listar();
                                 do {
-                                    consola.imprimir("Ingrese el numero de cliente que desea ver la visita");
-                                    num = consola.ingresar();
-                                    if (!r.validarNúmero(num)) {
-                                        consola.imprimir("Solo se permiten valores númericos");
+                                    do {
+                                        consola.imprimir("Ingrese el numero de cliente que desea ver la visita");
+                                        num = consola.ingresar();
+                                        if (!r.validarNúmero(num)) {
+                                            consola.imprimir("Solo se permiten valores númericos");
+                                        }
+                                    } while (!r.validarNúmero(num));
+                                    if (Integer.parseInt(num) > GClientes.clientes.size()
+                                            || Integer.parseInt(num) < 0) {
+                                        consola.imprimir("El valor ingresado está fuera del rango de opciones");
+                                        masClientes = "ª";
                                     }
+
                                 } while (!r.validarNúmero(num));
-                                for (int i = 0; i < GClientes.clientes.get(Integer.parseInt(num)-1).historial
+                                for (int i = 0; i < GClientes.clientes.get(Integer.parseInt(num) - 1).historial
                                         .size(); i++) {
                                     consola.imprimir(
-                                            (i + 1) + ": " + GClientes.clientes.get(Integer.parseInt(num)-1).historial
+                                            (i + 1) + ": " + GClientes.clientes.get(Integer.parseInt(num) - 1).historial
                                                     .get(i).fechaVisita);
                                 }
                                 do {
-                                    consola.imprimir("Ingrese el número de la visita que desea registar los vehiculos");
-                                    num2 = consola.ingresar();
-                                    if (!r.validarNúmero(num2)) {
-                                        consola.imprimir("Solo se permiten valores númericos");
+                                    do {
+                                        consola.imprimir(
+                                                "Ingrese el número de la visita que desea registar los vehiculos");
+                                        num2 = consola.ingresar();
+                                        if (!r.validarNúmero(num2)) {
+                                            consola.imprimir("Solo se permiten valores númericos");
+                                        }
+                                    } while (!r.validarNúmero(num2));
+                                    if (Integer.parseInt(num2) > GClientes.clientes.size()
+                                            || Integer.parseInt(num2) < 0) {
+                                        consola.imprimir("El valor ingresado esta fuera del rango de opciones");
+                                        masClientes = "ª";
                                     }
                                 } while (!r.validarNúmero(num2));
 
                                 do {
-                                    GClientes.clientes.get(Integer.parseInt(num)-1).historial
-                                            .get(Integer.parseInt(num2)-1).autosDeInterés
+                                    GClientes.clientes.get(Integer.parseInt(num) - 1).historial
+                                            .get(Integer.parseInt(num2) - 1).autosDeInterés
                                             .add(GVehiculos.AgregarAListaDeInteres());
                                     do {
                                         consola.imprimir(
@@ -198,10 +212,17 @@ public class Concesionario {
                                 }
                                 GClientes.Listar();
                                 do {
-                                    consola.imprimir("Ingrese el numero de cliente que desea ver la visita");
-                                    num = consola.ingresar();
-                                    if (!r.validarNúmero(num)) {
-                                        consola.imprimir("Solo se permiten valores númericos");
+                                    do {
+                                        consola.imprimir("Ingrese el numero de cliente que desea ver la visita");
+                                        num = consola.ingresar();
+                                        if (!r.validarNúmero(num)) {
+                                            consola.imprimir("Solo se permiten valores númericos");
+                                        }
+                                    } while (!r.validarNúmero(num));
+                                    if (Integer.parseInt(num) > GClientes.clientes.size()
+                                            || Integer.parseInt(num) < 0) {
+                                        consola.imprimir("El valor ingresado esta fuera del rango de opciones");
+                                        masClientes = "ª";
                                     }
                                 } while (!r.validarNúmero(num));
                                 for (int i = 0; i < GClientes.clientes.get(Integer.parseInt(num)).historial
@@ -211,19 +232,28 @@ public class Concesionario {
                                                     .get(i).fechaVisita);
                                 }
                                 do {
-                                    consola.imprimir("Ingrese el numero de la visita que desea Eliminar los vehiculos");
-                                    num2 = consola.ingresar();
-                                    if (!r.validarNúmero(num2)) {
-                                        consola.imprimir("Solo se permiten valores númericos");
+                                    do {
+                                        consola.imprimir(
+                                                "Ingrese el numero de la visita que desea Eliminar los vehiculos");
+                                        num2 = consola.ingresar();
+                                        if (!r.validarNúmero(num2)) {
+                                            consola.imprimir("Solo se permiten valores númericos");
+                                        }
+                                    } while (!r.validarNúmero(num2));
+                                    if (Integer.parseInt(num2) < 0 || Integer.parseInt(
+                                            num2) > GClientes.clientes.get(Integer.parseInt(num) - 1).historial
+                                                    .size()) {
+                                        consola.imprimir("El valor ingresado esta fuera del rango de opciones");
+                                        masClientes = "ª";
                                     }
                                 } while (!r.validarNúmero(num2));
                                 // Elimina un carro de la lista de interés de visita
                                 do {
-                                    GClientes.clientes.get(Integer.parseInt(num)).historial
-                                            .get(Integer.parseInt(num2)).autosDeInterés
+                                    GClientes.clientes.get(Integer.parseInt(num)-1).historial
+                                            .get(Integer.parseInt(num2)-1).autosDeInterés
                                             .remove(GVehiculos.BorrarVehiculoInteres(
-                                                    GClientes.clientes.get(Integer.parseInt(num)).historial
-                                                            .get(Integer.parseInt(num2)).autosDeInterés));
+                                                    GClientes.clientes.get(Integer.parseInt(num)-1).historial
+                                                            .get(Integer.parseInt(num2)-1).autosDeInterés));
                                     do {
                                         consola.imprimir(
                                                 "¿Desea eliminar otro vehiculos de la lista de interes? \n Si:si N:no");
@@ -234,8 +264,51 @@ public class Concesionario {
                                 break;
 
                             case "6":
-                                consola.imprimir("---------Compras------");
-                                GCompras.crearCompra(GClientes);
+                                if (GClientes.clientes.isEmpty()) {
+                                    consola.imprimir("No exiten clientes para realizar una compra");
+                                    break;
+                                }
+                                do {
+                                    do {
+                                        GClientes.Listar();
+                                        consola.imprimir(
+                                                "Ingres el número del cliente que desea realizar la compra de vehículos");
+                                        num = consola.ingresar();
+                                        if (!r.validarNúmero(num)) {
+                                            consola.imprimir("Solo se permiten valores numéricos");
+                                        }
+                                    } while (!r.validarNúmero(num));
+                                    if (Integer.parseInt(num) > GClientes.clientes.size()
+                                            || Integer.parseInt(num) < 0) {
+                                        consola.imprimir("El valor ingresado esta fuera del rango de opciones");
+                                        masClientes = "ª";
+                                    }
+                                } while (!r.validarNúmero(num));
+                                for (int i = 0; i < GClientes.clientes.get(Integer.parseInt(num) - 1).historial
+                                        .size(); i++) {
+                                    consola.imprimir(
+                                            (i + 1) + ": " + GClientes.clientes.get(Integer.parseInt(num) - 1).historial
+                                                    .get(i).fechaVisita);
+                                }
+                                do {
+                                    do {
+                                        consola.imprimir(
+                                                "Ingrese el número de la visita la que desea comprar los vehiculos");
+                                        num2 = consola.ingresar();
+                                        if (!r.validarNúmero(num2)) {
+                                            consola.imprimir("Solo se permiten valores númericos");
+                                        }
+                                    } while (!r.validarNúmero(num2));
+
+                                    if (Integer.parseInt(num2) < 0 || Integer.parseInt(
+                                            num2) > GClientes.clientes.get(Integer.parseInt(num) - 1).historial
+                                                    .size()) {
+                                        consola.imprimir("El valor ingresado esta fuera del rango de opciones");
+                                        masClientes = "ª";
+                                    }
+                                } while (!r.validarNúmero(num2));
+                                GCompras.crearCompra(GClientes.clientes.get(Integer.parseInt(num) - 1).historial
+                                        .get(Integer.parseInt(num2) - 1).autosDeInterés);
                                 break;
 
                             case "7":
@@ -248,7 +321,10 @@ public class Concesionario {
                     } while (!respuestaCaso2.equals("7"));
                     break;
                 case 3:
-                    // Historial de un cliente
+                    if(GClientes.clientes.isEmpty()){
+                        consola.imprimir("No hay clientes existentes");
+                        break;
+                    }
                     GClientes.Listar();
                     do {
                         consola.imprimir("Ingrese el número del cliente que desea ver el historial");
@@ -264,38 +340,40 @@ public class Concesionario {
                             }
                         }
                     } while (!r.validarNúmero(masClientes));
-                    if (GClientes.clientes.get(Integer.parseInt(masClientes)-1).historial.isEmpty()) {
+                    if (GClientes.clientes.get(Integer.parseInt(masClientes) - 1).historial.isEmpty()) {
                         consola.imprimir("""
-                            El cliente aun no ha comprado o ha estado interesado en ningun automovil
-                            Por consecuente no existe ningun registro en su historial""");
-                        break;    
+                                El cliente aun no ha comprado o ha estado interesado en ningun automovil
+                                Por consecuente no existe ningun registro en su historial""");
+                        break;
                     }
-                    for (int i = 0; i < GClientes.clientes.get(Integer.parseInt(masClientes)-1).historial.size(); i++) {
+                    for (int i = 0; i < GClientes.clientes.get(Integer.parseInt(masClientes) - 1).historial
+                            .size(); i++) {
                         consola.imprimir(
-                                GClientes.clientes.get(Integer.parseInt(masClientes)-1).historial.get(i).fechaVisita
+                                GClientes.clientes.get(Integer.parseInt(masClientes) - 1).historial.get(i).fechaVisita
                                         .toString());
                         consola.imprimir("Autos de Interes: ");
-                        for (int j = 0; j < GClientes.clientes.get(Integer.parseInt(masClientes)-1).historial
+                        for (int j = 0; j < GClientes.clientes.get(Integer.parseInt(masClientes) - 1).historial
                                 .get(i).autosDeInterés.size(); j++) {
-                            consola.imprimir( GClientes.clientes.get(Integer.parseInt(masClientes)-1).historial.get(i).autosDeInterés.get(j)
+                            consola.imprimir(GClientes.clientes.get(Integer.parseInt(masClientes) - 1).historial
+                                    .get(i).autosDeInterés.get(j)
                                     .toString());
                         }
-                        for (int k = 0; k < GClientes.clientes.get(Integer.parseInt(masClientes)-1).historial
+                        for (int k = 0; k < GClientes.clientes.get(Integer.parseInt(masClientes) - 1).historial
                                 .get(i).compras.size(); k++) {
-                            for (int l = 0; l < GClientes.clientes.get(Integer.parseInt(masClientes)-1).historial
+                            for (int l = 0; l < GClientes.clientes.get(Integer.parseInt(masClientes) - 1).historial
                                     .get(i).compras.get(k).autCom.size(); l++) {
-                                consola.imprimir(GClientes.clientes.get(Integer.parseInt(masClientes)-1).historial.get(i).compras
+                                consola.imprimir(GClientes.clientes.get(Integer.parseInt(masClientes) - 1).historial
+                                        .get(i).compras
                                         .get(k).autCom.get(l).toString());
                             }
                             consola.imprimir(
-                                    GClientes.clientes.get(Integer.parseInt(masClientes)-1).historial.get(i).compras
+                                    GClientes.clientes.get(Integer.parseInt(masClientes) - 1).historial.get(i).compras
                                             .get(k).fechaCompra.toString());
                         }
                     }
-                    
+
                     break;
                 case 4:
-                    
 
                     break;
                 case 5:
@@ -308,6 +386,6 @@ public class Concesionario {
                     break;
 
             }
-        } while (op!=6);
+        } while (op != 6);
     }
 }
