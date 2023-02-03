@@ -10,21 +10,12 @@ import Utiles.Interfaz;
 import Utiles.Validacion;
 
 public class GestionCompra {
-    ArrayList<Compra> compras;
     Interfaz coso = new Interfaz();
     Validacion r = new Validacion();
     Compra c = new Compra();
     GestorClientes GClientes;
 
-    
-
-    public GestionCompra() {
-        compras=new ArrayList<>();
-    }
-
-
-
-    public void crearCompra(ArrayList<Auto> catalogo) {
+    public Compra crearCompra(ArrayList<Auto> catalogo) {
         String num = "";
         String res = "";
         String val = "";
@@ -88,8 +79,8 @@ public class GestionCompra {
             }
         } while (!r.validarNúmeroDecimal(val));  
         c.setValorCompra(val);
-        this.compras.add(c);
-
+        return c;
+        
     }
 
 }
