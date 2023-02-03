@@ -149,7 +149,7 @@ public class GestionVehiculos {
         String num;
         for (int i = 0; i < this.tipo.get(pos).lista.size(); i++) {
             coso.imprimir("\n" + "Vehiculo " + (i + 1) + ": ");
-            this.tipo.get(pos).lista.get(i).toString();
+            this.tipo.get(pos-1).lista.get(i).toString();
         }
         do {
             coso.imprimir("Seleccione número del vehiculo que quiere borrar");
@@ -158,7 +158,7 @@ public class GestionVehiculos {
                 coso.imprimir("Solo se permiten los datos númericos\nPor favor ingres un valor válido");
             }
             if (r.validarNúmero(num)) {
-                if (Integer.parseInt(num) <= 0 || Integer.parseInt(num) > this.tipo.get(pos).lista.size()) {
+                if (Integer.parseInt(num) <= 0 || Integer.parseInt(num) > this.tipo.get(pos-1).lista.size()) {
                     coso.imprimir("El valor ingresado se encuentra fuera del rango de vehiculos existentes");
                     coso.imprimir("Por favor ingrese un número dentro del rango");
                     num = "ª";
@@ -236,7 +236,7 @@ public class GestionVehiculos {
                 coso.imprimir("Solo se permiten los datos númericos\nPor favor ingres un valor válido");
             }
             if (r.validarNúmero(dato2)) {
-                if (Integer.parseInt(dato2) <= 0 || Integer.parseInt(dato2) > this.tipo.size()) {
+                if (Integer.parseInt(dato2) <= 0 || Integer.parseInt(dato2) > this.tipo.get(Integer.parseInt(dato1)-1).lista.size()) {
                     coso.imprimir("El valor ingresado se encuentra fuera del rango de vehiculos existentes");
                     coso.imprimir("Por favor ingrese un número dentro del rango");
                     dato2 = "ª";
