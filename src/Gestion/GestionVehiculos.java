@@ -1,5 +1,7 @@
 package Gestion;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import Clases.Auto;
 import Clases.Tipo;
@@ -223,7 +225,7 @@ public class GestionVehiculos {
         } while (!r.validarNúmero(dato1));
         if(this.tipo.get(Integer.parseInt(dato1)-1).lista.isEmpty()){
             coso.imprimir("""
-                No exiten autos instanciados en este Tipo
+                No existen autos instanciados en este Tipo
             Por favor agreguelos""");
             crearVehiculo();
         }
@@ -246,6 +248,25 @@ public class GestionVehiculos {
         return this.tipo.get(Integer.parseInt(dato1) - 1).lista.get(Integer.parseInt(dato2) - 1);
     }
 
+    public LocalDate crearFecha(int dia,int mes, int año){
+        
+        do {
+            coso.imprimir("Ingrese el Dia:");
+            dia = coso.ingresarEntero();
+
+        } while (!r.validarDia(dia));
+        
+        do {
+            coso.imprimir("Ingrese el Mes:");
+            mes = coso.ingresarEntero();
+        } while (!r.validarMes(mes));
+        do {
+            coso.imprimir("Ingrese el Año:");
+            año = coso.ingresarEntero();
+        } while (!r.validarAño(año));
+        LocalDate fecha= LocalDate.of(año, Month.of(mes), dia);
+       return fecha;
+    }
     public ArrayList<String> listarMarcas() {
         ArrayList<String> marcas = new ArrayList<>();
         for (Tipo t : this.tipo) {

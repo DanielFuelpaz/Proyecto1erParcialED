@@ -1,6 +1,8 @@
 package Clases;
 
 import java.time.LocalDate;
+import java.time.Month;
+
 import Gestion.GestionCompra;
 import Gestion.GestionVehiculos;
 import Gestion.GestorClientes;
@@ -387,11 +389,11 @@ public class Concesionario {
                         LocalDate fechaBase = LocalDate.now().minusYears(3);
                         for (Visita v : c.historial) {
                             for (int i = 0; i < v.compras.size(); i++) {
-                                if (i+1<v.compras.size()){
-                                LocalDate inicial = v.compras.get(i).fechaCompra;
-                                LocalDate actual;
+                                if (i + 1 < v.compras.size()) {
+                                    LocalDate inicial = v.compras.get(i).fechaCompra;
+                                    LocalDate actual;
                                     actual = v.compras.get(i + 1).fechaCompra;
-                                    
+
                                     for (Auto a : v.compras.get(i).autCom) {
                                         a.getMarca().equals(marca);
                                         if (actual.isAfter(inicial) && actual.isBefore(fechaBase)) {
@@ -400,16 +402,38 @@ public class Concesionario {
                                         } else {
                                             consola.imprimir(a.toString());
                                         }
-                                        
+
                                     }
                                 }
-                                }
-                                
+                            }
+
                         }
                     }
 
                     break;
                 case 5:
+                    //Carros vendidos en un margen de tiempo dado (fecha inicial a fecha final).
+                    //Incluir en este informe estadísticas de: 
+                    //Cantidad de carros
+                    //Valor total facturado.
+                    int autosComprados=0;
+                    int totalFacturado=0;
+                    consola.imprimir("Fecha inicial: ");
+                    LocalDate fInicial=GVehiculos.crearFecha(consola.ingresarEntero(), consola.ingresarEntero(), consola.ingresarEntero());
+                    consola.imprimir("Fecha final: ");
+                    LocalDate fFinal=GVehiculos.crearFecha(consola.ingresarEntero(), consola.ingresarEntero(), consola.ingresarEntero());
+                    for (Cliente c : GClientes.clientes) {
+                        for (Visita v : c.historial) {
+                            for(Compra com:v.compras){     
+                                if(com.fechaCompra.isAfter(fInicial)&&com.fechaCompra.isBefore(fFinal)){
+                                    autosComprados=+com.autCom.size();
+                                    totalFacturado=+Integer.parseInt(com.valorCompra);
+                                }
+                            }   
+                        }
+                    }
+                    consola.imprimir("Autos Comprados: "+ autosComprados);
+                    consola.imprimir("Total Facturado "+ totalFacturado);
                     break;
                 case 6:
                     System.out.println("Gracias por visitarnos :)");
