@@ -69,10 +69,17 @@ public class GestionVehiculos {
         coso.imprimir("Ingrese la marca del Vehículo");
         marca = coso.ingresar();
         do {
-            coso.imprimir("Ingrese el año del Vehículo");
+            do {
+                coso.imprimir("Ingrese el año del Vehículo");
             año = coso.ingresar();
             if (!r.validarNúmero(año)) {
                 coso.imprimir("Solo se permiten valores numéricos");
+            }
+            } while (!r.validarNúmero(año));
+            
+            if(!r.validarAño(Integer.parseInt(año))){
+                coso.imprimir("El año debe tener cuatro digitos");
+                año="a";
             }
         } while (!r.validarNúmero(año));
         auto.setPlaca(placa);
@@ -112,7 +119,7 @@ public class GestionVehiculos {
         }
         for (int i = 0; i < this.tipo.size(); i++) {
             if (!this.tipo.get(i).lista.isEmpty()) {
-                coso.imprimir("\n" + (i+1)+".-Tipo: " + this.tipo.get(i).nombre);
+                coso.imprimir("\n" + (i + 1) + ".-Tipo: " + this.tipo.get(i).nombre);
             }
 
             for (int j = 0; j < this.tipo.get(i).lista.size(); j++) {
@@ -125,7 +132,7 @@ public class GestionVehiculos {
     public void ImprimirTipos() {
         for (int i = 0; i < this.tipo.size(); i++) {
             if (!this.tipo.get(i).lista.isEmpty()) {
-                coso.imprimir("\n" +(i+1)+ ".-Tipo: " + this.tipo.get(i).nombre);
+                coso.imprimir("\n" + (i + 1) + ".-Tipo: " + this.tipo.get(i).nombre);
             }
         }
     }
@@ -169,13 +176,13 @@ public class GestionVehiculos {
         }
         do {
             do {
-                 coso.imprimir("Seleccione número del vehiculo que quiere borrar");
-            num = coso.toString();
-            if (!r.validarNúmero(num)) {
-                coso.imprimir("Solo se permiten los datos númericos\nPor favor ingres un valor válido");
-            }
+                coso.imprimir("Seleccione número del vehiculo que quiere borrar");
+                num = coso.toString();
+                if (!r.validarNúmero(num)) {
+                    coso.imprimir("Solo se permiten los datos númericos\nPor favor ingres un valor válido");
+                }
             } while (!r.validarNúmero(num));
-           
+
             if (!r.validarNúmero(num)) {
                 if (Integer.parseInt(num) < 0 || Integer.parseInt(num) > catalogo.size()) {
                     coso.imprimir("El valor ingresado se encuentra fuera del rango de vehiculos existentes");
@@ -208,7 +215,7 @@ public class GestionVehiculos {
             }
         } while (!r.validarNúmero(dato1));
 
-        ImprimirAutos(Integer.parseInt(dato1)-1);
+        ImprimirAutos(Integer.parseInt(dato1) - 1);
         do {
             coso.imprimir("Seleccione número del vehiculo que quiere agragar a la lista de interes");
             dato2 = coso.ingresar();
@@ -223,6 +230,6 @@ public class GestionVehiculos {
                 }
             }
         } while (!r.validarNúmero(dato2));
-        return this.tipo.get(Integer.parseInt(dato1)-1).lista.get(Integer.parseInt(dato2)-1);
+        return this.tipo.get(Integer.parseInt(dato1) - 1).lista.get(Integer.parseInt(dato2) - 1);
     }
 }
