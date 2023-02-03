@@ -221,7 +221,7 @@ public class GestionVehiculos {
                 }
             }
         } while (!r.validarNúmero(dato1));
-        if(this.tipo.get(Integer.parseInt(dato1)).lista.isEmpty()){
+        if(this.tipo.get(Integer.parseInt(dato1)-1).lista.isEmpty()){
             coso.imprimir("""
                 No exiten autos instanciados en este Tipo
             Por favor agreguelos""");
