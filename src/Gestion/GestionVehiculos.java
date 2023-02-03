@@ -116,7 +116,7 @@ public class GestionVehiculos {
             }
 
             for (int j = 0; j < this.tipo.get(i).lista.size(); j++) {
-                coso.imprimir("\n" + "Vehiculo " + j + 1 + ": ");
+                coso.imprimir("\n" + "Vehiculo " + (j + 1) + ": ");
                 coso.imprimir(this.tipo.get(i).lista.get(j).toString());
             }
         }
@@ -133,7 +133,7 @@ public class GestionVehiculos {
     public void ImprimirAutos(int tipoVe) {
         coso.imprimir("\n" + "Tipo: " + this.tipo.get(tipoVe).nombre);
         for (int j = 0; j < this.tipo.get(tipoVe).lista.size(); j++) {
-            coso.imprimir("\n" + "Vehiculo " + j + 1 + ": ");
+            coso.imprimir("\n" + "Vehiculo " + (j + 1) + ": ");
             coso.imprimir(this.tipo.get(tipoVe).lista.get(j).toString());
         }
     }
@@ -141,7 +141,7 @@ public class GestionVehiculos {
     public Auto BorrarVehiculoConsesionario(int pos) {
         String num;
         for (int i = 0; i < this.tipo.get(pos).lista.size(); i++) {
-            coso.imprimir("\n" + "Vehiculo " + i + 1 + ": ");
+            coso.imprimir("\n" + "Vehiculo " + (i + 1) + ": ");
             this.tipo.get(pos).lista.get(i).toString();
         }
         do {
@@ -164,7 +164,7 @@ public class GestionVehiculos {
     public Auto BorrarVehiculoInteres(ArrayList<Auto> catalogo) {
         String num;
         for (int i = 0; i < catalogo.size(); i++) {
-            coso.imprimir("\n" + "Vehiculo " + i + 1 + ": ");
+            coso.imprimir("\n" + "Vehiculo " + (i + 1) + ": ");
             coso.imprimir(catalogo.get(i).toString());
         }
         do {

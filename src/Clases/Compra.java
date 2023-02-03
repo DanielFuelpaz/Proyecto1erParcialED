@@ -8,11 +8,40 @@ public class Compra {
     public LocalDate fechaCompra;
     public String valorCompra;
 
-    public Compra( LocalDate fechaCompra, String valorCompra) {
+    public Compra( ) {
         this.autCom = new ArrayList<>();
+    }
+
+    
+    public ArrayList<Auto> getAutCom() {
+        return autCom;
+    }
+
+
+    public void setAutCom(ArrayList<Auto> autCom) {
+        this.autCom = autCom;
+    }
+
+
+    public LocalDate getFechaCompra() {
+        return fechaCompra;
+    }
+
+
+    public void setFechaCompra(LocalDate fechaCompra) {
         this.fechaCompra = fechaCompra;
+    }
+
+
+    public String getValorCompra() {
+        return valorCompra;
+    }
+
+
+    public void setValorCompra(String valorCompra) {
         this.valorCompra = valorCompra;
     }
+
 
     @Override
     public String toString() {
