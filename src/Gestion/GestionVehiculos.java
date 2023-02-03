@@ -18,31 +18,30 @@ public class GestionVehiculos {
     public void crearTipo() {
         Tipo mod = new Tipo();
         String nombre;
-        coso.imprimir("Ingrese un tipo de Vehículo");
-        nombre = coso.ingresar().toUpperCase();
-        if (!r.validarTipos(nombre)) {
-            coso.imprimir("No se permiten valores numericos");
-            crearTipo();
-        } else {
+        do {
+            coso.imprimir("Ingrese un tipo de Vehículo");
+            nombre = coso.ingresar().toUpperCase();
+            if (!r.validarTipos(nombre)) {
+                coso.imprimir("No se permiten valores numericos");
+
+            }
             for (int i = 0; i < this.tipo.size(); i++) {
                 if (this.tipo.get(i).nombre.equals(nombre)) {
                     coso.imprimir("""
                             El nombre ingresado ya existe
                             Por favor ingrese otro nombre
                             """);
-                    crearTipo();
+                    nombre = "21";
                 }
             }
-
-            mod.setNombre(nombre);
-            tipo.add(mod);
-        }
+        } while (!r.validarTipos(nombre));
+        mod.setNombre(nombre);
+        tipo.add(mod);
     }
 
     public void crearVehiculo() {
         Auto auto = new Auto();
-        String placa, color, marca, año;
-        int dato;
+        String dato, placa, color, marca, año;
         if (this.tipo.isEmpty()) {
             coso.imprimir("""
                     No existen Tipos de vehiculos a los que pueda agregar un Automovil
@@ -84,26 +83,38 @@ public class GestionVehiculos {
         for (int i = 0; i < tipo.size(); i++) {
             coso.imprimir(i + 1 + ".- " + this.tipo.get(i).nombre);
         }
-        coso.imprimir("Ingrese el numero del Tipo para seleccionarlo");
-        dato = r.validarOpcion();
-        if (dato < 0 || dato > this.tipo.size()) {
-            coso.imprimir("""
-                    El valor ingresado no esta dentro del rango de opciones
-                    Por favor vuelvalo a ingresar correctamente""");
-        }
-        this.tipo.get(dato - 1).lista.add(auto);
+        do {
+            do {
+                coso.imprimir("Ingrese el numero del Tipo para seleccionarlo");
+                dato = coso.ingresar();
+                if (!r.validarNúmero(dato)) {
+                    coso.imprimir("Solo se permiten los datos númericos\nPor favor ingres un valor válido");
+                }
+            } while (!r.validarNúmero(dato));
+
+            if (Integer.parseInt(dato) < 0 || Integer.parseInt(dato) > this.tipo.size()) {
+                coso.imprimir("""
+                        El valor ingresado no esta dentro del rango de opciones
+                        Por favor vuelvalo a ingresar correctamente""");
+                dato = "ª";
+            }
+        } while (!r.validarNúmero(dato));
+        this.tipo.get(Integer.parseInt(dato) - 1).lista.add(auto);
     }
 
     public void ImprimirTodo() {
         if (this.tipo.isEmpty()) {
             coso.imprimir("""
-                    No existen tipos ni vehiculos instanciados
-                    Por avor agreguelos""");
+                    No existen tipos ni vehículos instanciados
+                    Por favor agreguelos""");
             crearTipo();
             crearVehiculo();
         }
         for (int i = 0; i < this.tipo.size(); i++) {
-            coso.imprimir("\n" + "Tipo: " + this.tipo.get(i).nombre);
+            if (!this.tipo.get(i).lista.isEmpty()) {
+                coso.imprimir("\n" + (i+1)+".-Tipo: " + this.tipo.get(i).nombre);
+            }
+
             for (int j = 0; j < this.tipo.get(i).lista.size(); j++) {
                 coso.imprimir("\n" + "Vehiculo " + (j + 1) + ": ");
                 coso.imprimir(this.tipo.get(i).lista.get(j).toString());
@@ -112,28 +123,14 @@ public class GestionVehiculos {
     }
 
     public void ImprimirTipos() {
-        if (this.tipo.isEmpty()) {
-            coso.imprimir("""
-                    No existen tipos ni vehiculos instanciados
-                    Por favor agreguelos""");
-            crearTipo();
-            crearVehiculo();
-        }
         for (int i = 0; i < this.tipo.size(); i++) {
             if (!this.tipo.get(i).lista.isEmpty()) {
-                coso.imprimir("\n" + (i + 1) + ".-Tipo: " + this.tipo.get(i).nombre);
+                coso.imprimir("\n" +(i+1)+ ".-Tipo: " + this.tipo.get(i).nombre);
             }
         }
     }
 
     public void ImprimirAutos(int tipoVe) {
-        if (this.tipo.isEmpty()) {
-            coso.imprimir("""
-                    No existen tipos ni vehiculos instanciados
-                    Por favor agreguelos""");
-            crearTipo();
-            crearVehiculo();
-        }
         coso.imprimir("\n" + "Tipo: " + this.tipo.get(tipoVe).nombre);
         for (int j = 0; j < this.tipo.get(tipoVe).lista.size(); j++) {
             coso.imprimir("\n" + "Vehiculo " + (j + 1) + ": ");
@@ -188,13 +185,6 @@ public class GestionVehiculos {
     }
 
     public Auto AgregarAListaDeInteres() {
-        if (this.tipo.isEmpty()) {
-            coso.imprimir("""
-                    No existen tipos ni vehiculos instanciados
-                    Por favor agreguelos""");
-            crearTipo();
-            crearVehiculo();
-        }
         String dato1, dato2;
         do {
             do {
@@ -215,10 +205,10 @@ public class GestionVehiculos {
             }
         } while (!r.validarNúmero(dato1));
 
-        ImprimirAutos(Integer.parseInt(dato1) - 1);
+        ImprimirAutos(Integer.parseInt(dato1)-1);
         do {
-            coso.imprimir("Seleccione número del vehiculo que quiere borrar");
-            dato2 = coso.toString();
+            coso.imprimir("Seleccione número del vehiculo que quiere agragar a la lista de interes");
+            dato2 = coso.ingresar();
             if (!r.validarNúmero(dato2)) {
                 coso.imprimir("Solo se permiten los datos númericos\nPor favor ingres un valor válido");
             }
@@ -230,6 +220,6 @@ public class GestionVehiculos {
                 }
             }
         } while (!r.validarNúmero(dato2));
-        return this.tipo.get(Integer.parseInt(dato1) - 1).lista.get(Integer.parseInt(dato2) - 1);
+        return this.tipo.get(Integer.parseInt(dato1)-1).lista.get(Integer.parseInt(dato2)-1);
     }
 }
