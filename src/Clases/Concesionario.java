@@ -1,7 +1,5 @@
 package Clases;
 
-import javax.naming.InsufficientResourcesException;
-
 import Gestion.GestionCompra;
 import Gestion.GestionVehiculos;
 import Gestion.GestorClientes;
@@ -17,7 +15,7 @@ public class Concesionario {
         Interfaz consola = new Interfaz();
         consola.imprimir("Bienvenido al Concesionario FISEI");
         String masClientes = "";
-        int respuesta1;
+        String respuesta1;
         do {
 
             do{
@@ -32,10 +30,14 @@ public class Concesionario {
                             Incluir en este informe estadísticas de cantidad de carros y valor total facturado
                             6: Salir
                             """);
+            do {
+                respuesta1 = consola.ingresar();
+                if (!r.validarNúmero(respuesta1)) {
+                    consola.imprimir("Tipo de dato invalido o negativo");
+                }
+            } while (!r.validarNúmero(respuesta1));
 
-            respuesta1 = consola.ingresarEntero();
-                }while(respuesta1==-1);
-            switch (respuesta1) {
+            switch (Integer.parseInt(respuesta1)) {
                 case 1:
                     String respuesta2;
                     do {
@@ -48,7 +50,7 @@ public class Concesionario {
                                 5: Listar clientes.
                                 6: Añadir visita.
                                 7: Salir al menú.
-                                """);
+                                    """);
                         respuesta2 = consola.ingresar();
                         switch (respuesta2) {
                             case "1":
@@ -56,7 +58,7 @@ public class Concesionario {
                                     Cliente c1 = null;
                                     GClientes.clientes.add(GClientes.crearCliente(c1));
                                     do {
-                                        consola.imprimir("¿Desea ingresar más clientes? \n Si:si No:no");
+                                        consola.imprimir("¿Desea ingresar más clientes? \n Si/No");
                                         masClientes = consola.ingresar();
                                     } while (!(masClientes.equalsIgnoreCase("Si")
                                             || masClientes.equalsIgnoreCase("No")));
@@ -74,10 +76,10 @@ public class Concesionario {
                                 break;
                             case "4":
                                 GClientes.Listar();
-                                try {
-                                    consola.imprimir("Datos del cliente:");
-                                    consola.imprimir(GClientes.buscarCliente().toString());
-                                } catch (Exception e) {
+                                try  {
+                                        consola.imprimir("Datos del cliente:");
+                                        consola.imprimir(GClientes.buscarCliente().toString());
+                                } catch  (Exception e)  {
                                     consola.imprimir("La lista está vacía, debe agregar un cliente primero");
                                 }
                                 break;
@@ -95,6 +97,9 @@ public class Concesionario {
                                     consola.imprimir("No existen clientes, primero debe crear uno");
                                 }
 
+                                break;
+
+                            case "7":
                                 break;
                             default:
                                 consola.imprimir("Elija un número del 1 al 7");
@@ -123,7 +128,7 @@ public class Concesionario {
                                     GVehiculos.crearTipo();
                                     do {
                                         consola.imprimir(
-                                                "¿Desea agrgar otro tipo de vehículo? \n Si:si N:no");
+                                                "¿Desea agregar otro tipo de vehículo? \n Si:si N:no");
                                         masClientes = consola.ingresar();
                                     } while (!(masClientes.equalsIgnoreCase("Si")
                                             || masClientes.equalsIgnoreCase("No")));
@@ -135,7 +140,7 @@ public class Concesionario {
                                     GVehiculos.cearVehiculo();
                                     do {
                                         consola.imprimir(
-                                                "¿Desea agrgar otro de vehículo? \n Si:si N:no");
+                                                "¿Desea agregar otro de vehículo? \n Si:si N:no");
                                         masClientes = consola.ingresar();
                                     } while (!(masClientes.equalsIgnoreCase("Si")
                                             || masClientes.equalsIgnoreCase("No")));
@@ -175,7 +180,7 @@ public class Concesionario {
                                             .add(GVehiculos.AgregarAListaDeInteres());
                                     do {
                                         consola.imprimir(
-                                                "¿Desea agrgar mas vehiculos a la lista de interes? \n Si:si N:no");
+                                                "¿Desea agregar mas vehiculos a la lista de interes? \n Si:si N:no");
                                         masClientes = consola.ingresar();
                                     } while (!(masClientes.equalsIgnoreCase("Si")
                                             || masClientes.equalsIgnoreCase("No")));
@@ -223,18 +228,18 @@ public class Concesionario {
                                     } while (!(masClientes.equalsIgnoreCase("Si")
                                             || masClientes.equalsIgnoreCase("No")));
                                 } while (masClientes.equalsIgnoreCase("Si"));
-
                                 break;
                             case "5":
                                 consola.imprimir("---------Compras------");
                                 GCompras.crearCompra(GClientes);
-
+                                break;
+                            case "6":
                                 break;
                             default:
                                 consola.imprimir("Ingrese un número del 1 al 6");
                                 break;
                         }
-                    } while (!respuestaCaso2.equals("4"));
+                    } while (!respuestaCaso2.equals("6"));
                     break;
 
                 case 3:
@@ -259,7 +264,7 @@ public class Concesionario {
                     GClientes.Listar();
                     do {
                         consola.imprimir("Ingrese el número del cliente que desea ver el historial");
-                        masClientes = consola.toString();
+                        masClientes = consola.ingresar();
                         if (!r.validarNúmero(masClientes)) {
                             consola.imprimir("Solo se permiten datos numericos");
                         }
@@ -267,7 +272,7 @@ public class Concesionario {
                             if (Integer.parseInt(masClientes) > GClientes.clientes.size()
                                     || Integer.parseInt(masClientes) < 0) {
                                 consola.imprimir("El valor ingresado se encuentra fuera del rango de datos");
-                                masClientes = "ª";
+                                masClientes = "";
                             }
                         }
                     } while (!r.validarNúmero(masClientes));
@@ -310,6 +315,6 @@ public class Concesionario {
             }
             // Para saber que ya salio preguntar si desea comprar o no.
 
-        } while (respuesta1 != 6);
+        } while (r.validarNúmero(String.valueOf(respuesta1))&&!respuesta1.equals("6"));
     }
 }

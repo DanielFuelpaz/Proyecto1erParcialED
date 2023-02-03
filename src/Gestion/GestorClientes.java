@@ -169,7 +169,7 @@ public class GestorClientes {
             n++;
         }
         n = consola.ingresarEntero();
-        return aux.get(n);
+        return aux.get(n-1);
 
     }
 
@@ -183,7 +183,7 @@ public class GestorClientes {
             n++;
         }
         n = consola.ingresarEntero();
-        return aux.get(n).autosDeInterés;
+        return aux.get(n-1).autosDeInterés;
 
     }
 
