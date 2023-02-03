@@ -110,7 +110,9 @@ public class GestionVehiculos {
 
     public void ImprimirTipos() {
         for (int i = 0; i < this.tipo.size(); i++) {
-            coso.imprimir("\n" + "Tipo: " + this.tipo.get(i).nombre);
+            if (!this.tipo.get(i).lista.isEmpty()) {
+                coso.imprimir("\n" +(i+1)+ ".-Tipo: " + this.tipo.get(i).nombre);
+            }
         }
     }
 
@@ -170,13 +172,15 @@ public class GestionVehiculos {
 
     public Auto AgregarAListaDeInteres() {
         String dato1, dato2;
-        ImprimirTipos();
         do {
-            coso.imprimir("Seleccione el tipo de vehiculo que desea ver");
-            dato1 = coso.toString();
-            if (!r.validarNúmero(dato1)) {
-                coso.imprimir("Solo se permiten los datos númericos\nPor favor ingres un valor válido");
-            }
+            do {
+                ImprimirTipos();
+                coso.imprimir("Seleccione el tipo de vehiculo que desea ver");
+                dato1 = coso.ingresar();
+                if (!r.validarNúmero(dato1)) {
+                    coso.imprimir("Solo se permiten los datos númericos\nPor favor ingres un valor válido");
+                }
+            } while (!r.validarNúmero(dato1));
             if (r.validarNúmero(dato1)) {
                 if (Integer.parseInt(dato1) < 0 || Integer.parseInt(dato1) > this.tipo.size()) {
                     coso.imprimir(
@@ -187,7 +191,7 @@ public class GestionVehiculos {
             }
         } while (!r.validarNúmero(dato1));
 
-        ImprimirAutos(Integer.parseInt(dato1));
+        ImprimirAutos(Integer.parseInt(dato1)-1);
         do {
             coso.imprimir("Seleccione número del vehiculo que quiere borrar");
             dato2 = coso.toString();
@@ -202,6 +206,6 @@ public class GestionVehiculos {
                 }
             }
         } while (!r.validarNúmero(dato2));
-        return this.tipo.get(Integer.parseInt(dato1)).lista.get(Integer.parseInt(dato2));
+        return this.tipo.get(Integer.parseInt(dato1)-1).lista.get(Integer.parseInt(dato2)-1);
     }
 }
