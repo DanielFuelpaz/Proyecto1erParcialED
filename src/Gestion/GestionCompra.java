@@ -24,7 +24,7 @@ public class GestionCompra {
             do {
                 do {
                     for (int i = 0; i < catalogo.size(); i++) {
-                        coso.imprimir("Vehículo 0" + (i + 1) + ": ");
+                        coso.imprimir("Vehículo " + (i + 1) + ": ");
                         coso.imprimir(catalogo.get(i).toString());
                     }
                     coso.imprimir("Ingrese el número de vehículo que desea comprar");
@@ -34,7 +34,7 @@ public class GestionCompra {
                     }
                 } while (!r.validarNúmero(num));
 
-                if (Integer.parseInt(num) < 0 || Integer.parseInt(num) > catalogo.size()) {
+                if (Integer.parseInt(num) <= 0 || Integer.parseInt(num) > catalogo.size()) {
                     coso.imprimir("""
                             El valor ingresado no esta dentro del rango de opciones
                             Por favor vuelvalo a ingresar correctamente""");
@@ -48,6 +48,10 @@ public class GestionCompra {
                 res = coso.ingresar();
             } while (!(res.equalsIgnoreCase("Si")
                     || res.equalsIgnoreCase("No")));
+                    if(catalogo.isEmpty()){
+                        coso.imprimir("No existen mas vehiculos para agregar a la compra");
+                        res="No";
+                    }
         } while (res.equalsIgnoreCase("Si"));
 
         coso.imprimir("Fecha:");
