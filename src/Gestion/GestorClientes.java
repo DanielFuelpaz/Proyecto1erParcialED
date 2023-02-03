@@ -104,19 +104,16 @@ public class GestorClientes {
                 do {
                     consola.imprimir("Ingrese el nuevo teléfono");
                     nuevoTelefono = consola.ingresar();
-                    for (int index = 0; index < this.clientes.size(); index++) {
-                        if (this.clientes.get(index).telefono.equals(nuevoTelefono)) {
+                    for (Cliente c:this.clientes) {
+                        if (c.telefono.equals(nuevoTelefono)) {
                             consola.imprimir("El teléfono ya existe");
-                            existe = true;
-                            break;
+                            existeTelefono = true;
                         } else {
                             if (validar.validarTelefono(nuevoTelefono, this)) {
                                 this.clientes.get(numClienteModificar - 1).telefono = nuevoTelefono;
                                 existeTelefono = true;
-                                break;
                             }
                             existeTelefono = false;
-                            break;
                         }
                     }
                 } while (existeTelefono);

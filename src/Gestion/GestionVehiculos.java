@@ -18,7 +18,7 @@ public class GestionVehiculos {
     public void crearTipo() {
         Tipo mod = new Tipo();
         String nombre;
-        coso.imprimir("Ingres un tipo de Vehículo");
+        coso.imprimir("Ingrese un tipo de Vehículo");
         nombre = coso.ingresar().toUpperCase();
         if (!r.validarTipos(nombre)) {
             coso.imprimir("No se permiten valores numericos");
