@@ -35,21 +35,22 @@ public class Validacion {
     }
 
     public boolean validarPersona(String nombre) {
-        return nombre.matches("[A-Z]([a-z]){3,}");
+        return nombre.matches("[A-Z]([a-z]){2,}");
     }
 
-    public boolean validarTipos(String cadena){
+    public boolean validarTipos(String cadena) {
         return cadena.matches("([A-Z])*");
     }
-    public boolean validarMatricula(String cadena){
+
+    public boolean validarMatricula(String cadena) {
         return cadena.matches("^[a-zA-Z]{3}-[0-9]{4}$");
     }
-    public boolean validarColor(String cadena){
+
+    public boolean validarColor(String cadena) {
         return cadena.matches("([A-Z])*");
     }
-    
 
-    public boolean validarDirección(String dirección){
+    public boolean validarDirección(String dirección) {
         return dirección.matches("[(A-Za-z)(0-9) ]{3,}");
     }
 
@@ -58,13 +59,25 @@ public class Validacion {
     }
 
     public boolean validarDia(int opcion) {
-        return opcion<=31;
+        return opcion <= 31;
     }
 
     public boolean validarMes(int opcion) {
-        return opcion<=12;
+        return opcion <= 12;
     }
+
     public boolean validarAño(int opcion) {
-        return opcion>=2000;
+        return opcion >= 2000;
     }
+
+    public int validarOpcion(String op) {
+        do {
+            op = consola.ingresar();
+            if (!this.validarNúmero(op)) {
+                consola.imprimir("Tipo de dato invalido o negativo");
+            }
+        } while (!this.validarNúmero(op));
+        return Integer.parseInt(op);
+    }
+
 }
