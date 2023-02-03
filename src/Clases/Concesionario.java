@@ -379,7 +379,7 @@ public class Concesionario {
 
                     break;
                 case 4:
-                    consola.imprimir(GVehiculos.listarMarcas().toString());
+                    GVehiculos.imprimirMarcas(GVehiculos.listarMarcas());
                     consola.imprimir("Seleccione una marca:");
                     String marca = GVehiculos.listarMarcas().get(consola.ingresarEntero());
                     consola.imprimir("Historial clientes interesados:\n");
@@ -387,20 +387,24 @@ public class Concesionario {
                         LocalDate fechaBase = LocalDate.now().minusYears(3);
                         for (Visita v : c.historial) {
                             for (int i = 0; i < v.compras.size(); i++) {
+                                if (i+1<v.compras.size()){
                                 LocalDate inicial = v.compras.get(i).fechaCompra;
-                                LocalDate actual = v.compras.get(i + 1).fechaCompra;
-                                for (Auto a : v.compras.get(i).autCom) {
-                                    a.getMarca().equals(marca);
-                                    if (actual.isAfter(inicial) && actual.isBefore(fechaBase)) {
-                                        inicial = actual;
-                                        break;
-                                    } else {
-                                        consola.imprimir(a.toString());
+                                LocalDate actual;
+                                    actual = v.compras.get(i + 1).fechaCompra;
+                                    
+                                    for (Auto a : v.compras.get(i).autCom) {
+                                        a.getMarca().equals(marca);
+                                        if (actual.isAfter(inicial) && actual.isBefore(fechaBase)) {
+                                            inicial = actual;
+                                            break;
+                                        } else {
+                                            consola.imprimir(a.toString());
+                                        }
+                                        
                                     }
-
                                 }
-                            }
-
+                                }
+                                
                         }
                     }
 

@@ -257,4 +257,13 @@ public class GestionVehiculos {
         }
         return marcas;
     }
+
+    public void imprimirMarcas(ArrayList<String> marcas){
+        int n=1;
+        for (String m : marcas) {
+            coso.imprimir("Marca "+n);
+            coso.imprimir(m);
+            n++;
+        }
+    }
 }
