@@ -248,7 +248,7 @@ public class GestionVehiculos {
         return this.tipo.get(Integer.parseInt(dato1) - 1).lista.get(Integer.parseInt(dato2) - 1);
     }
 
-    public LocalDate crearFecha(){
+    public LocalDate crearFecha() {
         int dia;
         do {
             coso.imprimir("Ingrese el Dia:");
@@ -265,9 +265,10 @@ public class GestionVehiculos {
             coso.imprimir("Ingrese el Año:");
             año = coso.ingresarEntero();
         } while (!r.validarAño(año));
-        LocalDate fecha= LocalDate.of(año, Month.of(mes), dia);
-       return fecha;
+        LocalDate fecha = LocalDate.of(año, Month.of(mes), dia);
+        return fecha;
     }
+    
     public ArrayList<String> listarMarcas() {
         ArrayList<String> marcas = new ArrayList<>();
         for (Tipo t : this.tipo) {

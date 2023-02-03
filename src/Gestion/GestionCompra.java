@@ -29,8 +29,8 @@ public class GestionCompra {
                     }
                     coso.imprimir("Ingrese el número de vehículo que desea comprar");
                     num = coso.ingresar();
-                    if (!r.validarNúmero(num)) {
-                        coso.imprimir("Solo se permiten valores numéricos");
+                    if (!r.validarNúmero(num)||num.length()==0) {
+                        coso.imprimir("Tipo de dato incorrecto o Sentencia Vacia");
                     }
                 } while (!r.validarNúmero(num));
 

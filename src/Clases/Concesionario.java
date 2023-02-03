@@ -1,9 +1,6 @@
 package Clases;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
-
 import Gestion.GestionCompra;
 import Gestion.GestionVehiculos;
 import Gestion.GestorClientes;
@@ -17,6 +14,7 @@ public class Concesionario {
         GestionVehiculos GVehiculos = new GestionVehiculos();
         Validacion r = new Validacion();
         Interfaz consola = new Interfaz();
+        Fecha fecha=new Fecha();
         consola.imprimir("Bienvenido al Concesionario FISEI");
         String masClientes = "";
         int op;
@@ -410,16 +408,16 @@ public class Concesionario {
                     int autosComprados = 0;
                     int totalFacturado = 0;
                     consola.imprimir("Fecha inicial: ");
-                    LocalDate fInicial = GVehiculos.crearFecha();
+                    LocalDate fInicial = fecha.crearFecha();
                     consola.imprimir("Fecha final: ");
-                    LocalDate fFinal = GVehiculos.crearFecha();
+                    LocalDate fFinal = fecha.crearFecha();
                     for (Cliente c : GClientes.clientes) {
                         for (Visita v : c.historial) {
                             for (Compra com : v.compras) {
                                 if (com.fechaCompra.isAfter(fInicial) && com.fechaCompra.isBefore(fFinal)) {
-                                    autosComprados = +com.autCom.size();
+                                    autosComprados =+com.autCom.size();
                                     int pAux = Integer.parseInt(com.valorCompra);
-                                    totalFacturado = +pAux;
+                                    totalFacturado =+pAux;
                                 }
                             }
                         }
