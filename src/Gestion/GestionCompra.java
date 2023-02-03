@@ -16,6 +16,14 @@ public class GestionCompra {
     Compra c = new Compra();
     GestorClientes GClientes;
 
+    
+
+    public GestionCompra() {
+        ArrayList<Compra> compras=new ArrayList<>();
+    }
+
+
+
     public void crearCompra(ArrayList<Auto> catalogo) {
         String num = "";
         String res = "";
