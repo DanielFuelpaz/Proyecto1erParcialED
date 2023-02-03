@@ -197,6 +197,13 @@ public class GestionVehiculos {
     public Auto AgregarAListaDeInteres() {
         String dato1, dato2;
         do {
+            if (this.tipo.isEmpty()) {
+                coso.imprimir("""
+                        No existen tipos ni vehículos instanciados
+                        Por favor agreguelos""");
+                crearTipo();
+                crearVehiculo();
+            }
             do {
                 ImprimirTipos();
                 coso.imprimir("Seleccione el tipo de vehiculo que desea ver");
@@ -214,6 +221,12 @@ public class GestionVehiculos {
                 }
             }
         } while (!r.validarNúmero(dato1));
+        if(this.tipo.get(Integer.parseInt(dato1)).lista.isEmpty()){
+            coso.imprimir("""
+                No exiten autos instanciados en este Tipo
+            Por favor agreguelos""");
+            crearVehiculo();
+        }
 
         ImprimirAutos(Integer.parseInt(dato1) - 1);
         do {
