@@ -24,7 +24,7 @@ public class GestionCompra {
             do {
                 do {
                     for (int i = 0; i < catalogo.size(); i++) {
-                        coso.imprimir("Vehículo 0" + (i + 1) + ": ");
+                        coso.imprimir("Vehículo " + (i + 1) + ": ");
                         coso.imprimir(catalogo.get(i).toString());
                     }
                     coso.imprimir("Ingrese el número de vehículo que desea comprar");

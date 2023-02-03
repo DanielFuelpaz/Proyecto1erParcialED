@@ -1,9 +1,6 @@
 package Clases;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
-
 import Gestion.GestionCompra;
 import Gestion.GestionVehiculos;
 import Gestion.GestorClientes;
@@ -312,8 +309,10 @@ public class Concesionario {
                                     }
                                 } while (!r.validarNúmero(num2));
                                 GClientes.clientes.get(Integer.parseInt(num) - 1).historial
-                                        .get(Integer.parseInt(num2) - 1).compras.add(GCompras.crearCompra(GClientes.clientes.get(Integer.parseInt(num) - 1).historial
-                                        .get(Integer.parseInt(num2) - 1).autosDeInterés)); 
+                                        .get(Integer.parseInt(num2) - 1).compras
+                                        .add(GCompras
+                                                .crearCompra(GClientes.clientes.get(Integer.parseInt(num) - 1).historial
+                                                        .get(Integer.parseInt(num2) - 1).autosDeInterés));
                                 break;
 
                             case "7":
@@ -382,20 +381,23 @@ public class Concesionario {
                 case 4:
                     consola.imprimir(GVehiculos.listarMarcas().toString());
                     consola.imprimir("Seleccione una marca:");
-                    String marca=GVehiculos.listarMarcas().get(consola.ingresarEntero());
+                    String marca = GVehiculos.listarMarcas().get(consola.ingresarEntero());
                     consola.imprimir("Historial clientes interesados:\n");
                     for (Cliente c : GClientes.clientes) {
+                        LocalDate fechaBase = LocalDate.now().minusYears(3);
                         for (Visita v : c.historial) {
-                            for (Compra com : v.compras) {
-                                LocalDate aux=com.getFechaCompra();
-
-                                for (Auto a : com.autCom) {
+                            for (int i = 0; i < v.compras.size(); i++) {
+                                LocalDate inicial = v.compras.get(i).fechaCompra;
+                                LocalDate actual = v.compras.get(i + 1).fechaCompra;
+                                for (Auto a : v.compras.get(i).autCom) {
                                     a.getMarca().equals(marca);
-                                    return;
-                                }
-                                
-                                if(com.getFechaCompra().isAfter(aux)){
-                                    aux=com.getFechaCompra();
+                                    if (actual.isAfter(inicial) && actual.isBefore(fechaBase)) {
+                                        inicial = actual;
+                                        break;
+                                    } else {
+                                        consola.imprimir(a.toString());
+                                    }
+
                                 }
                             }
 
