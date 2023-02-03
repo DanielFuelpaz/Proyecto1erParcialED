@@ -19,7 +19,7 @@ public class GestionCompra {
     
 
     public GestionCompra() {
-        ArrayList<Compra> compras=new ArrayList<>();
+        compras=new ArrayList<>();
     }
 
 
