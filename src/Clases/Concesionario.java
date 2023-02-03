@@ -15,7 +15,6 @@ public class Concesionario {
         Interfaz consola = new Interfaz();
         consola.imprimir("Bienvenido al Concesionario FISEI");
         String masClientes = "";
-        String respuesta1;
         int op;
             do{
             consola.imprimir(
@@ -102,7 +101,7 @@ public class Concesionario {
                                 consola.imprimir("Elija un número del 1 al 7");
                                 break;
                         }
-                    } while (respuesta2.equals("7"));
+                    } while (!respuesta2.equals("7"));
                     break;
                 case 2:
                     String respuestaCaso2;

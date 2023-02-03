@@ -165,7 +165,6 @@ public class GestorClientes {
         ArrayList<Visita> aux = c.historial;
         consola.imprimir("Seleccione la visita de la que sacar la lista de autos de interes:");
         int n = 1;
-        String num;
         for (Visita visita : aux) {
 
             consola.imprimir("Visita " + n + " " + visita.toString());
