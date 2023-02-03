@@ -232,4 +232,16 @@ public class GestionVehiculos {
         } while (!r.validarNúmero(dato2));
         return this.tipo.get(Integer.parseInt(dato1) - 1).lista.get(Integer.parseInt(dato2) - 1);
     }
+
+    public ArrayList<String> listarMarcas() {
+        ArrayList<String> marcas = new ArrayList<>();
+        for (Tipo t : this.tipo) {
+            for (Auto a : t.lista) {
+                if (!marcas.contains(a.getMarca())) {
+                    marcas.add(a.getMarca());
+                }
+            }
+        }
+        return marcas;
+    }
 }
