@@ -66,24 +66,25 @@ public class GestorClientes {
         AModificar = consola.ingresarEntero();
         switch (AModificar) {
             case 1:
-                String nuevaCedula;
-                boolean existe = false;
-                do {
-                    consola.imprimir("Ingrese la nueva cédula");
-                    nuevaCedula = consola.ingresar();
-                    for (int index = 0; index < this.clientes.size(); index++) {
-                        if (this.clientes.get(index).cedula.equals(nuevaCedula)) {
-                            consola.imprimir("La cédula ya existe");
-                            existe = true;
-                        } else {
-                            if (validar.validarCedula(nuevaCedula, this)) {
-                                this.clientes.get(numClienteModificar - 1).cedula = nuevaCedula;
-                                existe = true;
-                            }
-                        } 
+            String nuevaCedula;
+            boolean existeCedula = false;
+            do {
+                consola.imprimir("Ingrese la nueva cédula");
+                nuevaCedula = consola.ingresar();
+                for (Cliente c:this.clientes) {
+                    if (c.telefono.equals(nuevaCedula)) {
+                        consola.imprimir("La cédula ya existe");
+                        existeCedula = true;
+                    } else {
+                        if (validar.validarTelefono(nuevaCedula, this)) {
+                            this.clientes.get(numClienteModificar - 1).cedula = nuevaCedula;
+                            existeCedula = true;
+                        }
+                        existeCedula = false;
                     }
-                } while (existe);
-                break;
+                }
+            } while (existeCedula);
+            break;
             case 2:
                 consola.imprimir("Ingrese el nuevo nombre");
                 String nuevoNombre = consola.ingresar();

@@ -16,7 +16,7 @@ public class Concesionario {
         consola.imprimir("Bienvenido al Concesionario FISEI");
         String masClientes = "";
         String respuesta1;
-        do {
+        
 
             do{
             consola.imprimir(
