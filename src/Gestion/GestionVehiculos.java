@@ -99,7 +99,7 @@ public class GestionVehiculos {
                 }
             } while (!r.validarNúmero(dato));
 
-            if (Integer.parseInt(dato) < 0 || Integer.parseInt(dato) > this.tipo.size()) {
+            if (Integer.parseInt(dato) <= 0 || Integer.parseInt(dato) > this.tipo.size()) {
                 coso.imprimir("""
                         El valor ingresado no esta dentro del rango de opciones
                         Por favor vuelvalo a ingresar correctamente""");
@@ -158,7 +158,7 @@ public class GestionVehiculos {
                 coso.imprimir("Solo se permiten los datos númericos\nPor favor ingres un valor válido");
             }
             if (r.validarNúmero(num)) {
-                if (Integer.parseInt(num) < 0 || Integer.parseInt(num) > this.tipo.get(pos).lista.size()) {
+                if (Integer.parseInt(num) <= 0 || Integer.parseInt(num) > this.tipo.get(pos).lista.size()) {
                     coso.imprimir("El valor ingresado se encuentra fuera del rango de vehiculos existentes");
                     coso.imprimir("Por favor ingrese un número dentro del rango");
                     num = "ª";
@@ -184,7 +184,7 @@ public class GestionVehiculos {
             } while (!r.validarNúmero(num));
 
             if (!r.validarNúmero(num)) {
-                if (Integer.parseInt(num) < 0 || Integer.parseInt(num) > catalogo.size()) {
+                if (Integer.parseInt(num) <= 0 || Integer.parseInt(num) > catalogo.size()) {
                     coso.imprimir("El valor ingresado se encuentra fuera del rango de vehiculos existentes");
                     coso.imprimir("Por favor ingrese un número dentro del rango");
                     num = "ª";
@@ -206,7 +206,7 @@ public class GestionVehiculos {
                 }
             } while (!r.validarNúmero(dato1));
             if (r.validarNúmero(dato1)) {
-                if (Integer.parseInt(dato1) < 0 || Integer.parseInt(dato1) > this.tipo.size()) {
+                if (Integer.parseInt(dato1) <= 0 || Integer.parseInt(dato1) > this.tipo.size()) {
                     coso.imprimir(
                             "El valor ingresado se encuentra fuera del rango de los Tipos de vehiculos existentes");
                     coso.imprimir("Por favor ingrese un número dentro del rango");
@@ -223,7 +223,7 @@ public class GestionVehiculos {
                 coso.imprimir("Solo se permiten los datos númericos\nPor favor ingres un valor válido");
             }
             if (r.validarNúmero(dato2)) {
-                if (Integer.parseInt(dato2) < 0 || Integer.parseInt(dato2) > this.tipo.size()) {
+                if (Integer.parseInt(dato2) <= 0 || Integer.parseInt(dato2) > this.tipo.size()) {
                     coso.imprimir("El valor ingresado se encuentra fuera del rango de vehiculos existentes");
                     coso.imprimir("Por favor ingrese un número dentro del rango");
                     dato2 = "ª";
