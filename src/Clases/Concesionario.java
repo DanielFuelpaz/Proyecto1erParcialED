@@ -311,8 +311,9 @@ public class Concesionario {
                                         masClientes = "ª";
                                     }
                                 } while (!r.validarNúmero(num2));
-                                GCompras.crearCompra(GClientes.clientes.get(Integer.parseInt(num) - 1).historial
-                                        .get(Integer.parseInt(num2) - 1).autosDeInterés);
+                                GClientes.clientes.get(Integer.parseInt(num) - 1).historial
+                                        .get(Integer.parseInt(num2) - 1).compras.add(GCompras.crearCompra(GClientes.clientes.get(Integer.parseInt(num) - 1).historial
+                                        .get(Integer.parseInt(num2) - 1).autosDeInterés)); 
                                 break;
 
                             case "7":
@@ -362,6 +363,7 @@ public class Concesionario {
                                     .get(i).autosDeInterés.get(j)
                                     .toString());
                         }
+                        consola.imprimir("Autos Comprados: ");
                         for (int k = 0; k < GClientes.clientes.get(Integer.parseInt(masClientes) - 1).historial
                                 .get(i).compras.size(); k++) {
                             for (int l = 0; l < GClientes.clientes.get(Integer.parseInt(masClientes) - 1).historial

@@ -69,10 +69,17 @@ public class GestionVehiculos {
         coso.imprimir("Ingrese la marca del Vehículo");
         marca = coso.ingresar();
         do {
-            coso.imprimir("Ingrese el año del Vehículo");
+            do {
+                coso.imprimir("Ingrese el año del Vehículo");
             año = coso.ingresar();
             if (!r.validarNúmero(año)) {
                 coso.imprimir("Solo se permiten valores numéricos");
+            }
+            } while (!r.validarNúmero(año));
+            
+            if(!r.validarAño(Integer.parseInt(año))){
+                coso.imprimir("El año debe tener cuatro digitos");
+                año="a";
             }
         } while (!r.validarNúmero(año));
         auto.setPlaca(placa);
@@ -161,19 +168,22 @@ public class GestionVehiculos {
         return this.tipo.get(pos).lista.get(Integer.parseInt(num) - 1);
     }
 
-    public Auto BorrarVehiculoInteres(ArrayList<Auto> catalogo) {
+    public int BorrarVehiculoInteres(ArrayList<Auto> catalogo) {
         String num;
         for (int i = 0; i < catalogo.size(); i++) {
             coso.imprimir("\n" + "Vehiculo " + (i + 1) + ": ");
             coso.imprimir(catalogo.get(i).toString());
         }
         do {
-            coso.imprimir("Seleccione número del vehiculo que quiere borrar");
-            num = coso.toString();
+            do {
+                coso.imprimir("Seleccione número del vehiculo que quiere borrar");
+                num = coso.toString();
+                if (!r.validarNúmero(num)) {
+                    coso.imprimir("Solo se permiten los datos númericos\nPor favor ingres un valor válido");
+                }
+            } while (!r.validarNúmero(num));
+
             if (!r.validarNúmero(num)) {
-                coso.imprimir("Solo se permiten los datos númericos\nPor favor ingres un valor válido");
-            }
-            if (r.validarNúmero(num)) {
                 if (Integer.parseInt(num) < 0 || Integer.parseInt(num) > catalogo.size()) {
                     coso.imprimir("El valor ingresado se encuentra fuera del rango de vehiculos existentes");
                     coso.imprimir("Por favor ingrese un número dentro del rango");
@@ -181,7 +191,7 @@ public class GestionVehiculos {
                 }
             }
         } while (!r.validarNúmero(num));
-        return catalogo.get(Integer.parseInt(num) - 1);
+        return (Integer.parseInt(num) - 1);
     }
 
     public Auto AgregarAListaDeInteres() {
