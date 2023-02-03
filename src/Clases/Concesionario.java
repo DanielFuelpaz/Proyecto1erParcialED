@@ -419,9 +419,9 @@ public class Concesionario {
                     int autosComprados=0;
                     int totalFacturado=0;
                     consola.imprimir("Fecha inicial: ");
-                    LocalDate fInicial=GVehiculos.crearFecha(consola.ingresarEntero(), consola.ingresarEntero(), consola.ingresarEntero());
+                    LocalDate fInicial=GVehiculos.crearFecha();
                     consola.imprimir("Fecha final: ");
-                    LocalDate fFinal=GVehiculos.crearFecha(consola.ingresarEntero(), consola.ingresarEntero(), consola.ingresarEntero());
+                    LocalDate fFinal=GVehiculos.crearFecha();
                     for (Cliente c : GClientes.clientes) {
                         for (Visita v : c.historial) {
                             for(Compra com:v.compras){     

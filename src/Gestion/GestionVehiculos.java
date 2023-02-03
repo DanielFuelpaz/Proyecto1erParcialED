@@ -248,18 +248,19 @@ public class GestionVehiculos {
         return this.tipo.get(Integer.parseInt(dato1) - 1).lista.get(Integer.parseInt(dato2) - 1);
     }
 
-    public LocalDate crearFecha(int dia,int mes, int año){
-        
+    public LocalDate crearFecha(){
+        int dia;
         do {
             coso.imprimir("Ingrese el Dia:");
             dia = coso.ingresarEntero();
 
         } while (!r.validarDia(dia));
-        
+        int mes;
         do {
             coso.imprimir("Ingrese el Mes:");
             mes = coso.ingresarEntero();
         } while (!r.validarMes(mes));
+        int año;
         do {
             coso.imprimir("Ingrese el Año:");
             año = coso.ingresarEntero();
