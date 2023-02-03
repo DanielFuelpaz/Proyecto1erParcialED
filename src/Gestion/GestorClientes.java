@@ -55,28 +55,16 @@ public class GestorClientes {
             return;
         }
         consola.imprimir("Elija el número del cliente que desea modificar");
-        String numClienteModificar="";
+        int num=0;
         do {
-            
-                numClienteModificar = consola.ingresar();
-                if (!validar.validarNúmero(numClienteModificar)) {
-                    consola.imprimir("Tipo de dato invalido o negativo");
-                }
-            } while (!validar.validarNúmero(numClienteModificar)||(Integer.parseInt(numClienteModificar) - 1) > this.clientes.size() || (Integer.parseInt(numClienteModificar)) - 1 < 0);
-        
-        String AModificar;
-        do{
+                num=validar.validarOpcion();
+            } while ((num - 1) > this.clientes.size() || (num) - 1 < 0);
+        int op;
+            do{
         consola.imprimir(        
-        "Ingrese lo que desea modificar del cliente: \n 1:Modificar cédula  \n 2:Modificar nombre \n 3:Modificar apellido \n 4:Modificar teléfono \n 5:Modificar dirección \n 6:Salir");
-        do {
-            AModificar = consola.ingresar();
-            if (!validar.validarNúmero(AModificar)) {
-                consola.imprimir("Tipo de dato invalido o negativo");
-            }
-        } while (!validar.validarNúmero(AModificar));
-        
-        int op=Integer.parseInt(numClienteModificar);
-        switch (Integer.parseInt(AModificar)) {
+        "Ingrese lo que desea modificar del cliente: \n 1:Modificar cédula  \n 2:Modificar nombre \n 3:Modificar apellido \n 4:Modificar teléfono \n 5:Modificar dirección \n 6:Salir"); 
+        op=validar.validarOpcion();
+        switch (op) {
             case 1:
             String nuevaCedula;
             boolean existeCedula = false;
@@ -84,12 +72,12 @@ public class GestorClientes {
                 consola.imprimir("Ingrese la nueva cédula");
                 nuevaCedula = consola.ingresar();
                 for (Cliente c:this.clientes) {
-                    if (c.telefono.equals(nuevaCedula)) {
+                    if (c.cedula.equals(nuevaCedula)) {
                         consola.imprimir("La cédula ya existe");
                         existeCedula = true;
                     } else {
                         if (validar.validarTelefono(nuevaCedula, this)) {
-                            this.clientes.get(op - 1).cedula = nuevaCedula;
+                            this.clientes.get(num - 1).cedula = nuevaCedula;
                             existeCedula = true;
                         }
                         existeCedula = false;
@@ -101,14 +89,14 @@ public class GestorClientes {
                 consola.imprimir("Ingrese el nuevo nombre");
                 String nuevoNombre = consola.ingresar();
                 if (validar.validarPersona(nuevoNombre)) {
-                    this.clientes.get(op - 1).nombre = nuevoNombre;
+                    this.clientes.get(num - 1).nombre = nuevoNombre;
                 }
                 break;
             case 3:
                 consola.imprimir("Ingrese el nuevo apellido");
                 String nuevoApellido = consola.ingresar();
                 if (validar.validarPersona(nuevoApellido)) {
-                    this.clientes.get(op - 1).apellido = nuevoApellido;
+                    this.clientes.get(num - 1).apellido = nuevoApellido;
                 }
                 break;
             case 4:
@@ -123,7 +111,7 @@ public class GestorClientes {
                             existeTelefono = true;
                         } else {
                             if (validar.validarTelefono(nuevoTelefono, this)) {
-                                this.clientes.get(op - 1).telefono = nuevoTelefono;
+                                this.clientes.get(num - 1).telefono = nuevoTelefono;
                                 existeTelefono = true;
                             }
                             existeTelefono = false;
@@ -141,24 +129,20 @@ public class GestorClientes {
                 consola.imprimir("Debe escribir un número del 1 al 6");
                 break;
         }
-    }while(Integer.parseInt(AModificar) != 6);
+    }while(op!=6);
 
 }
 
     public void eliminarCliente() {
         if (this.clientes.size() != 0) {
             this.Listar();
-            String numClienteCambio = "";
+            int numCambio;
             do {
                 consola.imprimir("Elija el número del cliente que desea eliminar");
-                numClienteCambio = consola.ingresar();
-                if (!validar.validarNúmero(numClienteCambio)) {
-                    consola.imprimir("Tipo de dato invalido o negativo");
-                }
-            } while (!validar.validarNúmero(numClienteCambio) || Integer.parseInt(numClienteCambio) - 1 >= this.clientes.size()
-            || Integer.parseInt(numClienteCambio) - 1 < 0);
-    
-            this.clientes.remove(Integer.parseInt(numClienteCambio) - 1);
+                numCambio = validar.validarOpcion();
+            } while (numCambio - 1 >= this.clientes.size()
+            || numCambio - 1 < 0);
+            this.clientes.remove((numCambio) - 1);
             this.Listar();
         } else {
             consola.imprimir("Debe crear un cliente primero");
@@ -166,17 +150,12 @@ public class GestorClientes {
     }
 
     public Cliente buscarCliente() {
-        String n;
         int n1;
         if (this.clientes.size() > 0) {
             do {
                 consola.imprimirS("Elija el número del cliente que desea buscar: ");
-                n = consola.ingresar();
-                n1=Integer.parseInt(n);
-                if (!validar.validarNúmero(n)) {
-                    consola.imprimir("Tipo de dato invalido o negativo");
-                } 
-            } while (n1-1 < 0 || n1-1 >= this.clientes.size()||validar.validarNúmero(n));
+                n1 = validar.validarOpcion();
+            } while (n1-1 < 0 || n1-1 >= this.clientes.size());
             return this.clientes.get(n1 - 1);
         }
         return null;
@@ -191,7 +170,8 @@ public class GestorClientes {
             consola.imprimir("Visita " + n + " " + visita.toString());
             n++;
         }
-        n = consola.ingresarEntero();
+        
+        n=validar.validarOpcion();
         return aux.get(n-1);
 
     }
@@ -205,7 +185,7 @@ public class GestorClientes {
             consola.imprimir("Visita " + n + " " + visita.toString());
             n++;
         }
-        n = consola.ingresarEntero();
+        n = validar.validarOpcion();
         return aux.get(n-1).autosDeInterés;
 
     }

@@ -70,14 +70,19 @@ public class Validacion {
         return opcion >= 2000;
     }
 
-    public int validarOpcion(String op) {
+    public int validarOpcion() {
+        String op;
         do {
             op = consola.ingresar();
             if (!this.validarNúmero(op)) {
                 consola.imprimir("Tipo de dato invalido o negativo");
             }
         } while (!this.validarNúmero(op));
-        return Integer.parseInt(op);
+        if (op.length() > 0) {
+            return Integer.parseInt(op);
+        }
+        return -1;
+
     }
 
 }

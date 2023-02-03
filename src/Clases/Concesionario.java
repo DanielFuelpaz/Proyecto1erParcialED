@@ -15,9 +15,8 @@ public class Concesionario {
         Interfaz consola = new Interfaz();
         consola.imprimir("Bienvenido al Concesionario FISEI");
         String masClientes = "";
-        String respuesta1;
-
-        do {
+        int op;
+            do{
             consola.imprimir(
                     """
                             Elija lo que desea hacer:
@@ -29,14 +28,9 @@ public class Concesionario {
                             Incluir en este informe estadísticas de cantidad de carros y valor total facturado
                             6: Salir
                             """);
-            do {
-                respuesta1 = consola.ingresar();
-                if (!r.validarNúmero(respuesta1)) {
-                    consola.imprimir("Tipo de dato invalido o negativo");
-                }
-            } while (!r.validarNúmero(respuesta1));
+            op=r.validarOpcion();
 
-            switch (Integer.parseInt(respuesta1)) {
+            switch (op) {
                 case 1:
                     String respuesta2;
                     do {
@@ -67,7 +61,7 @@ public class Concesionario {
                             case "2":
                                 GClientes.Listar();
                                 GClientes.modificarCliente();
-
+                                GClientes.Listar();
                                 break;
                             case "3":
                                 GClientes.eliminarCliente();
@@ -75,11 +69,11 @@ public class Concesionario {
                                 break;
                             case "4":
                                 GClientes.Listar();
-                                try {
-                                    consola.imprimir("Datos del cliente:");
-                                    consola.imprimir(GClientes.buscarCliente().toString());
-                                } catch (Exception e) {
-                                    consola.imprimir("La lista está vacía, debe agregar un cliente primero");
+                                try  {
+                                        consola.imprimir("Datos del cliente:");
+                                        consola.imprimir(GClientes.buscarCliente().toString());
+                                } catch  (Exception e)  {
+                                    consola.imprimir("La lista está vacía");
                                 }
                                 break;
                             case "5":
@@ -90,7 +84,10 @@ public class Concesionario {
                                 if (GClientes.clientes.size() > 0) {
                                     consola.imprimir(
                                             "Ingrese el número del cliente del que desea agregar una nueva visita");
-                                    int numCliente = consola.ingresarEntero();
+                                    
+                                            
+                                    
+                                            int numCliente = consola.ingresarEntero();
                                     GClientes.clientes.get(numCliente - 1).historial.add(new Visita());
                                 } else {
                                     consola.imprimir("No existen clientes, primero debe crear uno");
@@ -104,7 +101,7 @@ public class Concesionario {
                                 consola.imprimir("Elija un número del 1 al 7");
                                 break;
                         }
-                    } while (respuesta2.equals("7"));
+                    } while (!respuesta2.equals("7"));
                     break;
                 case 2:
                     String respuestaCaso2;
@@ -311,8 +308,6 @@ public class Concesionario {
                     break;
 
             }
-            // Para saber que ya salio preguntar si desea comprar o no.
-
-        } while (r.validarNúmero(String.valueOf(respuesta1)) && !respuesta1.equals("6"));
+        } while (op!=6);
     }
 }
