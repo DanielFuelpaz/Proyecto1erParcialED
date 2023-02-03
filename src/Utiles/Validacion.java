@@ -38,6 +38,30 @@ public class Validacion {
         return nombre.matches("[A-Z]([a-z]){2,}");
     }
 
+    public boolean validarDirección(String dirección) {
+        return dirección.matches("[(A-Za-z)(0-9) ]{3,}");
+    }
+
+    public boolean validarNúmeroDecimal(String numero) {
+        return numero.matches("^[0-9]+(,[0-9]+)?$");
+    }
+    
+    
+    public boolean validarDia(int opcion) {
+        return opcion <= 31 && opcion > 0;
+    }
+
+    public boolean validarMes(int opcion) {
+        return opcion <= 12 && opcion > 0;
+    }
+
+    public boolean validarAño(int opcion) {
+        return opcion >= 2000;
+    }
+
+    public boolean validarNúmero(String numero) {
+        return numero.matches("[0-9]*");
+    }
     public boolean validarTipos(String cadena) {
         return cadena.matches("([A-Z])*");
     }
@@ -48,30 +72,6 @@ public class Validacion {
 
     public boolean validarColor(String cadena) {
         return cadena.matches("([A-Z])*");
-    }
-
-    public boolean validarDirección(String dirección) {
-        return dirección.matches("[(A-Za-z)(0-9) ]{3,}");
-    }
-
-    public boolean validarNúmero(String numero) {
-        return numero.matches("[0-9]*");
-    }
-    
-    public boolean validarNúmeroDecimal(String numero) {
-        return numero.matches("^[0-9]+(,[0-9]+)?$");
-    }
-
-    public boolean validarDia(int opcion) {
-        return opcion <= 31 && opcion>0;
-    }
-
-    public boolean validarMes(int opcion) {
-        return opcion <= 12 && opcion>0;
-    }
-
-    public boolean validarAño(int opcion) {
-        return opcion >= 2000;
     }
 
     public int validarOpcion() {
@@ -86,7 +86,6 @@ public class Validacion {
             return Integer.parseInt(op);
         }
         return -1;
-
     }
 
 }
