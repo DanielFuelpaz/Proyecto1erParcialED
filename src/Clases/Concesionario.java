@@ -384,7 +384,7 @@ public class Concesionario {
                 case 4:
                     GVehiculos.imprimirMarcas(GVehiculos.listarMarcas());
                     consola.imprimir("Seleccione una marca de la Lista:");
-                    String marca = GVehiculos.listarMarcas().get(consola.ingresarEntero());
+                    String marca = GVehiculos.listarMarcas().get(consola.ingresarEntero() - 1);
                     consola.imprimir("Historial clientes interesados:\n");
                     for (Cliente c : GClientes.clientes) {
                         LocalDate fechaBase = LocalDate.now().minusYears(3);
@@ -392,8 +392,8 @@ public class Concesionario {
                             for (Auto a : v.autosDeInterés) {
                                 if (a.marca.equals(marca)) {
                                     for (Compra compra : v.compras) {
-                                        if(compra.fechaCompra.isBefore(fechaBase)){
-                                            c.toString();
+                                        if (compra.fechaCompra.isBefore(fechaBase)) {
+                                            consola.imprimir(c.toString());
                                         }
                                     }
                                 }
