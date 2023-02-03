@@ -1,6 +1,7 @@
 package Clases;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 
 import Gestion.GestionCompra;
@@ -382,58 +383,49 @@ public class Concesionario {
                     break;
                 case 4:
                     GVehiculos.imprimirMarcas(GVehiculos.listarMarcas());
-                    consola.imprimir("Seleccione una marca:");
+                    consola.imprimir("Seleccione una marca de la Lista:");
                     String marca = GVehiculos.listarMarcas().get(consola.ingresarEntero());
                     consola.imprimir("Historial clientes interesados:\n");
                     for (Cliente c : GClientes.clientes) {
                         LocalDate fechaBase = LocalDate.now().minusYears(3);
                         for (Visita v : c.historial) {
-                            for (int i = 0; i < v.compras.size(); i++) {
-                                if (i + 1 < v.compras.size()) {
-                                    LocalDate inicial = v.compras.get(i).fechaCompra;
-                                    LocalDate actual;
-                                    actual = v.compras.get(i + 1).fechaCompra;
-
-                                    for (Auto a : v.compras.get(i).autCom) {
-                                        a.getMarca().equals(marca);
-                                        if (actual.isAfter(inicial) && actual.isBefore(fechaBase)) {
-                                            inicial = actual;
-                                            break;
-                                        } else {
-                                            consola.imprimir(a.toString());
+                            for (Auto a : v.autosDeInterés) {
+                                if (a.marca.equals(marca)) {
+                                    for (Compra compra : v.compras) {
+                                        if(compra.fechaCompra.isBefore(fechaBase)){
+                                            c.toString();
                                         }
-
                                     }
                                 }
                             }
-
                         }
                     }
 
                     break;
                 case 5:
-                    //Carros vendidos en un margen de tiempo dado (fecha inicial a fecha final).
-                    //Incluir en este informe estadísticas de: 
-                    //Cantidad de carros
-                    //Valor total facturado.
-                    int autosComprados=0;
-                    int totalFacturado=0;
+                    // Carros vendidos en un margen de tiempo dado (fecha inicial a fecha final).
+                    // Incluir en este informe estadísticas de:
+                    // Cantidad de carros
+                    // Valor total facturado.
+                    int autosComprados = 0;
+                    int totalFacturado = 0;
                     consola.imprimir("Fecha inicial: ");
-                    LocalDate fInicial=GVehiculos.crearFecha();
+                    LocalDate fInicial = GVehiculos.crearFecha();
                     consola.imprimir("Fecha final: ");
-                    LocalDate fFinal=GVehiculos.crearFecha();
+                    LocalDate fFinal = GVehiculos.crearFecha();
                     for (Cliente c : GClientes.clientes) {
                         for (Visita v : c.historial) {
-                            for(Compra com:v.compras){     
-                                if(com.fechaCompra.isAfter(fInicial)&&com.fechaCompra.isBefore(fFinal)){
-                                    autosComprados=+com.autCom.size();
-                                    totalFacturado=+Integer.parseInt(com.valorCompra);
+                            for (Compra com : v.compras) {
+                                if (com.fechaCompra.isAfter(fInicial) && com.fechaCompra.isBefore(fFinal)) {
+                                    autosComprados = +com.autCom.size();
+                                    int pAux = Integer.parseInt(com.valorCompra);
+                                    totalFacturado = +pAux;
                                 }
-                            }   
+                            }
                         }
                     }
-                    consola.imprimir("Autos Comprados: "+ autosComprados);
-                    consola.imprimir("Total Facturado "+ totalFacturado);
+                    consola.imprimir("Autos Comprados: " + autosComprados);
+                    consola.imprimir("Total Facturado " + totalFacturado);
                     break;
                 case 6:
                     System.out.println("Gracias por visitarnos :)");
