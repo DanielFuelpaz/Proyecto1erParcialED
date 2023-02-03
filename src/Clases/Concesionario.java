@@ -30,7 +30,7 @@ public class Concesionario {
                             Incluir en este informe estadísticas de cantidad de carros y valor total facturado
                             6: Salir
                             """);
-            int op=r.validarOpcion(respuesta1);
+            int op=r.validarOpcion();
 
             switch (op) {
                 case 1:
