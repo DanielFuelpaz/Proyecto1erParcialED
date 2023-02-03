@@ -15,7 +15,7 @@ public class Concesionario {
         Interfaz consola = new Interfaz();
         consola.imprimir("Bienvenido al Concesionario FISEI");
         String masClientes = "";
-        String respuesta1;
+        String respuesta1="";
         
 
             do{
@@ -30,14 +30,9 @@ public class Concesionario {
                             Incluir en este informe estadísticas de cantidad de carros y valor total facturado
                             6: Salir
                             """);
-            do {
-                respuesta1 = consola.ingresar();
-                if (!r.validarNúmero(respuesta1)) {
-                    consola.imprimir("Tipo de dato invalido o negativo");
-                }
-            } while (!r.validarNúmero(respuesta1));
+            int op=r.validarOpcion(respuesta1);
 
-            switch (Integer.parseInt(respuesta1)) {
+            switch (op) {
                 case 1:
                     String respuesta2;
                     do {

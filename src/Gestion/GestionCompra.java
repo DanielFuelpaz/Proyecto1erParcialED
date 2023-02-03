@@ -41,7 +41,7 @@ public class GestionCompra {
             a = consola.ingresarEntero();
         } while (validar.validarAño(a));
 
-        c = new Compra(LocalDate.of(consola.ingresarEntero(), Month.of(consola.ingresarEntero()), 0), null);
+        c = new Compra(LocalDate.of(consola.ingresarEntero(), Month.of(consola.ingresarEntero()), consola.ingresarEntero()), null);
         c.autCom.add(autosInteres.get(in));
         GClientes.buscarVisita(aux).compras.add(c);
         GClientes.buscarVisita(aux).autosDeInterés.remove(in);
