@@ -163,7 +163,7 @@ public class Concesionario {
                                             consola.imprimir("Solo se permiten valores númericos");
                                         }
                                     } while (!r.validarNúmero(num));
-                                    if (Integer.parseInt(num) > GClientes.clientes.size()
+                                    if (num.length()==0||Integer.parseInt(num) > GClientes.clientes.size()
                                             || Integer.parseInt(num) <= 0) {
                                         consola.imprimir("El valor ingresado está fuera del rango de opciones");
                                         num = "ª";
@@ -185,7 +185,7 @@ public class Concesionario {
                                             consola.imprimir("Solo se permiten valores númericos");
                                         }
                                     } while (!r.validarNúmero(num2));
-                                    if (Integer.parseInt(num2) > GClientes.clientes.get(Integer.parseInt(num)-1).historial.size()
+                                    if (num2.length()==0||Integer.parseInt(num2) > GClientes.clientes.get(Integer.parseInt(num)-1).historial.size()
                                             || Integer.parseInt(num2) <= 0) {
                                         consola.imprimir("El valor ingresado esta fuera del rango de opciones");
                                         num2 = "ª";
@@ -264,7 +264,7 @@ public class Concesionario {
                                 consola.imprimir("Ingrese un número del 1 al 6");
                                 break;
                         }
-                    } while (!respuestaCaso2.equals("7"));
+                    } while (!respuestaCaso2.equals("6"));
                     break;
                 case 3:
                     if (GClientes.clientes.isEmpty()) {
@@ -279,8 +279,8 @@ public class Concesionario {
                             consola.imprimir("Solo se permiten datos numericos");
                         }
                         if (r.validarNúmero(masClientes)) {
-                            if (Integer.parseInt(masClientes) > GClientes.clientes.size()
-                                    || Integer.parseInt(masClientes) < 0) {
+                            if (Integer.parseInt(masClientes)-1 >= GClientes.clientes.size()
+                                    || Integer.parseInt(masClientes)-1 < 0) {
                                 consola.imprimir("El valor ingresado se encuentra fuera del rango de datos");
                                 masClientes = "ª";
                             }
@@ -323,6 +323,11 @@ public class Concesionario {
                 case 4:
                     GVehiculos.imprimirMarcas(GVehiculos.listarMarcas());
                     consola.imprimir("Seleccione una marca de la Lista:");
+                    if(GVehiculos.listarMarcas().isEmpty()){
+                        consola.imprimir("Lista Vacia");
+                        break;
+                    }
+                    
                     String marca = GVehiculos.listarMarcas().get(consola.ingresarEntero() - 1);
                     consola.imprimir("Historial clientes interesados:\n");
                     for (Cliente c : GClientes.clientes) {
